@@ -147,7 +147,7 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
                     pass
         return ls
     else:
-        raise ValueError("Mode Should Be 'p' Or 'i' !")
+        raise ModeError("Mode Should Be 'p' Or 'i' !")
 
 
 def calculate(a: str,op: str,b: str,**kwargs) -> bool:

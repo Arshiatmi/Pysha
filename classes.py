@@ -102,6 +102,17 @@ class command:
         else:
             raise ValueError("Mode Should Be 'p' Or 'i' !")
     
+
+    """
+    This Function Act As c++ One Line Condition.
+    You Can Use This Function Like :
+        condition("i > j ? 'i Is Grater' : 'j Is Grater'",i=20,j=23)
+    Output Will Be :
+        "j Is Grater"
+    
+    This Function Now Supports:
+        int,float,string Compares For Now.
+    """
     def condition(self,check,p=True,**kwargs):
         if not re.match("""(\'?|\"?)[ -~]+(\'?|\"?)(>|<|==|>=|<=)(\'?|\"?)[ -~]+(\'?|\"?)\?(\'?|\"?)[ -~]+(\'?|\"?):(\'?|\"?)[ -~]+(\'?|\"?)""",''.join(check.split(' '))):
             raise ConditionError("An Error In Parsing Condition :(")

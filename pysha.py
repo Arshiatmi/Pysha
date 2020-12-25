@@ -4,6 +4,24 @@ from classes import *
 from data_structures import *
 from auth import *
 
+"""
+Abbreviation of Pretty Print.
+Args:
+    You Can Give As Much As You Can For Print :)
+
+Kwargs:
+    curly_c : Set Curly Brackets Colors or "{}" Color.
+    colon_c : Set Colon Colors or ":" Color.
+    quote_c : Set Quote Colors or "'" Color.
+    mode    : Set Mode Of pp. Modes Are 'k' And 'i'. You Can Read About
+                Them In Modes Part.
+    end     : This Will Set End Of Print. Default Is '\n'.
+
+Modes : 
+    k : This Will Use all colors That You Specified As Kwargs.
+    i : This Will Ignore Colors(curly_c,colon_c,quote_c) That You
+            Specified In Kwargs. 
+"""
 def pp(*args,curly_c=Fore.RESET,colon_c=Fore.RESET,quote_c=Fore.RESET,mode='k',end='\n'):
     for i in args:
         if type(i) == list:
@@ -33,6 +51,24 @@ def pp(*args,curly_c=Fore.RESET,colon_c=Fore.RESET,quote_c=Fore.RESET,mode='k',e
             print(i,end=end)
 
 
+"""
+This Function Acts As A Decorator For Check Spent Time On Executing Functions.
+Args:
+    Gets One Argument For Printing Format. For Example :
+        @time("Spent Time Was _T_")
+        def test():
+            return True
+    And Output Of This Code After Calling test() Will Be Something Like That : 
+        Spent Time Was 0:00:00.100404
+
+Important Parameters : 
+    _T_ : Will Be Replaced With [Hour]:[Minute]:[Second].[MiliSecond]
+    _H_ : Will Be Replaced With [Hour]
+    _M_ : Will Be Replaced With [Minute]
+    _S_ : Will Be Replaced With [Second]
+    _MS_ : Will Be Replaced With [MiliSecond]
+
+"""
 def timer(string):
     def sec(func):
         def run(*args,**kwargs):
@@ -51,7 +87,57 @@ def timer(string):
             pp(s)
         return run
     return sec
+
+
+"""
+This Function Will Draw A Rectangle Plus Your Target Text Middle Of It.
+Args:
+    Just Your Texts. You Can Pass It Like rect("hello","Thanks") Or rect("hello\nThanks")
+kwargs:
+    text_color    ->   Color Of Your Text.
+
+    first_line    ->   This Parameter Will Set First Line Character And Color.
+                        You Can Pass A Character, Default Text Color Will Be Setted.
+                        Or You Can Pass A Tuple That Contains Character And Color Like
+                        ('-',Fore.RED).
+
+    sep           ->   This Parameter Will Set Corners Character And Color.
+                        You Can Pass A Character, Default Text Color Will Be Setted.
+                        Or You Can Pass A Tuple That Contains Character And Color Like
+                        ('-',Fore.RED).
+
+    last_line     ->   This Parameter Will Set Last Line Character And Color.
+                        You Can Pass A Character, Default Text Color Will Be Setted.
+                        Or You Can Pass A Tuple That Contains Character And Color Like
+                        ('-',Fore.RED).
+
+    distance_up   ->   This Parameter Will Set Distance Between Text And First Line.
+                        You Can Pass An Integer That Is Line Numbers Of Distance.
+
+    distance_down ->   This Parameter Will Set Distance Between Text And Last Line.
+                        You Can Pass An Integer That Is Line Numbers Of Distance.
+
+    length        ->   This Parameter Will Set Number Of Characters In First/Last
+                        Line. You Can Pass An Integer That Is Character Count Of First/Last Line.
+
+    p            ->   This Parameter Will Set Print Mode. If Its True It Will Print
+                        And If Its False It Will Return Rectangle As String.
+
+
+Example : 
+    * Code
+        rect("Hello\nWelcome To Pysha :)",first_line='-',last_line='-',distance_up=2,distance_down=2)
     
+    * Output
+        ------------------------------
+        |                            |
+        |                            |
+        |           Hello            |
+        |    Welcome To Pysha :)     |
+        |                            |
+        |                            |
+        ------------------------------
+"""
 def rect(*args,text_color=Fore.RESET,first_line=("=",Fore.RESET),sep=("|",Fore.RESET),last_line=("=",Fore.RESET),distance_up=1,distance_down=1,length=30,p=True):
     ans = []
     for i in args:
@@ -106,10 +192,12 @@ def rect(*args,text_color=Fore.RESET,first_line=("=",Fore.RESET),sep=("|",Fore.R
 This Function Directly Use pyfiglet Library For Making A Banner.
 Args:
     text -> The Text That You Want To Convert To A Banner.
+
     font -> Target Font From Figlet. If You Pass Empty Font Will Be Default
-            Figlet Font.
-    p    -> If This Argument Is True, It Will Print Output And If 
-            Its False, It Will Return Output.
+              Figlet Font.
+
+    p    -> This Parameter Will Set Print Mode. If Its True It Will Print
+              And If Its False It Will Return Banner As String.
 
 Example : 
     * Code
@@ -145,7 +233,11 @@ Kwargs:
     char -> You Can Pass (char='-') Then Color Will Be Normal Color. Or
             You Can Pass (char=('-',Fore.[color])) Then Color Will Be [color].
             Default Is ('=',Fore.RESET)
+
     count -> Count Of Characters That Line Have.
+
+    p     -> This Parameter Will Set Print Mode. If Its True It Will Print
+              And If Its False It Will Return Line As String.
 """
 def l(char=('=',Fore.RESET),count=30,p=True):
     if type(char) == str or ((type(char) == list or type(char) == set or type(char) == tuple) and len(char) == 1):
@@ -179,27 +271,3 @@ def xp(*args,prompt=('',Fore.RESET)):
         prompt = prompt,Fore.RESET
     pp(*args,mode='i',end='')
     return input(prompt[1] + prompt[0] + Fore.RESET)
-
-
-"""
-print('*'.center(20)) ; print('*       *'.center(20)) ; print('*           *'.center(20)) ; print('*           *'.center(20))
-  ; print('*       *'.center(20)) ; print('*'.center(20))
-
-c = 1
-f = 0
-for i in range(6):
-    if i == 0:
-        print(" " * 6 + c)
-        c += 1
-        f += 7
-    elif i == 2:
-        print(c + " " * f + c)
-    elif i == 3:
-        f += 3
-        f /= 2
-        print(c + " " * f + c)
-    else:
-        print(c + " " * f + c)
-        f *= 2
-        f -= 3
-"""
