@@ -28,17 +28,22 @@ class Auth:
             ans = []
             if self.mode == 0:
                 uname = colorprompt(colorize(self.first_prompt),char_color=inp_color)
+                print()
                 pwd = getpass.getpass(colorize(self.second_prompt))
+                print()
                 ans.append(uname)
                 ans.append(pwd)
             elif self.mode == 1:
                 uname = colorprompt(colorize(self.first_prompt),char_color=inp_color)
+                print()
                 pwd = passprompt(colorize(self.second_prompt),mask_color=mask_color,mask=mask)
+                print()
                 ans.append(uname)
                 ans.append(pwd)
                 print()
             elif self.mode == 2:
                 uname = colorprompt(colorize(self.first_prompt),char_color=inp_color)
+                print()
                 pwd = input(prompt=colorize(self.second_prompt))
                 ans.append(uname)
                 ans.append(pwd)

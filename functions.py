@@ -89,7 +89,7 @@ def get_ans(temp: dict,string: str,c=True) -> str:
 
 
 """
-All Descriptions From This Function Came In `classes.py`
+All Descriptions From This Function Came In `classes.py` - command Class.
 """
 def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
     if mode == "p": # Print Mode
@@ -106,7 +106,7 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
         tars = make_possibles(dic_tar)
         for i in tars:
             temp = {}
-            if len(i) == 2:
+            if not (type(i) == int) and len(i) == 2:
                 temp = {arr_data[0]:i[0],arr_data[1]:i[1]}
             else:
                 temp = {arr_data[0]:i[0]}
@@ -123,17 +123,24 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
         if len(dic_tar.keys()) >= 3:
             raise LoopError("Loops With 3 Or More Variables Are Not Supported In This Version.")
         tars = make_possibles(dic_tar)
-        x = (list(dic_tar.values())[0])
-        y = (list(dic_tar.values())[1])
-        ls = [["" for _ in range(y)] for __ in range(x)]
+        x = 0
+        y = 0
+        ls = []
+        if len(dic_tar) == 2:
+            x = (list(dic_tar.values())[0])
+            y = (list(dic_tar.values())[1])
+            ls = [["" for _ in range(y)] for __ in range(x)]
+        elif len(dic_tar) == 1:
+            x = (list(dic_tar.values())[0])
+            ls = ["" for _ in range(x)]
         x = 0
         y = 0
         for i in tars:
             temp = {}
-            if len(i) == 2:
+            if not (type(i) == int) and len(i) == 2:
                 temp = {arr_data[0]:i[0],arr_data[1]:i[1]}
             else:
-                temp = {arr_data[0]:i[0]}
+                temp = {arr_data[0]:i}
             try:
                 ls[x][y] = get_ans(temp,string,c)
                 ls[x][y + 1]
@@ -150,103 +157,24 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
         raise ModeError("Mode Should Be 'p' Or 'i' !")
 
 
-def calculate(a: str,op: str,b: str,**kwargs) -> bool:
-    elem1 = a
-    elem2 = b
-    try:
-        if not ((elem1.startswith('"') and elem1.endswith('"')) or (elem1.startswith("'") and elem1.endswith("'"))):
-            elem1 = int(elem1)
-        else:
-            elem1 = elem1[1:-1]
-    except:
-        try:
-            elem1 = kwargs[elem1]
-        except:
-            raise ConditionError(f"An Error In Handling {elem1} Variable")
-    try:
-        if not ((elem2.startswith('"') and elem2.endswith('"')) or (elem2.startswith("'") and elem2.endswith("'"))):
-            elem2 = int(elem2)
-        else:
-            elem2 = elem2[1:-1]
-    except:
-        try:
-            elem2 = kwargs[elem2]
-        except:
-            raise ConditionError(f"An Error In Handling {elem2} Variable")
-    if op == ">":
-        return elem1 > elem2
-    elif op == "<":
-        return elem1 < elem2
-    elif op == "<=":
-        return elem1 <= elem2
-    elif op == ">=":
-        return elem1 >= elem2
-    elif op == "==":
-        return elem1 == elem2
-    else:
-        raise ConditionError(f"Unsupported Operator `{op}`. You Can Use `>` , `<` , `==` , `>=` and `<=`.")
-
-
+"""
+Descrioptions Are Available In 'classes.py' And In command Class.
+"""
 def condition(check : str,p=True,**kwargs) -> Union[None,str,int]:
     if not re.match("""(\'?|\"?)[ -~]+(\'?|\"?)(>|<|==|>=|<=)(\'?|\"?)[ -~]+(\'?|\"?)\?(\'?|\"?)[ -~]+(\'?|\"?):(\'?|\"?)[ -~]+(\'?|\"?)""",''.join(check.split(' '))):
         raise ConditionError("An Error In Parsing Condition :(")
     p1 = check.split("?")[0].strip()
     p2 = check.split("?")[1].strip()
-    op = ""
-    a = ""
-    b = ""
-    if ">=" in p1:
-        op = ">="
-        a = p1.split('>=')[0].strip()
-        b = p1.split('>=')[1].strip()
-    elif "<=" in p1:
-        op = "<="
-        a = p1.split('<=')[0].strip()
-        b = p1.split('<=')[1].strip()
-    elif "==" in p1:
-        op = "=="
-        a = p1.split("==")[0].strip()
-        b = p1.split("==")[1].strip()
-    elif ">" in p1:
-        op = ">"
-        a = p1.split('>')[0].strip()
-        b = p1.split('>')[1].strip()
-    elif "<" in p1:
-        op = "<"
-        a = p1.split('<')[0].strip()
-        b = p1.split('<')[1].strip()
-    else:
-        raise ConditionError(f"Unsupported Operator `{op}`. You Can Use `>` , `<` , `==` , `>=` and `<=`.")
-    t = calculate(a,op,b,**kwargs)
+    ans = eval(p1,kwargs)
     ok = p2.split(':')[0].strip()
     not_ok = p2.split(':')[1].strip()
-    try:
-        if not ((ok.startswith('"') and ok.endswith('"')) or (ok.startswith("'") and ok.endswith("'"))):
-            ok = float(ok)
-        else:
-            ok = ok[1:-1]
-    except:
-        try:
-            ok = kwargs[ok]
-        except:
-            raise ConditionError(f"An Error In Handling {ok} Variable")
-    try:
-        if not ((not_ok.startswith('"') and not_ok.endswith('"')) or (not_ok.startswith("'") and not_ok.endswith("'"))):
-            not_ok = float(not_ok)
-        else:
-            not_ok = not_ok[1:-1]
-    except:
-        try:
-            not_ok = kwargs[not_ok]
-        except:
-            raise ConditionError(f"An Error In Handling {not_ok} Variable")
-    if t:
+    if ans:
         if p:
-            print(ok)
+            print(eval(ok,kwargs))
         else:
-            return ok
+            return eval(ok,kwargs)
     else:
         if p:
-            print(not_ok)
+            print(eval(not_ok,kwargs))
         else:
-            return not_ok
+            return eval(not_ok,kwargs)

@@ -12,3 +12,6 @@ class StackError(Exception):
 
 class QueueError(Exception):
     pass
+
+class SecurityError(Exception):
+    pass
