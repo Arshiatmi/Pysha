@@ -1,9 +1,25 @@
+import enum
+from enums import Algorithms
 from typing import Union
+from os import popen,mkdir,makedirs,rmdir
+from shutil import rmtree
 from colors import *
 from exceptions import *
 import re
 import readchar,sys
 
+
+"""
+This Will Act Like Input. But Characters That User Enters Will Be Colored :)
+Args :
+    prompt      ->   The Text For Print And Wait For Input.
+    
+    out         ->   Just Standard Output. DO NOT TOUCH THIS :/
+
+    char_color  ->   The Color Of Character. Each Character Will Have This 
+                     Color.
+
+"""
 def colorprompt(prompt: str,out = sys.stdout,char_color=fore["reset"]):
     out.write(prompt); out.flush()
     password = ""
@@ -19,8 +35,23 @@ def colorprompt(prompt: str,out = sys.stdout,char_color=fore["reset"]):
             password += ch
             out.write(char_color + ch + fore["reset"])
             out.flush()
+    print()
     return password
 
+
+"""
+This Will Get Password And Replace Characters With A Mask For Example '*'.
+Args :
+    prompt      ->   The Text For Print And Wait For Input.
+
+    out         ->   Just Standard Output. DO NOT TOUCH THIS :/
+
+    mask_color  ->   The Color Of Mask. For Example You Can Print Red Stars For
+                     Each Character :))
+
+    mask        ->   The Mask. Every Character That User Type, Will Be Replaced With
+                     This Character :)
+"""
 def passprompt(prompt: str, out = sys.stdout,mask_color=fore["reset"],mask='*') -> str:
     out.write(prompt); out.flush()
     password = ""
@@ -36,8 +67,61 @@ def passprompt(prompt: str, out = sys.stdout,mask_color=fore["reset"],mask='*') 
             password += ch
             out.write(mask_color + mask + fore["reset"])
             out.flush()
+    print()
     return password
 
+"""
+It Will Colorize The Input.
+Example :
+    colorize("(Fore.GREEN)[Hello !]")
+Output :
+    Green Foreground -> |Hello !|
+
+Possible Colors:
+    fore = {
+        "green" : Fore.GREEN,
+        "black":Fore.BLACK,
+        "red":Fore.RED,
+        "yellow":Fore.YELLOW,
+        "blue":Fore.BLUE,
+        "cyan":Fore.CYAN,
+        "light_black":Fore.LIGHTBLACK_EX,
+        "light_blue":Fore.LIGHTBLUE_EX,
+        "light_cyan":Fore.LIGHTCYAN_EX,
+        "light_green":Fore.LIGHTGREEN_EX,
+        "light_magenta":Fore.LIGHTMAGENTA_EX,
+        "light_red":Fore.LIGHTRED_EX,
+        "light_white":Fore.LIGHTWHITE_EX,
+        "light_yellow":Fore.LIGHTYELLOW_EX,
+        "magenta":Fore.MAGENTA,
+        "reset":Fore.RESET,
+        "white":Fore.WHITE
+    }
+
+    back = {
+        "green":Back.GREEN,
+        "black":Back.BLACK,
+        "red":Back.RED,
+        "yellow":Back.YELLOW,
+        "blue":Back.BLUE,
+        "cyan":Back.CYAN,
+        "light_black":Back.LIGHTBLACK_EX,
+        "light_blue":Back.LIGHTBLUE_EX,
+        "light_cyan":Back.LIGHTCYAN_EX,
+        "light_green":Back.LIGHTGREEN_EX,
+        "light_magenta":Back.LIGHTMAGENTA_EX,
+        "light_red":Back.LIGHTRED_EX,
+        "light_white":Back.LIGHTWHITE_EX,
+        "light_yellow":Back.LIGHTYELLOW_EX,
+        "magenta":Back.MAGENTA,
+        "reset":Back.RESET,
+        "white":Back.WHITE
+    }
+
+    You Can Always Access The Colors Like That :
+        pysha.fore[...]
+        pysha.back[...]
+"""
 def colorize(string: str) -> str:
     data = re.findall("\(Back|\(Fore\.[A-Z]*\)\[[a-zA-Z0-9_ :\/\\\'\"\+\=\-\$\%\^\&\*\@\!\#\(\)\?]*\]",string)
     for i in data:
@@ -54,6 +138,9 @@ def colorize(string: str) -> str:
             raise TypeError("Type Must Be Back Or Fore.")
     return string
 
+"""
+Tries To Get Possible Situations Of For Loops ( Max 2 Variable ).
+"""
 def make_possibles(data):
     if len(data.keys()) == 1:
         return list(range(list(data.values())[0]))
@@ -68,7 +155,13 @@ def make_possibles(data):
             ans.extend(temp)
         return ans
 
-
+"""
+Related To Loop Command. It Will Print String And Replace _i_ , _i++_ ... With The Value.
+    Args :
+        temp    ->     Carries Variables.
+        string  ->     The String Pattern That Should Be Printed In Output.
+        c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
+"""
 def display(temp: dict,string: str,c=True) -> None:
     ans = string
     for i,j in temp.items():
@@ -78,6 +171,13 @@ def display(temp: dict,string: str,c=True) -> None:
     else:
         print(colorize(ans))
 
+"""
+Related To Loop Command. It Will Get Input And Replace _i_ , _i++_ ... With The Value.
+    Args :
+        temp    ->     Carries Variables.
+        string  ->     The String Pattern That Should Be Printed In Output.
+        c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
+"""
 def get_ans(temp: dict,string: str,c=True) -> str:
     ans = string
     for i,j in temp.items():
@@ -178,3 +278,107 @@ def condition(check : str,p=True,**kwargs) -> Union[None,str,int]:
             print(eval(not_ok,kwargs))
         else:
             return eval(not_ok,kwargs)
+
+def _(cmd):
+    return popen(cmd).read()
+
+def write_file(file_name: str,text : Union[str,list]) -> bool:
+    if type(text) == str:
+        try:
+            a = open(file_name,"w")
+            a.write(text)
+            a.close()
+            return True
+        except:
+            return False
+    elif type(text) == list:
+        try:
+            a = open(file_name,"w")
+            a.writelines(text)
+            a.close()
+            return True
+        except:
+            return False
+
+def read_file(file_name: str,mode="s") -> Union[list,str]:
+    try:
+        a = open(file_name,"r")
+        d = a.readlines()
+        a.close()
+        if mode == "s":
+            return "".join(d)
+        elif mode == "l":
+            return d
+        else:
+            raise ModeError(f"Mode {mode} Not Found ! Mode Should Be 's'(string) Or 'l'(List)")
+    except:
+        return ""
+
+
+def append_file(file_name: str,text: str) -> bool:
+    if type(text) == str:
+        try:
+            a = open(file_name,"a")
+            a.write(text)
+            a.close()
+            return True
+        except:
+            return False
+    elif type(text) == list:
+        try:
+            a = open(file_name,"a")
+            a.writelines(text)
+            a.close()
+            return True
+        except:
+            return False
+
+def create_dir(dir_name: str,create_parents=False) -> bool:
+    if create_parents:
+        try:
+            makedirs(dir_name)
+            return True
+        except:
+            return False
+    else:
+        try:
+            mkdir(dir_name)
+            return True
+        except:
+            return False
+
+
+def rm_dir(dir_name: str,force=False) -> bool:
+    if not force:
+        try:
+            rmdir(dir_name)
+            return True
+        except:
+            return False
+    else:
+        try:
+            rmtree(dir_name)
+            return True
+        except:
+            return False
+
+def make_enc(alg,key=""):
+    if type(alg) == enum.EnumMeta:
+        print(alg,type(alg))
+        if alg == Algorithms.XOR:
+            pass
+        elif alg == Algorithms.Base64:
+            pass
+        elif alg == Algorithms.Cypher:
+            pass
+        else:
+            raise AlgorithmError(f"This Algorithm Is Not Available. We Will Be Happy If You Help Us To Make It :)\nGithub : https://github.com/Arshiatmi/Pysha")
+    elif type(alg) == list or type(alg) == set:
+        for i in alg:
+            if type(i) == enum.EnumMeta:
+                pass
+            else:
+                raise AlgorithmError(f"Type {i} Is Not Supported. Just (Algorithms.Base64/Algorithms.XOR/Algorithms.Cypher) Is Supported.")
+        pass
+    else:
+        raise AlgorithmError(f"This Type Of Algorithm Is Not Supported. Just enum.EnumMeta (Algorithms.Base64/...),list and set Are Supported.")

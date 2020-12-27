@@ -15,3 +15,6 @@ class QueueError(Exception):
 
 class SecurityError(Exception):
     pass
+
+class AlgorithmError(Exception):
+    pass

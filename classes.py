@@ -1,6 +1,6 @@
 from functions import *
-from enum import *
 from os import environ, popen, remove
+import pdb
 
 class command:
     def __init__(self):
@@ -155,9 +155,9 @@ class command:
     """
 
     """
-    def exe(self,string,priority=0):
-        s = re.compile("\$\([ -~]+\)")
-        p = re.compile("\#\([ -~]+\)")
+    def exe(self,string,priority=0,strip_response=True):
+        s = re.compile("\$\([A-Za-z0-9_ \$\&\!\@\#\%\^\*\+\=\-\]\[\~\?\'\"\;\:]+\)")
+        p = re.compile("\#\([A-Za-z0-9_ \$\&\!\@\#\%\^\*\+\=\-\]\[\~\?\'\"\;\:]+\)")
         if priority == 0:
             # First System Then Python
             for cmd in s.finditer(string):
@@ -169,10 +169,21 @@ class command:
                 f = open("temp.py","w")
                 f.write(cmds)
                 f.close()
-                ans = popen(environ.get("python") + " temp.py").read().strip()
+                print("=" * 80)
+                print("Got Here")
+                print("=" * 80)
+                ans = popen(environ.get("python") + " temp.py").read()
+                print("=" * 80)
+                print("Got Here Too")
+                print("=" * 80)
+                print("answer - > ",ans)
+                pdb.set_trace()
                 remove("temp.py")
                 string = string[:cmd.start()] + ans + string[cmd.start() + len(cmd.group()):]
-            return string
+            if strip_response:
+                return string.strip()
+            else:
+                return string
         elif priority == 1:
             # First Python Then System
             for cmd in p.finditer(string):
@@ -180,14 +191,19 @@ class command:
                 f = open("temp.py","w")
                 f.write(cmds)
                 f.close()
-                ans = popen(environ.get("python") + " temp.py").read().strip()
+                ans = popen(environ.get("python") + " temp.py").read()
+                print("answer - > ",ans)
+                pdb.set_trace()
                 remove("temp.py")
                 string = string[:cmd.start()] + ans + string[cmd.start() + len(cmd.group()):]
             for cmd in s.finditer(string):
                 cmds = cmd.group()[2:-1]
                 ans = popen(cmds).read()
                 string = string[:cmd.start()] + ans + string[cmd.start() + len(cmd.group()):]
-            return string
+            if strip_response:
+                return string.strip()
+            else:
+                return string
         else:
             ValueError("Priority Should Be 0 (System First) Or 1 (Python First).")
 
@@ -201,13 +217,21 @@ class Switch:
     
     def cases(self,all_funcs):
         for i,j in all_funcs.items():
-            if self.var == i:
-                if str(type(j)) == "<class 'function'>":
+            if self.var == i or (hasattr(i,'__name__') and i.__name__ == "Case" and i.tar == self.var) or (hasattr(i,'__name__') and i.__name__ == "Default"):
+                if hasattr(j,'__call__'):
                     j()
                     return
                 elif type(j) == str:
-                    b = compile(j,'user_code','single')
-                    a = eval(b)
+                    parts = j.split('\n')
+                    if parts[0].strip():
+                        t = parts[0].index(j.split('\n')[0].strip())
+                    else:
+                        t = parts[1].index(j.split('\n')[1].strip())
+                    ok_code = ""
+                    for i in j.split('\n'):
+                        ok_code += i[t:] + "\n"
+                    b = compile(ok_code,'user_code','exec')
+                    a = exec(b)
                     if a != None:
                         print(a)
                 if len(j) == 3:
@@ -216,3 +240,46 @@ class Switch:
                     j[0](*j[1])
                 elif len(j) == 1:
                     j[0]()
+
+class Default:
+    pass
+
+class Case:
+    def __init__(self,tar):
+        self.tar = tar
+
+class Vars:
+    pass
+
+class PercentPrinter:
+    def __init__(self,chars=100,pass_color=fore["reset"],loading_color=fore["reset"]):
+        self._percent = 0
+        self.chars = chars
+        self.pass_color=pass_color
+        self.loading_color=loading_color
+    
+    def show(self,char_ok='#',char_loading='-',end='\n'):
+        num = self._percent
+        string = "\r"
+        string += (self.pass_color + char_ok + Fore.RESET) * int(num * (self.chars / 100))
+        string += (self.loading_color + char_loading + Fore.RESET) * int((100 - num) * (self.chars / 100))
+        print(string,end=end)
+    
+    @property
+    def percent(self):
+        return self._percent
+    
+    @percent.setter
+    def percent(self,p):
+        if p > 100:
+            raise ValueError("Value Most Be Less Than 100 !")
+        elif p < 0:
+            raise ValueError("Value Most Be More Than 0 !")
+        else:
+            self._percent = p
+    
+    def increase(self,p=1):
+        self._percent += p
+        
+    def finish(self):
+        self._percent = 100

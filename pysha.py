@@ -3,6 +3,7 @@ import datetime
 from classes import *
 from data_structures import *
 from auth import *
+from enums import *
 
 """
 Abbreviation of Pretty Print.
