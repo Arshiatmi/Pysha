@@ -1,6 +1,5 @@
 from functions import *
 from os import environ, popen, remove
-import pdb
 
 class command:
     def __init__(self):

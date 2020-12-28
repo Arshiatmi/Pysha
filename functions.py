@@ -1,5 +1,3 @@
-import enum
-from enums import Algorithms
 from typing import Union
 from os import popen,mkdir,makedirs,rmdir
 from shutil import rmtree
@@ -7,6 +5,7 @@ from colors import *
 from exceptions import *
 import re
 import readchar,sys
+from security import *
 
 
 """
@@ -362,23 +361,3 @@ def rm_dir(dir_name: str,force=False) -> bool:
         except:
             return False
 
-def make_enc(alg,key=""):
-    if type(alg) == enum.EnumMeta:
-        print(alg,type(alg))
-        if alg == Algorithms.XOR:
-            pass
-        elif alg == Algorithms.Base64:
-            pass
-        elif alg == Algorithms.Cypher:
-            pass
-        else:
-            raise AlgorithmError(f"This Algorithm Is Not Available. We Will Be Happy If You Help Us To Make It :)\nGithub : https://github.com/Arshiatmi/Pysha")
-    elif type(alg) == list or type(alg) == set:
-        for i in alg:
-            if type(i) == enum.EnumMeta:
-                pass
-            else:
-                raise AlgorithmError(f"Type {i} Is Not Supported. Just (Algorithms.Base64/Algorithms.XOR/Algorithms.Cypher) Is Supported.")
-        pass
-    else:
-        raise AlgorithmError(f"This Type Of Algorithm Is Not Supported. Just enum.EnumMeta (Algorithms.Base64/...),list and set Are Supported.")

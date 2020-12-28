@@ -15,19 +15,27 @@ a = Switch(var)
 a.cases({
     Case(5)  : 
         lambda:(
-            print("Thats It !")
+            setattr(Vars,"a","Hello 0"),
+            print("Thats It !"),
+            print(getattr(Vars,"a"))
         ),
     Case(10) : 
         lambda:(
-            print("Thats It !")
+            setattr(Vars,"a","Hello 1"),
+            print("Thats It !"),
+            print(getattr(Vars,"a"))
         ),
     Case(15) : 
         lambda:(
-            print("Thats It !")
+            setattr(Vars,"a","Hello 2"),
+            print("Thats It !"),
+            print(getattr(Vars,"a"))
         ),
     Default : 
         lambda:(
-            print("Thats It !")
+            setattr(Vars,"a","Default Hello"),
+            print("Thats It !"),
+            print(getattr(Vars,"a"))
         )
 })
 
@@ -64,47 +72,47 @@ a.cases({
         )
 })
 
-######################################################
-# You Have To Use 'exec' Function To Define Variable #
-######################################################
+##################################
+# Feel Free Ro Code In String :) #
+##################################
 # Model 2
 a = Switch(var)
 a.cases({
     5:
         """
-            exec("i = 2")
+            i = 2
             print("Number Wasnt 5.")
             print(i)
         """,
     10:
         """
-            exec("i = 2")
+            i = 2
             print("Number Was 10 !")
             print(i)
         """,
     15:
         """
-            exec("i = 2")
+            i = 2
             print("Number Wasnt 15.")
             print(i)
         """,
     20:
         """
-            exec("i = 2")
+            i = 2
             print("Number Wasnt 20.")
             print(i)
         """,
     Default:
         """
-            exec("i = 2")
+            i = 2
             print("Number Wasnt 20.")
             print(i)
         """
 })
 
-######################################################
-# You Have To Use 'exec' Function To Define Variable #
-######################################################
+#######################################
+# Pass A List Like [func,args,kwargs] #
+#######################################
 # Model 3
 a = Switch(var)
 a.cases({
@@ -131,8 +139,11 @@ a.cases({
         ],
 })
 
-# Function Model
+#######################################
+# Pass A List Like [func,args,kwargs] #
+#######################################
 
+# Function Model
 def test(num):
     print(num)
 
