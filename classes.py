@@ -1,6 +1,10 @@
 from functions import *
 from os import environ, popen, remove
 
+"""
+    This Class Will Be Use For Fun Part Of This Framework :)
+    Most Important Part Of This Framework Exists In This Class.
+"""
 class command:
     def __init__(self):
         self.arr_data = []
@@ -122,12 +126,15 @@ class command:
     """
     This Function Act As c++ One Line Condition.
     You Can Use This Function Like :
-        condition("i > j ? 'i Is Grater' : 'j Is Grater'",i=20,j=23)
+        condition('i > j ? "i Is Grater" : "j Is Grater"',i=20,j=23)
     Output Will Be :
         "j Is Grater"
+    
+    Notes & Warnings :
+        -> '(Quotes) Are Not Working, Always Use "(Double Quotes)
     """
     def condition(self,check,p=True,**kwargs):
-        if not re.match("""(\'?|\"?)[ -~]+(\'?|\"?)(>|<|==|>=|<=)(\'?|\"?)[ -~]+(\'?|\"?)\?(\'?|\"?)[ -~]+(\'?|\"?):(\'?|\"?)[ -~]+(\'?|\"?)""",''.join(check.split(' '))):
+        if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""",''.join(check.split(' '))):
             raise ConditionError("An Error In Parsing Condition :(")
         if "eval" in check:
             if not check[check.find("eval") - 1:].startswith("\eval"):
@@ -135,11 +142,13 @@ class command:
         if "exec" in check:
             if not check[check.find("exec") - 1:].startswith("\exec"):
                 raise SecurityError("Using This Funcion Is Forbidden.")
-        p1 = check.split("?")[0].strip()
-        p2 = check.split("?")[1].strip()
+        index_of_ok_sign = not_between_index("?",check)
+        p1 = index_split(check,index_of_ok_sign)[0].strip()
+        p2 = index_split(check,index_of_ok_sign)[1].strip()
         ans = eval(p1,kwargs,{})
-        ok = p2.split(':')[0].strip()
-        not_ok = p2.split(':')[1].strip()
+        index_of_ok_sign = not_between_index(":",p2)
+        ok = index_split(p2,index_of_ok_sign)[0].strip()
+        not_ok = index_split(p2,index_of_ok_sign)[1].strip()
         if ans:
             if p:
                 print(eval(ok,kwargs,{}))
@@ -152,7 +161,11 @@ class command:
                 return eval(not_ok,kwargs,{})
     
     """
-
+        In Progress But This Function Should Get Text Between () Of $(cmd)
+        And Run It In Terminal Then Replace The Output With $(cmd) And Should
+        Get #(cmd) Too And Run It As Python Code And Replace This Output Too.
+            Problem Now :
+                Use This 2 Thing Together.
     """
     def exe(self,string,priority=0,strip_response=True):
         s = re.compile("\$\([A-Za-z0-9_ \$\&\!\@\#\%\^\*\+\=\-\]\[\~\?\'\"\;\:]+\)")
@@ -168,15 +181,7 @@ class command:
                 f = open("temp.py","w")
                 f.write(cmds)
                 f.close()
-                print("=" * 80)
-                print("Got Here")
-                print("=" * 80)
                 ans = popen(environ.get("python") + " temp.py").read()
-                print("=" * 80)
-                print("Got Here Too")
-                print("=" * 80)
-                print("answer - > ",ans)
-                pdb.set_trace()
                 remove("temp.py")
                 string = string[:cmd.start()] + ans + string[cmd.start() + len(cmd.group()):]
             if strip_response:
@@ -191,8 +196,6 @@ class command:
                 f.write(cmds)
                 f.close()
                 ans = popen(environ.get("python") + " temp.py").read()
-                print("answer - > ",ans)
-                pdb.set_trace()
                 remove("temp.py")
                 string = string[:cmd.start()] + ans + string[cmd.start() + len(cmd.group()):]
             for cmd in s.finditer(string):
@@ -206,6 +209,9 @@ class command:
         else:
             ValueError("Priority Should Be 0 (System First) Or 1 (Python First).")
 
+"""
+    The Famous Switch-Case :)
+"""
 class Switch:
     def __init__(self,var):
         self.var = var
@@ -240,16 +246,28 @@ class Switch:
                 elif len(j) == 1:
                     j[0]()
 
+"""
+    Default Case Of Switch-Case
+"""
 class Default:
     pass
 
+"""
+    Define Every Case
+"""
 class Case:
     def __init__(self,tar):
         self.tar = tar
 
+"""
+    Define Variables Of Switch-Case ( Just lambda Case )
+"""
 class Vars:
     pass
 
+"""
+    Pretty Percent Printer For Loading Some Progress Or Downloading :)
+"""
 class PercentPrinter:
     def __init__(self,chars=100,pass_color=fore["reset"],loading_color=fore["reset"]):
         self._percent = 0

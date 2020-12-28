@@ -10,6 +10,10 @@ def test():
 
 test()
 
+if between(":","Hello. The Character ':' Exists In Here ?","'"):
+    print("Yes That Was Between Quotes !") # This Will Print
+else:
+    print("No :( colon Was Not Between Quotes.")
 
-files = _("dir")
-print(files)
+print(between_index(":",": Out Of Quote,':' In Quote","'")) # 16
+print(not_between_index(":","':' In Quote,: Out Of Quote","'")) # 13

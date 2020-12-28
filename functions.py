@@ -3,7 +3,7 @@ from os import popen,mkdir,makedirs,rmdir
 from shutil import rmtree
 from colors import *
 from exceptions import *
-import re
+import re,signal
 import readchar,sys
 from security import *
 
@@ -30,6 +30,9 @@ def colorprompt(prompt: str,out = sys.stdout,char_color=fore["reset"]):
             out.write('\b \b')
             password = password[0:len(password)-1]
             out.flush()
+        elif ch == "\x03":
+            print("\n")
+            raise KeyboardInterrupt("You Pressed Ctrl+C")
         else: 
             password += ch
             out.write(char_color + ch + fore["reset"])
@@ -62,6 +65,9 @@ def passprompt(prompt: str, out = sys.stdout,mask_color=fore["reset"],mask='*') 
             out.write('\b \b')
             password = password[0:len(password)-1]
             out.flush()
+        elif ch == "\x03":
+            print("\n")
+            raise KeyboardInterrupt("You Pressed Ctrl+C")
         else: 
             password += ch
             out.write(mask_color + mask + fore["reset"])
@@ -260,13 +266,21 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
 Descrioptions Are Available In 'classes.py' And In command Class.
 """
 def condition(check : str,p=True,**kwargs) -> Union[None,str,int]:
-    if not re.match("""(\'?|\"?)[ -~]+(\'?|\"?)(>|<|==|>=|<=)(\'?|\"?)[ -~]+(\'?|\"?)\?(\'?|\"?)[ -~]+(\'?|\"?):(\'?|\"?)[ -~]+(\'?|\"?)""",''.join(check.split(' '))):
+    if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""",''.join(check.split(' '))):
         raise ConditionError("An Error In Parsing Condition :(")
-    p1 = check.split("?")[0].strip()
-    p2 = check.split("?")[1].strip()
-    ans = eval(p1,kwargs)
-    ok = p2.split(':')[0].strip()
-    not_ok = p2.split(':')[1].strip()
+    if "eval" in check:
+        if not check[check.find("eval") - 1:].startswith("\eval"):
+            raise SecurityError("Using This Funcion Is Forbidden.")
+    if "exec" in check:
+        if not check[check.find("exec") - 1:].startswith("\exec"):
+            raise SecurityError("Using This Funcion Is Forbidden.")
+    index_of_ok_sign = not_between_index("?",check)
+    p1 = index_split(check,index_of_ok_sign)[0].strip()
+    p2 = index_split(check,index_of_ok_sign)[1].strip()
+    ans = eval(p1,kwargs,{})
+    index_of_ok_sign = not_between_index(":",p2)
+    ok = index_split(p2,index_of_ok_sign)[0].strip()
+    not_ok = index_split(p2,index_of_ok_sign)[1].strip()
     if ans:
         if p:
             print(eval(ok,kwargs))
@@ -278,9 +292,13 @@ def condition(check : str,p=True,**kwargs) -> Union[None,str,int]:
         else:
             return eval(not_ok,kwargs)
 
-def _(cmd):
-    return popen(cmd).read()
-
+"""
+    You Can Write Into A File :)
+    Args :
+        file_name
+        text
+    Returns True If Its Successfully Done, Else Return False
+"""
 def write_file(file_name: str,text : Union[str,list]) -> bool:
     if type(text) == str:
         try:
@@ -299,6 +317,20 @@ def write_file(file_name: str,text : Union[str,list]) -> bool:
         except:
             return False
 
+
+"""
+    You Can Read Data From A File :)
+    Args :
+        file_name
+
+        mode(Default:'s') :   The Mode Can Be 's' Or 'l' Means List Or String.
+                            If You Want To Get Output As String Mode 's' Will
+                            Be Good For You And If You Want To Get As list
+                            Mode 'l' Is Good For You.
+
+    Returns list of lines Of The File If mode Is 'l', string of lines
+    If mode is 's'.
+"""
 def read_file(file_name: str,mode="s") -> Union[list,str]:
     try:
         a = open(file_name,"r")
@@ -313,7 +345,13 @@ def read_file(file_name: str,mode="s") -> Union[list,str]:
     except:
         return ""
 
-
+"""
+    You Can Append to A File.
+    Args :
+        file_name
+        text
+    Returns True If Its Successfully Done, Else Return False
+"""
 def append_file(file_name: str,text: str) -> bool:
     if type(text) == str:
         try:
@@ -332,6 +370,22 @@ def append_file(file_name: str,text: str) -> bool:
         except:
             return False
 
+
+"""
+    Tries To Create A Directory.
+    Args :
+        dir_name ->  Directory Name. You Can Pass An String Like 'test' Or 
+                   'test/test1/test2' For Directory. But If You Want To 
+                   Make Parents Too, You Have To Pass Next Argument Manually
+                   Too.
+
+        create_parents(Default:False) ->  If Its False, Parents Will Not Be
+                                            Created If They Are Not Exists. 
+                                            And If Its True, Parents Will Be
+                                            Created Too !
+
+    Returns True If Its Successfully Done, Else Return False
+"""
 def create_dir(dir_name: str,create_parents=False) -> bool:
     if create_parents:
         try:
@@ -347,6 +401,21 @@ def create_dir(dir_name: str,create_parents=False) -> bool:
             return False
 
 
+"""
+    Tries To Remove A Directory.
+    Args :
+        dir_name ->  Directory Name. You Can Pass An String Like 'test' Or 
+                   'test/test1/test2' For Directory. If You Want To Force
+                   Remove That Childs Will Remove Too, Pass Next Argument
+                   Manually.
+
+        force(Default:False) ->  If Its False And If directory Has Childs,
+                                Directory Won't Be Removed.But If Its False
+                                Doesn't Matter What We Are Cold-Blood Murderes
+                                And We Kill Them All :)
+
+    Returns True If Its Successfully Done, Else Return False
+"""
 def rm_dir(dir_name: str,force=False) -> bool:
     if not force:
         try:
@@ -361,3 +430,120 @@ def rm_dir(dir_name: str,force=False) -> bool:
         except:
             return False
 
+
+"""
+    Checks If An String Exists Between Two Characters In Another String.
+    Args :
+        string ->   A Simple String. (We Need To Check If This String Exists
+                    In Another String Or Not) For Example If You Want To Check
+                    If 'hello' is between " Characters, You Need To Pass hello
+                    As This Argument.
+
+        string_to_check ->   A Big String That We Want To Check And Dive In :)
+                            For Example 'hello My Name Is Arshia And "hello" Is
+                            ok Now As i think :)' And Pass It As This Argument.
+        
+        sign -> This Should Be The Character That You Are Looking For. For 
+                Example You Can Pass " As This Argument ( Continue Of Previous
+                Part Example ) .
+    
+    Example :
+        1. between(":",'The : Is Not Between "" Chars.','"')
+        1. Returns :
+            1. False
+        2. between(":",'The ":" Is Between "" Chars !','"')
+        2. Returns :
+            2. True
+
+    Returns True If Its Found In target Text Else, Returns False.
+"""
+def between(string,string_to_check,sign="'"):
+    is_in = False
+    ts = ""
+    for c,i in enumerate(string_to_check):
+        if i == sign:
+            if is_in:
+                is_in = False
+                ts = ""
+            else:
+                is_in = True
+        if is_in:
+            ts += i
+        if string in ts:
+            return True
+    return False
+
+
+
+"""
+    Acts Like Between Function But It Will Return Index Insted Of Boolean Value.
+"""
+def between_index(string,string_to_check,sign='"',start=0):
+    is_in = False
+    ts = ""
+    for c,i in enumerate(string_to_check[start:]):
+        if i == sign:
+            if is_in:
+                is_in = False
+                ts = ""
+            else:
+                is_in = True
+        if is_in:
+            ts += i
+        if string in ts:
+            return (c - len(string) + 1 + start)
+    return -1
+
+
+"""
+    Reverse Of Between Plus Index Of Target.
+    Args :
+        string ->   A Simple String. (We Need To Check If This String Exists
+                    In Another String Or Not) For Example If You Want To Check
+                    If 'hello' is not between " Characters, You Need To Pass hello
+                    As This Argument.
+
+        string_to_check ->   A Big String That We Want To Check And Dive In :)
+                            For Example 'hello My Name Is Arshia And "hello" Is
+                            ok Now As i think :)' And Pass It As This Argument.
+        
+        sign -> This Should Be The Character That You Are Looking For. For 
+                Example You Can Pass " As This Argument ( Continue Of Previous
+                Part Example ) .
+    
+    Example :
+        1. not_between_index(":",'Arshia Said : "Hello ! There Is : Hiding Here :)"','"')
+        1. Returns :
+            1. 12
+        2. not_between_index(":",'":" Is Not Out Of "" Sign. But Now : It Is.','"')
+        2. Returns :
+            2. 35
+
+    Returns True If Its Found Out Of target Sign, Else Returns False.
+"""
+def not_between_index(string,string_to_check,sign='"',start=0):
+    is_in = False
+    ts = ""
+    for c,i in enumerate(string_to_check[start:]):
+        if i == sign:
+            if is_in:
+                is_in = False
+            else:
+                is_in = True
+                ts = ""
+        if not is_in:
+            ts += i
+        if string in ts:
+            return (c - len(string) + 1 + start)
+    return -1
+
+
+"""
+    Split String By Index.
+    Example :
+        index_split("Hello My Name Is Arshia",10)
+    Returns :
+        ['Hello My N', 'me Is Arshia']
+"""
+def index_split(string,ind):
+    return [string[:ind],string[ind + 1:]]
