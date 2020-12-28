@@ -216,7 +216,7 @@ class Switch:
     
     def cases(self,all_funcs):
         for i,j in all_funcs.items():
-            if self.var == i or (hasattr(i,'__name__') and i.__name__ == "Case" and i.tar == self.var) or (hasattr(i,'__name__') and i.__name__ == "Default"):
+            if self.var == i or (hasattr(i,'__name__') and i.__name__ == "Case" and i.tar == self.var) or (hasattr(i,'tar') and i.tar == self.var) or (hasattr(i,'__name__') and i.__name__ == "Default"):
                 if hasattr(j,'__call__'):
                     j()
                     return

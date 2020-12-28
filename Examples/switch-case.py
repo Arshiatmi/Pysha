@@ -4,12 +4,34 @@ from pysha import *
 #####################################################
 # You Can Use lambda Or You Can Use A Function Name #
 
+class Colors(Enum):
+    Red = 0
+    Yellow = 1
+    Green = 2
+
+color = Colors.Red
+
+Switch(color).cases({
+    Case(Colors.Red) :
+        lambda:(
+            print("Thats Red !")
+        ),
+    Case(Colors.Yellow) :
+        lambda:(
+            print("Thats Yellow")
+        ),
+    Default:
+        lambda:(
+            print("That Was Something Else :(")
+        )
+})
+
 
 var = 25
 
-###########################################
-# You Can Not Define A Variable In lambda #
-###########################################
+################################################
+# You Can Not Do for loop Or if-else In lambda #
+################################################
 # Main Model
 a = Switch(var)
 a.cases({
@@ -40,9 +62,9 @@ a.cases({
 })
 
 
-###########################################
-# You Can Not Define A Variable In lambda #
-###########################################
+################################################
+# You Can Not Do for loop Or if-else In lambda #
+################################################
 # Model 1
 a = Switch(var)
 a.cases({
@@ -73,7 +95,7 @@ a.cases({
 })
 
 ##################################
-# Feel Free Ro Code In String :) #
+# Feel Free To Code In String :) #
 ##################################
 # Model 2
 a = Switch(var)
