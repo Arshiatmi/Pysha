@@ -60,13 +60,15 @@ class command:
                 itemp = i.split(':')
                 self.arr_data.append(itemp[0].strip())
                 self.dic_tar[itemp[0].strip()] = int(itemp[1].strip())
-            if len(self.dic_tar.keys()) >= 3:
-                raise LoopError("Loops With 3 Or More Variables Are Not Supported In This Version.")
+            if len(self.dic_tar.keys()) >= 4:
+                raise LoopError("Loops With 4 Or More Variables Are Not Supported In This Version.")
             tars = make_possibles(self.dic_tar)
             for i in tars:
                 temp = {}
                 if not (type(i) == int) and len(i) == 2:
                     temp = {self.arr_data[0]:i[0],self.arr_data[1]:i[1]}
+                elif not (type(i) == int) and len(self.dic_tar) == 3:
+                    temp = {self.arr_data[0]:i[0],self.arr_data[1]:i[1],self.arr_data[2]:i[2]}
                 else:
                     temp = {self.arr_data[0]:i}
                 display(temp,string,c)
@@ -79,11 +81,12 @@ class command:
                 itemp = i.split(':')
                 self.arr_data.append(itemp[0].strip())
                 self.dic_tar[itemp[0].strip()] = int(itemp[1].strip())
-            if len(self.dic_tar.keys()) >= 3:
-                raise LoopError("Loops With 3 Or More Variables Are Not Supported In This Version.")
+            if len(self.dic_tar.keys()) >= 4:
+                raise LoopError("Loops With 4 Or More Variables Are Not Supported In This Version.")
             tars = make_possibles(self.dic_tar)
             x = 0
             y = 0
+            z = 0
             ls = []
             if len(self.dic_tar) == 2:
                 x = (list(self.dic_tar.values())[0])
@@ -92,8 +95,14 @@ class command:
             elif len(self.dic_tar) == 1:
                 x = (list(self.dic_tar.values())[0])
                 ls = ["" for _ in range(x)]
+            elif len(self.dic_tar) == 3:
+                x = (list(self.dic_tar.values())[0])
+                y = (list(self.dic_tar.values())[1])
+                z = (list(self.dic_tar.values())[2])
+                ls = [[["" for _ in range(z)] for __ in range(y)] for ___ in range(x)]
             x = 0
             y = 0
+            z = 0
             for i in tars:
                 temp = {}
                 if not (type(i) == int) and len(i) == 2:
@@ -109,6 +118,25 @@ class command:
                             y = 0
                         except:
                             pass
+                elif not (type(i) == int) and len(i) == 3:
+                    temp = {self.arr_data[0]:i[0],self.arr_data[1]:i[1],self.arr_data[2]:i[2]}
+                    try:
+                        ls[x][y][z] = get_ans(temp,string,c)
+                        ls[x][y][z + 1]
+                        z += 1
+                    except:
+                        try:
+                            ls[x][y + 1][z]
+                            y += 1
+                            z = 0
+                        except:
+                            try:
+                                ls[x + 1][y][z]
+                                x += 1
+                                y = 0
+                                z = 0
+                            except:
+                                pass
                 else:
                     temp = {self.arr_data[0]:i}
                     try:
@@ -217,7 +245,7 @@ class Switch:
         self.var = var
     
     def case(self,tar,func,args=tuple()):
-        if self.var == tar:
+        if self.var == tar or (hasattr(tar,'__name__') and tar.__name__ == "Case" and tar == self.var) or (tar == self.var) or (hasattr(tar,'__name__') and tar.__name__ == "Default"):
             func(*args)
     
     def cases(self,all_funcs):

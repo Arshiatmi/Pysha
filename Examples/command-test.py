@@ -14,5 +14,6 @@ pp(f"(Fore.RED)[{d}]")
 
 print(a.condition('i == j ? "\eval()" : "\exec()"',i=10,j=2))
 
-print(a.loop("<i:2,j:3>{We Are In Row (Fore.RED)[_i++_] And Column (Fore.RED)[_j++_] : }",'p'))
+print(a.loop("<i:2,j:3>{We Are In Row (Fore.RED)[_i++_] And Column (Fore.RED)[_j++_] }",'p'))
+print(a.loop("<i:2,j:3,z:2>{We Are In (Fore.RED)[_i++_] And (Fore.RED)[_j++_] And (Fore.RED)[_z++_] }",'p'))
 print(a.loop("<i:2>{Enter Your (Fore.RED)[Name] Person _i++_ : }",'i'))

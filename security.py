@@ -2,6 +2,97 @@ import base64
 import string
 from exceptions import *
 from enums import Algorithms
+from pickle import Unpickler,Pickler
+
+class Crypto:
+    def __init__(self,enc_ls,dec_ls,key):
+        self.enc_ls = enc_ls
+        self.dec_ls = dec_ls
+        self.key = key
+
+    def __call__(self,s):
+        t_enc = s
+        for i in self.enc_ls:
+            t_enc = i(t_enc,self.key)
+        return t_enc
+    
+    def __eq__(self, o) -> bool:
+        if len(o.enc_ls) == len(self.enc_ls):
+            return True
+        return False
+    
+    def __gt__(self,o) -> bool:
+        if len(o.enc_ls) < len(self.enc_ls):
+            return True
+        return False
+    
+    def __ge__(self,o) -> bool:
+        if len(o.enc_ls) <= len(self.enc_ls):
+            return True
+        return False
+    
+    def __ne__(self,o) -> bool:
+        if len(o.enc_ls) != len(self.enc_ls):
+            return True
+        return False
+    
+    def __lt__(self,o) -> bool:
+        if len(o.enc_ls) > len(self.enc_ls):
+            return True
+        return False
+    
+    def __le__(self,o) -> bool:
+        if len(o.enc_ls) >= len(self.enc_ls):
+            return True
+        return False
+    
+    def enc(self,s):
+        t_enc = s
+        for i in self.enc_ls:
+            t_enc = i(t_enc,self.key)
+        return t_enc
+    
+    def dec(self,s):
+        t_dec = s
+        for i in self.dec_ls:
+            t_dec = i(t_dec,self.key)
+        return t_dec
+
+    def __str__(self):
+        return '('.join([str(i).split(' ')[1] for i in self.enc_ls]) + f"(string)) -> Key Is {self.key}"
+
+class Save:
+    def __init__(self,file_name,**kwargs):
+        self.file_name = file_name
+        self.vars_list = kwargs
+    
+    def add_var(self,key,value):
+        self.vars_list[key] = value
+    
+    def add_vars(self,**kwargs):
+        self.vars_list.update(kwargs)
+    
+    def __call__(self):
+        Pickler(open(self.file_name,"wb")).dump(self.vars_list)
+    
+    def save(self):
+        Pickler(open(self.file_name,"wb")).dump(self.vars_list)
+
+class Load:
+    def __init__(self,file_name):
+        self.file_name = file_name
+        self.vars_list = Unpickler(open(self.file_name,"rb")).load()
+    
+    def vars(self):
+        return self.vars_list
+    
+    def __call__(self,module):
+        for i,j in self.vars_list.items():
+            setattr(module, i, j)
+    
+    def load(self,module):
+        for i,j in self.vars_list.items():
+            setattr(module, i, j)
 
 def xor(string,key=0):
     if type(string) == str:
@@ -35,6 +126,60 @@ def b64_de(string,k=""):
     else:
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b64decode(string).decode('utf-8')
+
+def b32_en(string,k=""):
+    if type(string) == str:
+        string = bytes(string,encoding='utf-8')
+    elif type(string) == bytes:
+        pass
+    else:
+        raise TypeError("Type Should Be 'str' Or 'bytes'.")
+    return base64.b32encode(string).decode('utf-8')
+
+def b32_de(string,k=""):
+    if type(string) == str:
+        string = bytes(string,encoding='utf-8')
+    elif type(string) == bytes:
+        pass
+    else:
+        raise TypeError("Type Should Be 'str' Or 'bytes'.")
+    return base64.b32decode(string).decode('utf-8')
+
+def b16_en(string,k=""):
+    if type(string) == str:
+        string = bytes(string,encoding='utf-8')
+    elif type(string) == bytes:
+        pass
+    else:
+        raise TypeError("Type Should Be 'str' Or 'bytes'.")
+    return base64.b16encode(string).decode('utf-8')
+
+def b16_de(string,k=""):
+    if type(string) == str:
+        string = bytes(string,encoding='utf-8')
+    elif type(string) == bytes:
+        pass
+    else:
+        raise TypeError("Type Should Be 'str' Or 'bytes'.")
+    return base64.b16decode(string).decode('utf-8')
+
+def b85_en(string,k=""):
+    if type(string) == str:
+        string = bytes(string,encoding='utf-8')
+    elif type(string) == bytes:
+        pass
+    else:
+        raise TypeError("Type Should Be 'str' Or 'bytes'.")
+    return base64.b85encode(string).decode('utf-8')
+
+def b85_de(string,k=""):
+    if type(string) == str:
+        string = bytes(string,encoding='utf-8')
+    elif type(string) == bytes:
+        pass
+    else:
+        raise TypeError("Type Should Be 'str' Or 'bytes'.")
+    return base64.b85decode(string).decode('utf-8')
 
 def cipher_en(s,key=1):
     if type(key) == str:
@@ -91,11 +236,17 @@ def cipher_de(s,key=1):
 def make_enc(alg,key=b""):
     if str(type(alg)) == "<enum 'Algorithms'>":
         if alg.name == Algorithms.XOR.name:
-            return [lambda s:xor(s,key),lambda s:xor(s,key)]
+            return Crypto([xor],[xor],key)
         elif alg.name == Algorithms.Base64.name:
-            return [lambda s:b64_en(s),lambda s:b64_de(s)]
+            return Crypto([b64_en],[b64_de],key)
         elif alg.name == Algorithms.Cipher.name:
-            return [lambda s:cipher_en(s,key),lambda s:cipher_de(s,key)]
+            return Crypto([cipher_en],[cipher_de],key)
+        elif alg.name == Algorithms.Base16.name:
+            return Crypto([b16_en],[b16_de],key)
+        elif alg.name == Algorithms.Base32.name:
+            return Crypto([b32_en],[b32_de],key)
+        elif alg.name == Algorithms.Base85.name:
+            return Crypto([b85_en],[b85_de],key)
         else:
             raise AlgorithmError(f"This Algorithm Is Not Available. We Will Be Happy If You Help Us To Make It :)\nGithub : https://github.com/Arshiatmi/Pysha")
     elif type(alg) == list or type(alg) == set:
@@ -111,20 +262,17 @@ def make_enc(alg,key=b""):
             elif hasattr(i,'name') and i.name == Algorithms.Cipher.name:
                 ls_en.append(cipher_en)
                 ls_de.append(cipher_de)
+            elif hasattr(i,'name') and i.name == Algorithms.Base16.name:
+                ls_en.append(b16_en)
+                ls_de.append(b16_de)
+            elif hasattr(i,'name') and i.name == Algorithms.Base32.name:
+                ls_en.append(b32_en)
+                ls_de.append(b32_de)
+            elif hasattr(i,'name') and i.name == Algorithms.Base85.name:
+                ls_en.append(b85_en)
+                ls_de.append(b85_de)
             else:
                 raise AlgorithmError(f"Type {i} Is Not Supported. Just (Algorithms.Base64/Algorithms.XOR/Algorithms.Cypher) Is Supported.")
-        en = ""
-        de = ""
-        if len(ls_en) == 3:
-            en = lambda s:ls_en[2](ls_en[1](ls_en[0](s,key),key),key)
-            de = lambda s:ls_de[0](ls_de[1](ls_de[2](s,key),key),key)
-        elif len(ls_en) == 2:
-            print(ls_en,ls_de)
-            en = lambda s:ls_en[1](ls_en[0](s,key),key)
-            de = lambda s:ls_de[0](ls_de[1](s,key),key)
-        elif len(ls_en) == 1:
-            en = lambda s:ls_en[0](s,key)
-            de = lambda s:ls_de[0](s,key)
-        return en,de
+        return Crypto(ls_en,ls_de[::-1],key)
     else:
         raise AlgorithmError(f"This Type Of Algorithm Is Not Supported. Just enum.EnumMeta (Algorithms.Base64/...),list and set Are Supported.")

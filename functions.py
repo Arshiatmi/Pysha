@@ -149,16 +149,30 @@ Tries To Get Possible Situations Of For Loops ( Max 2 Variable ).
 def make_possibles(data):
     if len(data.keys()) == 1:
         return list(range(list(data.values())[0]))
+    elif len(data.keys()) == 2:
+        temp = []
+        for i in range(list(data.values())[0]):
+            for j in range(list(data.values())[1]):
+                temp.append([i,j])
+        return temp
+    elif len(data.keys()) == 3:
+        temp = []
+        for i in range(list(data.values())[0]):
+            for j in range(list(data.values())[1]):
+                for z in range(list(data.values())[2]):
+                    temp.append([i,j,z])
+        return temp
     else:
-        l1 = list([[i] for i in range(list(data.items())[0][1])])
-        ans = []
-        for i in l1:
-            temp = []
-            for key,value in list(data.items())[1:]:
-                for j in range(value):
-                    temp.append(i + [j])
-            ans.extend(temp)
-        return ans
+        # l1 = list([[i] for i in range(list(data.items())[0][1])])
+        # ans = []
+        # for i in l1:
+        #     temp = []
+        #     for key,value in list(data.items())[1:]:
+        #         for j in range(value):
+        #             temp.append(i + [j])
+        #     ans.extend(temp)
+        # return ans
+        pass
 
 """
 Related To Loop Command. It Will Print String And Replace _i_ , _i++_ ... With The Value.
@@ -206,13 +220,15 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
             itemp = i.split(':')
             arr_data.append(itemp[0].strip())
             dic_tar[itemp[0].strip()] = int(itemp[1].strip())
-        if len(dic_tar.keys()) >= 3:
-            raise LoopError("Loops With 3 Or More Variables Are Not Supported In This Version.")
+        if len(dic_tar.keys()) >= 4:
+            raise LoopError("Loops With 4 Or More Variables Are Not Supported In This Version.")
         tars = make_possibles(dic_tar)
         for i in tars:
             temp = {}
             if not (type(i) == int) and len(i) == 2:
                 temp = {arr_data[0]:i[0],arr_data[1]:i[1]}
+            elif not (type(i) == int) and len(dic_tar) == 3:
+                temp = {arr_data[0]:i[0],arr_data[1]:i[1],arr_data[2]:i[2]}
             else:
                 temp = {arr_data[0]:i[0]}
             display(temp,string,c)
@@ -225,11 +241,12 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
             itemp = i.split(':')
             arr_data.append(itemp[0].strip())
             dic_tar[itemp[0].strip()] = int(itemp[1].strip())
-        if len(dic_tar.keys()) >= 3:
-            raise LoopError("Loops With 3 Or More Variables Are Not Supported In This Version.")
+        if len(dic_tar.keys()) >= 4:
+            raise LoopError("Loops With 4 Or More Variables Are Not Supported In This Version.")
         tars = make_possibles(dic_tar)
         x = 0
         y = 0
+        z = 0
         ls = []
         if len(dic_tar) == 2:
             x = (list(dic_tar.values())[0])
@@ -238,23 +255,54 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
         elif len(dic_tar) == 1:
             x = (list(dic_tar.values())[0])
             ls = ["" for _ in range(x)]
+        elif len(dic_tar) == 3:
+            x = (list(dic_tar.values())[0])
+            y = (list(dic_tar.values())[1])
+            z = (list(dic_tar.values())[2])
+            ls = [[["" for _ in range(z)] for __ in range(y)] for ___ in range(x)]
         x = 0
         y = 0
+        z = 0
         for i in tars:
             temp = {}
             if not (type(i) == int) and len(i) == 2:
                 temp = {arr_data[0]:i[0],arr_data[1]:i[1]}
+                try:
+                    ls[x][y] = get_ans(temp,string,c)
+                    ls[x][y + 1]
+                    y += 1
+                except:
+                    try:
+                        ls[x + 1][y]
+                        x += 1
+                        y = 0
+                    except:
+                        pass
+            elif not (type(i) == int) and len(i) == 3:
+                temp = {arr_data[0]:i[0],arr_data[1]:i[1],arr_data[2]:i[2]}
+                try:
+                    ls[x][y][z] = get_ans(temp,string,c)
+                    ls[x][y][z + 1]
+                    z += 1
+                except:
+                    try:
+                        ls[x][y + 1][z]
+                        y += 1
+                        z = 0
+                    except:
+                        try:
+                            ls[x + 1][y][z]
+                            x += 1
+                            y = 0
+                            z = 0
+                        except:
+                            pass
             else:
                 temp = {arr_data[0]:i}
-            try:
-                ls[x][y] = get_ans(temp,string,c)
-                ls[x][y + 1]
-                y += 1
-            except:
                 try:
-                    ls[x + 1][y]
+                    ls[x] = get_ans(temp,string,c)
+                    ls[x]
                     x += 1
-                    y = 0
                 except:
                     pass
         return ls
@@ -443,10 +491,27 @@ def rm_dir(dir_name: str,force=False) -> bool:
                             For Example 'hello My Name Is Arshia And "hello" Is
                             ok Now As i think :)' And Pass It As This Argument.
         
-        sign -> This Should Be The Character That You Are Looking For. For 
-                Example You Can Pass " As This Argument ( Continue Of Previous
-                Part Example ) .
-    
+        start_sign -> This Should Be The Start Character That You Are Looking For.
+                    For Example You Can Pass " As This Argument ( Continue Of Previous
+                    Part Example ) . But In Another Example That You Want To Check A Tag For
+                    Example html Tag You Can Pass "<" As Start.
+        
+        end_sign -> This Should Be The Start Character That You Are Looking For.
+                    For Example You Can Pass " As This Argument ( Continue Of Previous
+                    Part Example ) . Continue Of Tag Example You Can Pass ">" As End.
+        
+        exact -> Basically, Checks For <html> Not <*html*>.This Argument Will Check
+                For exact Value. For Example If This Option Was False And You Want
+                To Check For Tags In  String "This <html Test Fake Text> Is Ok." It
+                Will Return True But If This Option Is True,For That String Will
+                Return False. Because It Looks For Exact "<html>" Not < Then Anything
+                Then html Then Again Anything And > Character.
+        
+        case_sensetive -> If Its True, Lower Case Or Upper Case In Words Are Important.
+                         For Example If Its True, "Html" Is Different From "html" But
+                         If Its False, "Html" And "html" Are Equal.
+        
+
     Example :
         1. between(":",'The : Is Not Between "" Chars.','"')
         1. Returns :
@@ -457,20 +522,33 @@ def rm_dir(dir_name: str,force=False) -> bool:
 
     Returns True If Its Found In target Text Else, Returns False.
 """
-def between(string,string_to_check,sign="'"):
+def between(string,string_to_check,start_sign='"',end_sign='"',exact=False,case_sensetive=True):
     is_in = False
     ts = ""
     for c,i in enumerate(string_to_check):
-        if i == sign:
-            if is_in:
+        if is_in:
+            if i == end_sign:
                 is_in = False
                 ts = ""
-            else:
+        else:
+            if i == start_sign:
                 is_in = True
         if is_in:
             ts += i
-        if string in ts:
-            return True
+        if not exact:
+            if case_sensetive:
+                if string in ts:
+                    return True
+            else:
+                if string.lower() in ts.lower():
+                    return True
+        else:
+            if case_sensetive:
+                if start_sign + string + end_sign in ts:
+                    return True
+            else:
+                if (start_sign + string + end_sign).lower() in ts.lower():
+                    return True
     return False
 
 
@@ -478,20 +556,33 @@ def between(string,string_to_check,sign="'"):
 """
     Acts Like Between Function But It Will Return Index Insted Of Boolean Value.
 """
-def between_index(string,string_to_check,sign='"',start=0):
+def between_index(string,string_to_check,start_sign='"',end_sign='"',exact=False,case_sensetive=True,start=0):
     is_in = False
     ts = ""
     for c,i in enumerate(string_to_check[start:]):
-        if i == sign:
-            if is_in:
+        if is_in:
+            if i == end_sign:
                 is_in = False
                 ts = ""
-            else:
+        else:
+            if i == start_sign:
                 is_in = True
         if is_in:
             ts += i
-        if string in ts:
-            return (c - len(string) + 1 + start)
+        if not exact:
+            if case_sensetive:
+                if string in ts:
+                    return (c - len(string) + 1 + start)
+            else:
+                if string.lower() in ts.lower():
+                    return (c - len(string) + 1 + start)
+        else:
+            if case_sensetive:
+                if start_sign + string + end_sign in ts:
+                    return (c - len(string) + 1 + start)
+            else:
+                if (start_sign + string + end_sign).lower() in ts.lower():
+                    return (c - len(string) + 1 + start)
     return -1
 
 
@@ -506,35 +597,49 @@ def between_index(string,string_to_check,sign='"',start=0):
         string_to_check ->   A Big String That We Want To Check And Dive In :)
                             For Example 'hello My Name Is Arshia And "hello" Is
                             ok Now As i think :)' And Pass It As This Argument.
+                
+        start_sign -> This Should Be The Start Character That You Are Looking For.
+                    For Example You Can Pass " As This Argument ( Continue Of Previous
+                    Part Example ) . But In Another Example That You Want To Check Text
+                    That Does Not In A Tag For Example html Tag You Can Pass "<" As Start.
         
-        sign -> This Should Be The Character That You Are Looking For. For 
-                Example You Can Pass " As This Argument ( Continue Of Previous
-                Part Example ) .
+        end_sign -> This Should Be The Start Character That You Are Looking For.
+                    For Example You Can Pass " As This Argument ( Continue Of Previous
+                    Part Example ) . Continue Of Tag Example You Can Pass ">" As End.
+        
+        case_sensetive -> If Its True, Lower Case Or Upper Case In Words Are Important.
+                         For Example If Its True, "Html" Is Different From "html" But
+                         If Its False, "Html" And "html" Are Equal.
     
     Example :
-        1. not_between_index(":",'Arshia Said : "Hello ! There Is : Hiding Here :)"','"')
+        1. not_between_index(":",'Arshia Said : "Hello ! There Is : Hiding Here :)"','"','"')
         1. Returns :
             1. 12
-        2. not_between_index(":",'":" Is Not Out Of "" Sign. But Now : It Is.','"')
+        2. not_between_index(":",'":" Is Not Out Of "" Sign. But Now : It Is.','"','"')
         2. Returns :
             2. 35
 
     Returns True If Its Found Out Of target Sign, Else Returns False.
 """
-def not_between_index(string,string_to_check,sign='"',start=0):
+def not_between_index(string,string_to_check,start_sign='"',end_sign='"',case_sensetive=True,start=0):
     is_in = False
     ts = ""
     for c,i in enumerate(string_to_check[start:]):
-        if i == sign:
-            if is_in:
+        if is_in:
+            if i == end_sign:
                 is_in = False
-            else:
+        else:
+            if i == start_sign:
                 is_in = True
                 ts = ""
         if not is_in:
             ts += i
-        if string in ts:
-            return (c - len(string) + 1 + start)
+        if case_sensetive:
+            if string in ts:
+                return (c - len(string) + 1 + start)
+        else:
+            if string.lower() in ts.lower():
+                return (c - len(string) + 1 + start)
     return -1
 
 

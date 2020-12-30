@@ -1,5 +1,4 @@
 from pysha import *
-from enum import *
 
 class Colors(Enum):
     Red = 0

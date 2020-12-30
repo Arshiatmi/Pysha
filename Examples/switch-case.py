@@ -100,25 +100,25 @@ a.cases({
 # Model 2
 a = Switch(var)
 a.cases({
-    5:
+    Case(5):
         """
             i = 2
             print("Number Wasnt 5.")
             print(i)
         """,
-    10:
+    Case(10):
         """
             i = 2
             print("Number Was 10 !")
             print(i)
         """,
-    15:
+    Case(15):
         """
             i = 2
             print("Number Wasnt 15.")
             print(i)
         """,
-    20:
+    Case(20):
         """
             i = 2
             print("Number Wasnt 20.")
