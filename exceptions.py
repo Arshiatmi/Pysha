@@ -18,3 +18,6 @@ class SecurityError(Exception):
 
 class AlgorithmError(Exception):
     pass
+
+def exception_create(name):
+    return type(name,(Exception,),{})

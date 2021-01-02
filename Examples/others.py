@@ -30,3 +30,5 @@ print(between("html","<HTML> Is Not A Programming Language.","<",">",exact=True,
 print(between("html","<asd aHTML asfd> Is Not A Programming Language.","<",">",case_sensetive=False)) # True
 
 print(between("html","<asd aHTML asfd> Is Not A Programming Language.","<",">",exact=True,case_sensetive=False)) # False
+
+raise exception_create("Customize Error")("An Error Accured.")

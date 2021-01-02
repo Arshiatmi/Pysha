@@ -66,8 +66,7 @@ a.cases({
 # You Can Not Do for loop Or if-else In lambda #
 ################################################
 # Model 1
-a = Switch(var)
-a.cases({
+Switch(var).cases({
     5:
         lambda: (
             print("Number Wasnt 5.") ,
