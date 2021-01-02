@@ -15,27 +15,27 @@ Just Run This Command :
 
 ```
 Switch(var).cases({
-    5:
+    Case(5):
         lambda: (
             print("Number Wasnt 5.") ,
             print(2)
         ),
-    10:
+    Case(10):
         lambda: (
             print("Number Was 10 !") ,
             print(3)
         ),
-    15:
+    Case(15):
         lambda: (
             print("Number Wasnt 15.") ,
             print(4)
         ),
-    20:
+    Case(20):
         lambda: (
             print("Number Wasnt 20.") ,
             print(5)
         ),
-    lambda:"default":
+    Default:
         lambda:(
             print("Finish")
         )
