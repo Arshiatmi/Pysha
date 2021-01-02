@@ -3,7 +3,7 @@ from os import popen,mkdir,makedirs,rmdir
 from shutil import rmtree
 from colors import *
 from exceptions import *
-import re,signal
+import re
 import readchar,sys
 from security import *
 
