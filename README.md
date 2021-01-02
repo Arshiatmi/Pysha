@@ -9,6 +9,11 @@ Just Run This Command :
 
 `pip install pysha`
 
+## Usage
+Add This At First Of Your Code :
+
+`from pysha import *`
+
 ## Examples
 
 * Switch-Case
