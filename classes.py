@@ -194,6 +194,22 @@ class command:
         Get #(cmd) Too And Run It As Python Code And Replace This Output Too.
             Problem Now :
                 Use This 2 Thing Together.
+        
+        Args : 
+            string          ->    The String Pattern That You Want To Make.
+
+            priority        ->    If Its 0 First System Commands Will Replace Then
+                                Python Commands Will Replace. And If Its 1 First
+                                Python Commands Will Replace Then System Commands
+                                Will Be Replaced. Default Is 0.
+            
+            strip_response  ->     Default Is True. It Wanted To Know That Your
+                                    String That Replaced Should Be striped ? ( Remove
+                                    Addtion New Lines And Spaces In Start And End Of 
+                                    String ? )
+        
+        Example :
+            exe("You Current Directory :\n $(dir)\nFinished :)")
     """
     def exe(self,string,priority=0,strip_response=True):
         s = re.compile("\$\([A-Za-z0-9_ \$\&\!\@\#\%\^\*\+\=\-\]\[\~\?\'\"\;\:]+\)")

@@ -1,5 +1,5 @@
 from typing import Union
-from os import popen,mkdir,makedirs,rmdir
+from os import mkdir,makedirs,rmdir
 from shutil import rmtree
 from colors import *
 from exceptions import *
@@ -144,7 +144,7 @@ def colorize(string: str) -> str:
     return string
 
 """
-Tries To Get Possible Situations Of For Loops ( Max 2 Variable ).
+Tries To Get Possible Situations Of For Loops ( Max 3 Variable ).
 """
 def make_possibles(data):
     if len(data.keys()) == 1:
@@ -163,15 +163,6 @@ def make_possibles(data):
                     temp.append([i,j,z])
         return temp
     else:
-        # l1 = list([[i] for i in range(list(data.items())[0][1])])
-        # ans = []
-        # for i in l1:
-        #     temp = []
-        #     for key,value in list(data.items())[1:]:
-        #         for j in range(value):
-        #             temp.append(i + [j])
-        #     ans.extend(temp)
-        # return ans
         pass
 
 """

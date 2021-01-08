@@ -23,7 +23,7 @@ print(a.display())
 a.remove()
 
 # Model 2
-a = Queue() # Infinite Stack
+a = Queue() # Infinite Queue
 a.add("test")
 print(a.display())
 a.remove()

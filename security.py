@@ -4,6 +4,9 @@ from exceptions import *
 from enums import Algorithms
 from pickle import Unpickler,Pickler
 
+"""
+Crypto Class Is Made For Do Encryption And Decryption More Coder Friendly :)
+"""
 class Crypto:
     def __init__(self,enc_ls,dec_ls,key):
         self.enc_ls = enc_ls
@@ -61,6 +64,9 @@ class Crypto:
     def __str__(self):
         return '('.join([str(i).split(' ')[1] for i in self.enc_ls]) + f"(string)) -> Key Is {self.key}"
 
+"""
+A Class To Save Some Variables With Some Simple Encryption.
+"""
 class Save:
     def __init__(self,file_name,**kwargs):
         self.file_name = file_name
@@ -78,6 +84,9 @@ class Save:
     def save(self):
         Pickler(open(self.file_name,"wb")).dump(self.vars_list)
 
+"""
+A Class To Load Saved Variables
+"""
 class Load:
     def __init__(self,file_name):
         self.file_name = file_name
@@ -94,6 +103,10 @@ class Load:
         for i,j in self.vars_list.items():
             setattr(module, i, j)
 
+"""
+xor function. got string And key At The End; It Will Encrypt/Decrypt Your
+Data.
+"""
 def xor(string,key=0):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -109,6 +122,10 @@ def xor(string,key=0):
         raise TypeError("key Type Must Be Int.")
     return ans
 
+"""
+base64 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.
+"""
 def b64_en(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -118,6 +135,10 @@ def b64_en(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b64encode(string).decode('utf-8')
 
+"""
+base64 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.
+"""
 def b64_de(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -127,6 +148,11 @@ def b64_de(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b64decode(string).decode('utf-8')
 
+
+"""
+base32 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.
+"""
 def b32_en(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -136,6 +162,11 @@ def b32_en(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b32encode(string).decode('utf-8')
 
+
+"""
+base32 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.
+"""
 def b32_de(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -145,6 +176,11 @@ def b32_de(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b32decode(string).decode('utf-8')
 
+
+"""
+base16 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.
+"""
 def b16_en(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -154,6 +190,11 @@ def b16_en(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b16encode(string).decode('utf-8')
 
+
+"""
+base16 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.
+"""
 def b16_de(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -163,6 +204,11 @@ def b16_de(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b16decode(string).decode('utf-8')
 
+
+"""
+base85 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.
+"""
 def b85_en(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -172,6 +218,11 @@ def b85_en(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b85encode(string).decode('utf-8')
 
+
+"""
+base85 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.
+"""
 def b85_de(string,k=""):
     if type(string) == str:
         string = bytes(string,encoding='utf-8')
@@ -181,6 +232,11 @@ def b85_de(string,k=""):
         raise TypeError("Type Should Be 'str' Or 'bytes'.")
     return base64.b85decode(string).decode('utf-8')
 
+
+"""
+Cipher Encoder function. got string And key At The End; It Will Encrypt Your
+Data.
+"""
 def cipher_en(s,key=1):
     if type(key) == str:
         try:
@@ -207,6 +263,11 @@ def cipher_en(s,key=1):
     
     return ans
 
+
+"""
+Cipher Decoder function. got string And key At The End; It Will Decrypt Your
+Data.
+"""
 def cipher_de(s,key=1):
     if type(key) == str:
         try:
@@ -233,6 +294,22 @@ def cipher_de(s,key=1):
     
     return ans
 
+
+"""
+make_enc Function Will Make You An instance Of Crypto Class That Contains A
+ Chain Of Encryption Algorithm. In Fact You Are Free To Use Just One Or More.
+Args/Kwargs :
+    alg     ->    The Algorithm That Can Be Like Algorithms.XOR Or Like 
+                    [Algorithms.XOR,Algorithms.Base64]
+    
+    key     ->    The Target Key That You Want To Use In Encryption Process.
+
+Example :
+
+    a = make_enc([Algorithms.XOR,Algorithms.Base64],10)
+    a.enc("Hello")    # Encrypt "Hello" Equals "Qm9mZmU="
+    a.dec("Qm9mZmU=") # Decrypt "Qm9mZmU" Equals "Hello"
+"""
 def make_enc(alg,key=b""):
     if str(type(alg)) == "<enum 'Algorithms'>":
         if alg.name == Algorithms.XOR.name:
