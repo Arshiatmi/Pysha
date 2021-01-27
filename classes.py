@@ -264,6 +264,39 @@ class Switch:
         if self.var == tar or (hasattr(tar,'__name__') and tar.__name__ == "Case" and tar == self.var) or (tar == self.var) or (hasattr(tar,'__name__') and tar.__name__ == "Default"):
             func(*args)
     
+    def __getitem__(self,all_funcs):
+        dic = {}
+        for i in all_funcs:
+            dic[i.start] = i.stop
+        for i,j in dic.items():
+            if self.var == i or (hasattr(i,'__name__') and i.__name__ == "Case" and i.tar == self.var) or (hasattr(i,'tar') and i.tar == self.var) or (hasattr(i,'__name__') and i.__name__ == "Default"):
+                if hasattr(j,'__call__'):
+                    j()
+                    return
+                elif type(j) == str:
+                    parts = j.split('\n')
+                    if parts[0].strip():
+                        t = parts[0].index(j.split('\n')[0].strip())
+                    else:
+                        t = parts[1].index(j.split('\n')[1].strip())
+                    ok_code = ""
+                    for i in j.split('\n'):
+                        ok_code += i[t:] + "\n"
+                    b = compile(ok_code,'user_code','exec')
+                    a = exec(b)
+                    if a != None:
+                        print(a)
+                    return
+                if len(j) == 3:
+                    j[0](*j[1],**j[2])
+                    return
+                elif len(j) == 2:
+                    j[0](*j[1])
+                    return
+                elif len(j) == 1:
+                    j[0]()
+                    return
+    
     def cases(self,all_funcs):
         for i,j in all_funcs.items():
             if self.var == i or (hasattr(i,'__name__') and i.__name__ == "Case" and i.tar == self.var) or (hasattr(i,'tar') and i.tar == self.var) or (hasattr(i,'__name__') and i.__name__ == "Default"):
@@ -283,12 +316,16 @@ class Switch:
                     a = exec(b)
                     if a != None:
                         print(a)
+                    return
                 if len(j) == 3:
                     j[0](*j[1],**j[2])
+                    return
                 elif len(j) == 2:
                     j[0](*j[1])
+                    return
                 elif len(j) == 1:
                     j[0]()
+                    return
 
 """
     Default Case Of Switch-Case

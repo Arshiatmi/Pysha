@@ -160,6 +160,35 @@ a.cases({
         ],
 })
 
+
+##########################################
+# Easier Model. No need To Use cases({}) #
+##########################################
+# Model 4 (New)
+Switch(var)[
+    Case(5):
+        """
+        print("YAY")
+        """,
+    Case(10):
+        """
+        print("YYAAAYYY")
+        """,
+    Case(15):
+        """
+        print("YYAYY")
+        """,
+    Case(20):
+        """
+        print("Damn Son :/")
+        """,
+    Default:
+        """
+        print("Guess What ? You Messed Up XD .")
+        """
+]
+
+
 #######################################
 # Pass A List Like [func,args,kwargs] #
 #######################################

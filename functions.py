@@ -75,6 +75,45 @@ def passprompt(prompt: str, out = sys.stdout,mask_color=fore["reset"],mask='*') 
     print()
     return password
 
+
+"""
+This Function Will Help You To Recover Escaped Characters That Wrongly Splitted.
+Args :
+    target         ->   A List Of Splitted String/ A String That You Want To Escape.
+
+    char           ->   The Character That You Want To Escape.
+
+Example :
+    escape_translator("Hello Lets Escape All < That Have \ Like \< . All \< Will Be Escaped.","<")
+
+Out :
+    ['Hello Lets Escape All ', ' That Have \\ Like \\< . All \\< Will Be Escaped.']
+"""
+def escape_translator(target,char: str) -> list:
+    if type(target) == str:
+        target = target.split(char)
+    elif type(target) == list:
+        pass
+    else:
+        raise TypeError("Type Should Be List Or String.")
+    ans = []
+    escape = False
+    for i in target:
+        print(i,ans)
+        if i[-1] == "\\":
+            if escape:
+                ans[-1] = ans[-1] + char + i
+            else:
+                ans.append(i)
+            escape = True
+        else:
+            if escape:
+                ans[-1] = ans[-1] + char + i
+            else:
+                ans.append(i)
+            escape = False
+    return ans
+
 """
 It Will Colorize The Input.
 Example :
@@ -128,7 +167,8 @@ Possible Colors:
         pysha.back[...]
 """
 def colorize(string: str) -> str:
-    data = re.findall("\(Back|\(Fore\.[A-Z]*\)\[[a-zA-Z0-9_ :\/\\\'\"\+\=\-\$\%\^\&\*\@\!\#\(\)\?]*\]",string)
+    data = re.findall("\(Back|\(Fore\.[A-Z]*\)\[[^\[\]]*\]",string)
+    print(data)
     for i in data:
         tp = i.split('.')[0][1:].strip()
         colr = i.split('.')[1].split(')')[0].strip()

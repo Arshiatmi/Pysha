@@ -7,3 +7,7 @@ class Algorithms(Enum):
     Base85 = 3
     Base32 = 4
     Base16 = 5
+
+class AIModes(Enum):
+    All = 0
+    Some = 1

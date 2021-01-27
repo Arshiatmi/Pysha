@@ -51,7 +51,6 @@ def pp(*args,curly_c=Fore.RESET,colon_c=Fore.RESET,quote_c=Fore.RESET,mode='k',e
         else:
             print(i,end=end)
 
-
 """
 This Function Acts As A Decorator For Check Spent Time On Executing Functions.
 Args:
