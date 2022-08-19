@@ -1,4 +1,5 @@
-from typing import Union
+import time
+from typing import Callable, Union
 from os import mkdir, makedirs, rmdir
 from shutil import rmtree
 from colors import *
@@ -760,3 +761,81 @@ def not_between_index(string, string_to_check, start_sign='"', end_sign='"', cas
 
 def index_split(string, ind):
     return [string[:ind], string[ind + 1:]]
+
+
+"""
+    This Function Will Try To Loop A Function In Specific count/infinite count.
+    Example :
+        delay_loop(10,func,5,args,kwargs)
+    
+    In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.
+"""
+
+
+def delay_loop(delay: int, func: Callable, count: int = -1, *args, **kwargs):
+    if count == -1:
+        index = 0
+        while True:
+            time.sleep(delay)
+            index += 1
+            func(index, *args, **kwargs)
+    else:
+        for index in range(count):
+            time.sleep(delay)
+            func(index, *args, **kwargs)
+
+
+"""
+    This Function Will Merge Some List Or Some Dict Or Some Dict And List !
+    Example :
+        merge(["a","b"],{"c":"d","e":"f"},["g","h"])
+    Returns :
+        {"a":"","b":"","c":"","d":"","e":"","f":"","g":"","h":""}
+
+    Example :
+        merge(["a","b"],{"c":"d","e":"f"},["g","h"],force_list=True)
+    Returns :
+        ["a","b","c","e","d","f","g","h"]
+
+    Example :
+        merge(["a","b"],{"c":"d","e":"f"},["g","h"],force_list=True,dont_change=True)
+    Returns :
+        ["a","b","c","d","e","f","g","h"]
+    
+    Example:
+        merge(["a","b"],["c","d","e","f"],["g","h"])
+    Returns :
+        ["a","b","c","d","e","f","g","h"]
+    
+    In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.
+"""
+
+
+def merge(*args, force_list=False, dont_change=False):
+    if list(filter(lambda x: type(x) == dict, args)):
+        if not force_list:
+            ans = {}
+            for i in args:
+                if type(i) == list:
+                    ans[i] = ""
+                elif type(i) == dict:
+                    ans.update(i)
+            return ans
+        else:
+            ans = []
+            for i in args:
+                if type(i) == list:
+                    ans.extend(i)
+                elif type(i) == dict:
+                    if dont_change:
+                        for a, b in i.items():
+                            ans.extend([a, b])
+                    else:
+                        ans.extend(i.keys())
+                        ans.extend(i.values())
+            return ans
+    else:
+        ans = []
+        for i in args:
+            ans.extend(i)
+        return ans

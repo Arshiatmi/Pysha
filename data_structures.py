@@ -1,5 +1,7 @@
-from ctypes import Union
+from typing import TypeVar
 from exceptions import *
+
+ListOrDict = TypeVar('ListOrDict', list, dict)
 
 
 class Stack:
@@ -344,27 +346,27 @@ In PyshaString You Have Lots Of Methods To Do Some Things.
 
 
 class PyshaString(str):
-    def inside(self, data_to_search: Union[list, dict], search_mode="key", return_type=bool):
+    def inside(self, data_to_search: ListOrDict, search_mode="key", return_type=bool):
         """
         In This Function You Can Search That If A String Exists In Dict ( Or Inside Of All Elements ).
         Or If A String Exists In List And All Of Its Elements.
 
         Args :
-        data_to_search ->  Data That Wanted To Search In That. For Example
-                            Search In List : ["test", "some", "Hello World"] Or
-                            Search In dict : {"test": "Hello World", "some": "Hello World"} 
-                            -> ( search_mode must be "value" or "both" in dict input )
-                            if string is Hello It Will Return True !
+            data_to_search ->  Data That Wanted To Search In That. For Example
+                                Search In List : ["test", "some", "Hello World"] Or
+                                Search In dict : {"test": "Hello World", "some": "Hello World"} 
+                                -> ( search_mode must be "value" or "both" in dict input )
+                                if string is Hello It Will Return True !
 
-        search_mode ->  If You Passed A Dictionary You Can Choose Between "key" Or "value"
-                        Or "all"/"both" To Search In Both Of Them. It Does Not Do Anything If
-                         You Passed A List.
+            search_mode ->  If You Passed A Dictionary You Can Choose Between "key" Or "value"
+                            Or "all"/"both" To Search In Both Of Them. It Does Not Do Anything If
+                            You Passed A List.
 
-        return_type ->  If You Passed A Dictionary You Can Choose Between bool and dict or ...
-                        if you pass bool, it will return True or False If It Finds Your String.
-                        if you pass dict, it will return a dict with key and value of found element.
-                        if you pass pass anything else, it will return oposite of search_mode. For
-                        Example If You passed "key" And You Found Your String, It Will Return "value".
+            return_type ->  If You Passed A Dictionary You Can Choose Between bool and dict or ...
+                            if you pass bool, it will return True or False If It Finds Your String.
+                            if you pass dict, it will return a dict with key and value of found element.
+                            if you pass pass anything else, it will return oposite of search_mode. For
+                            Example If You passed "key" And You Found Your String, It Will Return "value".
 
         """
         if type(data_to_search) == list:
@@ -404,6 +406,20 @@ class PyshaString(str):
         else:
             raise TypeError("Type Must Be list Or dict.")
 
+    """
+        In This Function You Can Search That an String Contains Some Other String From A List.
+
+        Args :
+            data_to_search ->  Strings That You Want To Search For. For Example
+                                Search In List : [" ", ":", ","] And If Your String Is 
+                                "Hello, Im Arshia" It will Return 5 Thats Index Of ",".
+                                If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
+
+            return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
+                            Things Like str To Return Found String.
+
+    """
+
     def find_first(self, data_to_search: list, return_type=int):
         for c, i in enumerate(self):
             if i in data_to_search:
@@ -412,35 +428,89 @@ class PyshaString(str):
                 else:
                     return i
 
+    """
+        This Function Is Exactly find_first But It Will Return Last Index Of Found String.
+
+        Args :
+            data_to_search ->  Strings That You Want To Search For. For Example
+                                Search In List : [" ", ":", ","] And If Your String Is 
+                                "Hello, Im Arshia" It will Return 10 Thats Index Of " ".
+                                If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
+
+            return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
+                            Things Like str To Return Found String.
+
+    """
+
     def find_last(self, data_to_search: list, return_type=int):
         for c, i in enumerate(self[::-1]):
             if i in data_to_search:
                 if return_type == int:
-                    return len(self) - c
+                    return len(self) - c - 1
                 else:
                     return i
+
+    """
+        In This Function You Can Replace An Array With Another Array ! ( in a string )
+
+        Args :
+            data_to_replace ->  Data That You Wanted To Be Replaced For Example If Data Is 
+                                ["Hello", "World"] And replace_with Argument Is ["Hi", "There"]
+                                All Of "Hello" And "World" Will Be Replaced With "Hi" And "There".
+
+            replace_with ->  Described In data_to_replace Argument.
+
+    """
 
     def replace_array(self, data_to_replace: list, replace_with: list):
         for c, i in enumerate(data_to_replace):
             self = self.replace(i, replace_with[c])
         return self
 
+    """
+        This Is replace_array But You Can Pass Dictionary To Replace With.
+
+        Args :
+            data_to_replace ->  A Dictionary Of Data To Replace. For Example 
+                                {"Hello": "Hi", "World": "There"} Will Replace "Hello" With "Hi"
+                                And "World" With "There". ( All Of String )
+
+    """
+
     def replace_dict(self, data_to_replace: dict):
         for j, i in data_to_replace.items():
             self = self.replace(j, i)
         return self
 
-    def exists(self, data_to_search: list, line=-1, index=0):
-        if line == -1:
-            data_to_search = data_to_search[index:]
-            for i in data_to_search:
-                if i in self:
-                    return True
-            return False
-        else:
-            data_to_search = '\n'.join(
-                data_to_search.split('\n')[line:])[index:]
-            for i in data_to_search:
-                if i in self[line]:
-                    return True
-            return False
+    """
+        This Function Will Check If A List Of Strings Exists In Another String. In Specific
+        Part Of It Or Not. It Will Get a Part Of String And Will Check It With A List Of Strings.
+
+        Args :
+            data_to_replace ->  A List Of Data That You Want To Check If Exists In Another String.
+                                
+            line_start ->  Line Start Number ( Starts With 0 )
+
+            line_end ->  Line End Number ( Starts With 0 )
+
+            start_index ->  Start Index Number ( Starts With 0 )
+
+            end_index ->  End Index Number ( Starts With 0 )
+
+    """
+
+    def exists(self, data_to_search: list, line_start=-1, line_end=-1, start_index=-1, end_index=-1):
+        if line_start == -1:
+            line_start = 0
+        if line_end == -1:
+            line_end = len(self)
+        if start_index == -1:
+            start_index = 0
+        if end_index == -1:
+            end_index = len(self)
+        data_to_search = '\n'.join(
+            data_to_search.split('\n')[line_start:line_end])[start_index:end_index]
+        for i in data_to_search:
+            if i in self:
+                return True
+        return False
