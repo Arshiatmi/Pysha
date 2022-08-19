@@ -1,10 +1,11 @@
 from typing import Union
-from os import mkdir,makedirs,rmdir
+from os import mkdir, makedirs, rmdir
 from shutil import rmtree
 from colors import *
 from exceptions import *
 import re
-import readchar,sys
+import readchar
+import sys
 from security import *
 
 
@@ -19,8 +20,11 @@ Args :
                      Color.
 
 """
-def colorprompt(prompt: str,out = sys.stdout,char_color=fore["reset"]):
-    out.write(prompt); out.flush()
+
+
+def colorprompt(prompt: str, out=sys.stdout, char_color=fore["reset"]):
+    out.write(prompt)
+    out.flush()
     password = ""
     while True:
         ch = str(readchar.readchar(), encoding='UTF-8')
@@ -33,7 +37,7 @@ def colorprompt(prompt: str,out = sys.stdout,char_color=fore["reset"]):
         elif ch == "\x03":
             print("\n")
             raise KeyboardInterrupt("You Pressed Ctrl+C")
-        else: 
+        else:
             password += ch
             out.write(char_color + ch + fore["reset"])
             out.flush()
@@ -54,8 +58,11 @@ Args :
     mask        ->   The Mask. Every Character That User Type, Will Be Replaced With
                      This Character :)
 """
-def passprompt(prompt: str, out = sys.stdout,mask_color=fore["reset"],mask='*') -> str:
-    out.write(prompt); out.flush()
+
+
+def passprompt(prompt: str, out=sys.stdout, mask_color=fore["reset"], mask='*') -> str:
+    out.write(prompt)
+    out.flush()
     password = ""
     while True:
         ch = str(readchar.readchar(), encoding='UTF-8')
@@ -68,7 +75,7 @@ def passprompt(prompt: str, out = sys.stdout,mask_color=fore["reset"],mask='*') 
         elif ch == "\x03":
             print("\n")
             raise KeyboardInterrupt("You Pressed Ctrl+C")
-        else: 
+        else:
             password += ch
             out.write(mask_color + mask + fore["reset"])
             out.flush()
@@ -89,7 +96,9 @@ Example :
 Out :
     ['Hello Lets Escape All ', ' That Have \\ Like \\< . All \\< Will Be Escaped.']
 """
-def escape_translator(target,char: str) -> list:
+
+
+def escape_translator(target, char: str) -> list:
     if type(target) == str:
         target = target.split(char)
     elif type(target) == list:
@@ -99,7 +108,7 @@ def escape_translator(target,char: str) -> list:
     ans = []
     escape = False
     for i in target:
-        print(i,ans)
+        print(i, ans)
         if i[-1] == "\\":
             if escape:
                 ans[-1] = ans[-1] + char + i
@@ -113,6 +122,7 @@ def escape_translator(target,char: str) -> list:
                 ans.append(i)
             escape = False
     return ans
+
 
 """
 It Will Colorize The Input.
@@ -166,26 +176,31 @@ Possible Colors:
         pysha.fore[...]
         pysha.back[...]
 """
+
+
 def colorize(string: str) -> str:
-    data = re.findall("\(Back|\(Fore\.[A-Z]*\)\[[^\[\]]*\]",string)
+    data = re.findall("\(Back|\(Fore\.[A-Z]*\)\[[^\[\]]*\]", string)
     print(data)
     for i in data:
         tp = i.split('.')[0][1:].strip()
         colr = i.split('.')[1].split(')')[0].strip()
         text = '['.join(i.split('[')[1:])[:-1]
         if tp.lower() == "fore":
-            c = getattr(Fore,colr)
-            string = string.replace(i,c + text + Fore.RESET)
+            c = getattr(Fore, colr)
+            string = string.replace(i, c + text + Fore.RESET)
         elif tp.lower() == "back":
-            c = getattr(Back,colr)
-            string = string.replace(i,c + text + Back.RESET)
+            c = getattr(Back, colr)
+            string = string.replace(i, c + text + Back.RESET)
         else:
             raise TypeError("Type Must Be Back Or Fore.")
     return string
 
+
 """
 Tries To Get Possible Situations Of For Loops ( Max 3 Variable ).
 """
+
+
 def make_possibles(data):
     if len(data.keys()) == 1:
         return list(range(list(data.values())[0]))
@@ -193,17 +208,18 @@ def make_possibles(data):
         temp = []
         for i in range(list(data.values())[0]):
             for j in range(list(data.values())[1]):
-                temp.append([i,j])
+                temp.append([i, j])
         return temp
     elif len(data.keys()) == 3:
         temp = []
         for i in range(list(data.values())[0]):
             for j in range(list(data.values())[1]):
                 for z in range(list(data.values())[2]):
-                    temp.append([i,j,z])
+                    temp.append([i, j, z])
         return temp
     else:
         pass
+
 
 """
 Related To Loop Command. It Will Print String And Replace _i_ , _i++_ ... With The Value.
@@ -212,14 +228,18 @@ Related To Loop Command. It Will Print String And Replace _i_ , _i++_ ... With T
         string  ->     The String Pattern That Should Be Printed In Output.
         c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
 """
-def display(temp: dict,string: str,c=True) -> None:
+
+
+def display(temp: dict, string: str, c=True) -> None:
     ans = string
-    for i,j in temp.items():
-        ans = (ans.replace(f"_{i}_",str(j)).replace(f"_{i}++_",str(j+1)).replace(f"_{i}--_",str(j-1)))
+    for i, j in temp.items():
+        ans = (ans.replace(f"_{i}_", str(j)).replace(
+            f"_{i}++_", str(j+1)).replace(f"_{i}--_", str(j-1)))
     if not c:
         print(ans)
     else:
         print(colorize(ans))
+
 
 """
 Related To Loop Command. It Will Get Input And Replace _i_ , _i++_ ... With The Value.
@@ -228,10 +248,13 @@ Related To Loop Command. It Will Get Input And Replace _i_ , _i++_ ... With The 
         string  ->     The String Pattern That Should Be Printed In Output.
         c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
 """
-def get_ans(temp: dict,string: str,c=True) -> str:
+
+
+def get_ans(temp: dict, string: str, c=True) -> str:
     ans = string
-    for i,j in temp.items():
-        ans = (ans.replace(f"_{i}_",str(j)).replace(f"_{i}++_",str(j+1)).replace(f"_{i}--_",str(j-1)))
+    for i, j in temp.items():
+        ans = (ans.replace(f"_{i}_", str(j)).replace(
+            f"_{i}++_", str(j+1)).replace(f"_{i}--_", str(j-1)))
     if not c:
         return input(ans)
     else:
@@ -241,8 +264,10 @@ def get_ans(temp: dict,string: str,c=True) -> str:
 """
 All Descriptions From This Function Came In `classes.py` - command Class.
 """
-def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
-    if mode == "p": # Print Mode
+
+
+def loop(cmd: str, mode='p', c=True) -> Union[None, str]:
+    if mode == "p":  # Print Mode
         alls = cmd.split(">")[0][1:]
         string = cmd.split("{")[1][:-1]
         arr_data = []
@@ -252,18 +277,19 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
             arr_data.append(itemp[0].strip())
             dic_tar[itemp[0].strip()] = int(itemp[1].strip())
         if len(dic_tar.keys()) >= 4:
-            raise LoopError("Loops With 4 Or More Variables Are Not Supported In This Version.")
+            raise LoopError(
+                "Loops With 4 Or More Variables Are Not Supported In This Version.")
         tars = make_possibles(dic_tar)
         for i in tars:
             temp = {}
             if not (type(i) == int) and len(i) == 2:
-                temp = {arr_data[0]:i[0],arr_data[1]:i[1]}
+                temp = {arr_data[0]: i[0], arr_data[1]: i[1]}
             elif not (type(i) == int) and len(dic_tar) == 3:
-                temp = {arr_data[0]:i[0],arr_data[1]:i[1],arr_data[2]:i[2]}
+                temp = {arr_data[0]: i[0], arr_data[1]                        : i[1], arr_data[2]: i[2]}
             else:
-                temp = {arr_data[0]:i[0]}
-            display(temp,string,c)
-    elif mode == 'i': #input Mode
+                temp = {arr_data[0]: i[0]}
+            display(temp, string, c)
+    elif mode == 'i':  # input Mode
         alls = cmd.split(">")[0][1:]
         string = cmd.split("{")[1][:-1]
         arr_data = []
@@ -273,7 +299,8 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
             arr_data.append(itemp[0].strip())
             dic_tar[itemp[0].strip()] = int(itemp[1].strip())
         if len(dic_tar.keys()) >= 4:
-            raise LoopError("Loops With 4 Or More Variables Are Not Supported In This Version.")
+            raise LoopError(
+                "Loops With 4 Or More Variables Are Not Supported In This Version.")
         tars = make_possibles(dic_tar)
         x = 0
         y = 0
@@ -290,16 +317,17 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
             x = (list(dic_tar.values())[0])
             y = (list(dic_tar.values())[1])
             z = (list(dic_tar.values())[2])
-            ls = [[["" for _ in range(z)] for __ in range(y)] for ___ in range(x)]
+            ls = [[["" for _ in range(z)] for __ in range(y)]
+                  for ___ in range(x)]
         x = 0
         y = 0
         z = 0
         for i in tars:
             temp = {}
             if not (type(i) == int) and len(i) == 2:
-                temp = {arr_data[0]:i[0],arr_data[1]:i[1]}
+                temp = {arr_data[0]: i[0], arr_data[1]: i[1]}
                 try:
-                    ls[x][y] = get_ans(temp,string,c)
+                    ls[x][y] = get_ans(temp, string, c)
                     ls[x][y + 1]
                     y += 1
                 except:
@@ -310,9 +338,9 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
                     except:
                         pass
             elif not (type(i) == int) and len(i) == 3:
-                temp = {arr_data[0]:i[0],arr_data[1]:i[1],arr_data[2]:i[2]}
+                temp = {arr_data[0]: i[0], arr_data[1]                        : i[1], arr_data[2]: i[2]}
                 try:
-                    ls[x][y][z] = get_ans(temp,string,c)
+                    ls[x][y][z] = get_ans(temp, string, c)
                     ls[x][y][z + 1]
                     z += 1
                 except:
@@ -329,9 +357,9 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
                         except:
                             pass
             else:
-                temp = {arr_data[0]:i}
+                temp = {arr_data[0]: i}
                 try:
-                    ls[x] = get_ans(temp,string,c)
+                    ls[x] = get_ans(temp, string, c)
                     ls[x]
                     x += 1
                 except:
@@ -344,8 +372,10 @@ def loop(cmd: str,mode='p',c=True) -> Union[None,str]:
 """
 Descrioptions Are Available In 'classes.py' And In command Class.
 """
-def condition(check : str,p=True,**kwargs) -> Union[None,str,int]:
-    if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""",''.join(check.split(' '))):
+
+
+def condition(check: str, p=True, **kwargs) -> Union[None, str, int]:
+    if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""", ''.join(check.split(' '))):
         raise ConditionError("An Error In Parsing Condition :(")
     if "eval" in check:
         if not check[check.find("eval") - 1:].startswith("\eval"):
@@ -353,23 +383,24 @@ def condition(check : str,p=True,**kwargs) -> Union[None,str,int]:
     if "exec" in check:
         if not check[check.find("exec") - 1:].startswith("\exec"):
             raise SecurityError("Using This Funcion Is Forbidden.")
-    index_of_ok_sign = not_between_index("?",check)
-    p1 = index_split(check,index_of_ok_sign)[0].strip()
-    p2 = index_split(check,index_of_ok_sign)[1].strip()
-    ans = eval(p1,kwargs,{})
-    index_of_ok_sign = not_between_index(":",p2)
-    ok = index_split(p2,index_of_ok_sign)[0].strip()
-    not_ok = index_split(p2,index_of_ok_sign)[1].strip()
+    index_of_ok_sign = not_between_index("?", check)
+    p1 = index_split(check, index_of_ok_sign)[0].strip()
+    p2 = index_split(check, index_of_ok_sign)[1].strip()
+    ans = eval(p1, kwargs, {})
+    index_of_ok_sign = not_between_index(":", p2)
+    ok = index_split(p2, index_of_ok_sign)[0].strip()
+    not_ok = index_split(p2, index_of_ok_sign)[1].strip()
     if ans:
         if p:
-            print(eval(ok,kwargs))
+            print(eval(ok, kwargs))
         else:
-            return eval(ok,kwargs)
+            return eval(ok, kwargs)
     else:
         if p:
-            print(eval(not_ok,kwargs))
+            print(eval(not_ok, kwargs))
         else:
-            return eval(not_ok,kwargs)
+            return eval(not_ok, kwargs)
+
 
 """
     You Can Write Into A File :)
@@ -378,10 +409,12 @@ def condition(check : str,p=True,**kwargs) -> Union[None,str,int]:
         text
     Returns True If Its Successfully Done, Else Return False
 """
-def write_file(file_name: str,text : Union[str,list]) -> bool:
+
+
+def write_file(file_name: str, text: Union[str, list]) -> bool:
     if type(text) == str:
         try:
-            a = open(file_name,"w")
+            a = open(file_name, "w")
             a.write(text)
             a.close()
             return True
@@ -389,7 +422,7 @@ def write_file(file_name: str,text : Union[str,list]) -> bool:
             return False
     elif type(text) == list:
         try:
-            a = open(file_name,"w")
+            a = open(file_name, "w")
             a.writelines(text)
             a.close()
             return True
@@ -410,9 +443,11 @@ def write_file(file_name: str,text : Union[str,list]) -> bool:
     Returns list of lines Of The File If mode Is 'l', string of lines
     If mode is 's'.
 """
-def read_file(file_name: str,mode="s") -> Union[list,str]:
+
+
+def read_file(file_name: str, mode="s") -> Union[list, str]:
     try:
-        a = open(file_name,"r")
+        a = open(file_name, "r")
         d = a.readlines()
         a.close()
         if mode == "s":
@@ -420,9 +455,11 @@ def read_file(file_name: str,mode="s") -> Union[list,str]:
         elif mode == "l":
             return d
         else:
-            raise ModeError(f"Mode {mode} Not Found ! Mode Should Be 's'(string) Or 'l'(List)")
+            raise ModeError(
+                f"Mode {mode} Not Found ! Mode Should Be 's'(string) Or 'l'(List)")
     except:
         return ""
+
 
 """
     You Can Append to A File.
@@ -431,10 +468,12 @@ def read_file(file_name: str,mode="s") -> Union[list,str]:
         text
     Returns True If Its Successfully Done, Else Return False
 """
-def append_file(file_name: str,text: str) -> bool:
+
+
+def append_file(file_name: str, text: str) -> bool:
     if type(text) == str:
         try:
-            a = open(file_name,"a")
+            a = open(file_name, "a")
             a.write(text)
             a.close()
             return True
@@ -442,7 +481,7 @@ def append_file(file_name: str,text: str) -> bool:
             return False
     elif type(text) == list:
         try:
-            a = open(file_name,"a")
+            a = open(file_name, "a")
             a.writelines(text)
             a.close()
             return True
@@ -465,7 +504,9 @@ def append_file(file_name: str,text: str) -> bool:
 
     Returns True If Its Successfully Done, Else Return False
 """
-def create_dir(dir_name: str,create_parents=False) -> bool:
+
+
+def create_dir(dir_name: str, create_parents=False) -> bool:
     if create_parents:
         try:
             makedirs(dir_name)
@@ -478,6 +519,33 @@ def create_dir(dir_name: str,create_parents=False) -> bool:
             return True
         except:
             return False
+
+
+"""
+    Tries To Replace A Dictionary.
+    Args :
+        file_name ->  File Name. You Can Pass File Name That You Want Data 
+                     To Change.
+
+        data_to_replace ->  Data That You Want To Replace As Dictinary.
+                            For Example : {'test':'test1'} Will Replace All
+                            'test' With 'test1' In The File.
+
+    Returns True If Its Successfully Done, Else Return False
+"""
+
+
+def replace_in_file(file_name: str, data_to_replace: dict) -> bool:
+    f = open(file_name, "r")
+    data = f.readlines()
+    f.close()
+    for i in data:
+        for key, value in data_to_replace.items():
+            if key in i:
+                i = i.replace(key, value)
+    f = open(file_name, "w")
+    f.writelines(data)
+    f.close()
 
 
 """
@@ -495,7 +563,9 @@ def create_dir(dir_name: str,create_parents=False) -> bool:
 
     Returns True If Its Successfully Done, Else Return False
 """
-def rm_dir(dir_name: str,force=False) -> bool:
+
+
+def rm_dir(dir_name: str, force=False) -> bool:
     if not force:
         try:
             rmdir(dir_name)
@@ -553,10 +623,12 @@ def rm_dir(dir_name: str,force=False) -> bool:
 
     Returns True If Its Found In target Text Else, Returns False.
 """
-def between(string,string_to_check,start_sign='"',end_sign='"',exact=False,case_sensetive=True):
+
+
+def between(string, string_to_check, start_sign='"', end_sign='"', exact=False, case_sensetive=True):
     is_in = False
     ts = ""
-    for c,i in enumerate(string_to_check):
+    for c, i in enumerate(string_to_check):
         if is_in:
             if i == end_sign:
                 is_in = False
@@ -583,14 +655,15 @@ def between(string,string_to_check,start_sign='"',end_sign='"',exact=False,case_
     return False
 
 
-
 """
     Acts Like Between Function But It Will Return Index Insted Of Boolean Value.
 """
-def between_index(string,string_to_check,start_sign='"',end_sign='"',exact=False,case_sensetive=True,start=0):
+
+
+def between_index(string, string_to_check, start_sign='"', end_sign='"', exact=False, case_sensetive=True, start=0):
     is_in = False
     ts = ""
-    for c,i in enumerate(string_to_check[start:]):
+    for c, i in enumerate(string_to_check[start:]):
         if is_in:
             if i == end_sign:
                 is_in = False
@@ -652,10 +725,12 @@ def between_index(string,string_to_check,start_sign='"',end_sign='"',exact=False
 
     Returns True If Its Found Out Of target Sign, Else Returns False.
 """
-def not_between_index(string,string_to_check,start_sign='"',end_sign='"',case_sensetive=True,start=0):
+
+
+def not_between_index(string, string_to_check, start_sign='"', end_sign='"', case_sensetive=True, start=0):
     is_in = False
     ts = ""
-    for c,i in enumerate(string_to_check[start:]):
+    for c, i in enumerate(string_to_check[start:]):
         if is_in:
             if i == end_sign:
                 is_in = False
@@ -681,5 +756,7 @@ def not_between_index(string,string_to_check,start_sign='"',end_sign='"',case_se
     Returns :
         ['Hello My N', 'me Is Arshia']
 """
-def index_split(string,ind):
-    return [string[:ind],string[ind + 1:]]
+
+
+def index_split(string, ind):
+    return [string[:ind], string[ind + 1:]]
