@@ -377,31 +377,38 @@ class PyshaString(str):
                     return True
             return False
         elif type(data_to_search) == dict:
+            ans = {}
+            if return_type == dict:
+                ans = {}
+            else:
+                ans = []
             for i, j in data_to_search.items():
                 if search_mode == "key":
                     if self in i:
                         if return_type == bool:
                             return True
                         elif return_type == dict:
-                            return {i: j}
+                            ans[i] = j
                         else:
-                            return j
+                            ans.append(j)
                 elif search_mode == "value":
                     if self in j:
                         if return_type == bool:
                             return True
                         elif return_type == dict:
-                            return {i: j}
+                            ans[i] = j
                         else:
-                            return i
+                            ans.append(j)
                 else:
                     if self in j or self in i:
                         if return_type == bool:
                             return True
                         elif return_type == dict:
-                            return {i: j}
+                            ans[i] = j
                         else:
-                            return i
+                            ans.append(j)
+            if return_type != bool:
+                return ans
             return False
         else:
             raise TypeError("Type Must Be list Or dict.")
@@ -514,3 +521,60 @@ class PyshaString(str):
             if i in self:
                 return True
         return False
+
+    """
+        This Function Is "<<=" Operator. It Will Append Another String To The End Of This String.
+    """
+
+    def __ilshift__(self, other):
+        self = self + other
+        return self
+
+    """
+        This Function Is ">>=" Operator. It Will Append Another String To Start Of This String.
+    """
+
+    def __irshift__(self, other):
+        self = other + self
+        return self
+
+    """
+        This Function Is "<<" Operator. It Will Append Another String To The End Of This String. ( Not Set )
+    """
+
+    def __lshift__(self, other):
+        return self + other
+
+    """
+        This Function Is ">>" Operator. It Will Append Another String To Start Of This String. ( Not Set )
+    """
+
+    def __rshift__(self, other):
+        return other + self
+
+    """
+        This Function Is "-=" Operator. It Will Remove A String From This String.
+    """
+
+    def __isub__(self, other):
+        self = self.replace(other, "")
+        return self
+
+    """
+        This Function Is "-" Operator. It Will Remove A String From This String. ( Not Set )
+    """
+
+    def __sub__(self, other):
+        return self.replace(other, "")
+
+
+class PyshaDict(dict):
+    @property
+    def inverse(self):
+        return PyshaDict({v: k for k, v in self.items()})
+
+    @inverse.setter
+    def inverse(self, value):
+        value = {v: k for k, v in value.items()}
+        print(value)
+        self.update(value)
