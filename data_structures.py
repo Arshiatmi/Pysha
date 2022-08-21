@@ -78,72 +78,48 @@ class FIFO(Queue):
     pass
 
 
-class shist:
-    def __init__(self, *args):
-        if len(args) == 1 and type(args[0]) == list:
-            self.ls = args
-        else:
-            self.ls = [*args]
-
+class PyshaList(list):
     def __str__(self):
         s = "["
-        for i in self.ls:
+        for i in self:
             s += " " + str(i) + " ,"
         s = s[:-1] + "]"
         return s
 
     def __repr__(self):
         s = "["
-        for i in self.ls:
+        for i in self:
             s += " " + str(i) + " ,"
         s = s[:-1] + "]"
         return s
 
-    def pop(self, index=-1):
-        return self.ls.pop(index)
-
-    def pop_right(self, index=-1):
-        return self.ls.pop(index)
-
-    def pop_left(self, index=0):
-        return self.ls.pop(index)
-
-    def push(self, obj):
-        self.ls.append(obj)
-
-    def push_right(self, obj, index=-1):
-        self.ls.insert(index, obj)
-
-    def push_left(self, obj, index=0):
-        self.ls.insert(index, obj)
-
     def lshift(self, times):
-        for i in range(times):
-            self.ls = self.ls[1:] + [self.ls[0]]
+        for _ in range(times):
+            self = self[1:] + [self[0]]
 
     def rshift(self, times):
-        for i in range(times):
-            self.ls = [self.ls[-1]] + self.ls[:-1]
+        for _ in range(times):
+            self = [self[-1]] + self[:-1]
 
     # Just String,Int And Boolean Are Handled Here.
     def count_deep(self, tar):
         if not (type(tar) == int or type(tar) == str or type(tar) == bool):
             raise TypeError(
                 "CountDeep Just Supports String,Integer And Boolean Types.")
-        if not any(list(map(lambda x: type(x) == list, self.ls))):
-            return self.ls.count(tar)
+        if not any(list(map(lambda x: type(x) == list, self))):
+            return self.count(tar)
         obj = Stack()
         lists = Stack()
-        target_list = self.ls
+        target_list = self
         ind = 0
         c = 0
-        while ind != len(self.ls):
+        while ind != len(self):
             b = False
             for i in target_list:
                 if type(tar) == type(i):
                     if tar == i:
                         c += 1
-                elif type(i) == list and type(tar) != list:
+                elif type(tar) != list:
                     obj.push(ind)
                     lists.push(target_list)
                     target_list = i.copy()
@@ -159,149 +135,73 @@ class shist:
     def shift_index(self, index, left_shift=True, how_many=1):
         for _ in range(how_many):
             if not left_shift:
-                if index == len(self.ls) - 1:
+                if index == len(self) - 1:
                     self.rshift(1)
                 else:
-                    self.ls[index], self.ls[index +
-                                            1] = self.ls[index + 1], self.ls[index]
-                index = (index + 1) % len(self.ls)
+                    self[index], self[index +
+                                      1] = self[index + 1], self[index]
+                index = (index + 1) % len(self)
             else:
                 if index == 0:
                     self.lshift(1)
                 else:
-                    self.ls[index], self.ls[index -
-                                            1] = self.ls[index - 1], self.ls[index]
-                index = (index - 1) % len(self.ls)
-
-    # Start Of List Methods #
+                    self[index], self[index -
+                                      1] = self[index - 1], self[index]
+                index = (index - 1) % len(self)
 
     def __getitem__(self, o: object) -> int:
         if type(o) == int:
-            return self.ls[o]
+            return self[o]
         else:
             raise TypeError("Type Of Index Must Be int.")
 
     def __setitem__(self, k: object, v: object) -> None:
         if type(k) == int:
-            self.ls[k] = v
+            self[k] = v
         else:
             raise TypeError("Type Of Index Must Be int.")
 
-    def reverse(self):
-        self.ls.reverse()
-
-    def clear(self):
-        self.ls.clear()
-
-    def copy(self):
-        return self.ls.copy()
-
-    def count(self, tar):
-        return self.ls.count(tar)
-
-    def extend(self, tar):
-        self.ls.extend(tar)
-
-    def index(self, tar):
-        return self.ls.index(tar)
-
-    def insert(self, index, obj):
-        return self.ls.insert(index, obj)
-
-    def remove(self, obj):
-        return self.ls.remove(obj)
-
-    def append(self, obj):
-        self.ls.append(obj)
-
-    def sort(self, key="", reverse=False):
-        if key:
-            self.ls.sort(key=key, reverse=reverse)
-        else:
-            self.ls.sort(reverse=reverse)
-
-    # End Of List Methods #
-
     # List Operators + Some Beautiful Things :) #
-
-    def __eq__(self, o: object) -> bool:
-        if type(o) == list:
-            return self.ls == o
-        if type(o).__name__ == "shist":
-            return self.ls == o.ls
-
-    def __gt__(self, o: object) -> bool:
-        if type(o) == list:
-            return len(self.ls) > len(o)
-        if type(o).__name__ == "shist":
-            return self.ls > o.ls
-
-    def __lt__(self, o: object) -> bool:
-        if type(o) == list:
-            return len(self.ls) < len(o)
-        if type(o).__name__ == "shist":
-            return self.ls < o.ls
-
-    def __ge__(self, o: object) -> bool:
-        if type(o) == list:
-            return len(self.ls) >= len(o)
-        if type(o).__name__ == "shist":
-            return self.ls >= o.ls
-
-    def __le__(self, o: object) -> bool:
-        if type(o) == list:
-            return len(self.ls) <= len(o)
-        if type(o).__name__ == "shist":
-            return self.ls <= o.ls
 
     def __add__(self, o: object) -> bool:
         if type(o) == list:
-            return self.ls + o
-        if type(o).__name__ == "shist":
-            return self.ls + o.ls
+            return self + o
         if type(o) == int or type(o) == float:
             tar = []
-            for i in self.ls:
-                tar.append(i + o)
+            for i in self:
+                try:
+                    tar.append(i + o)
+                except:
+                    tar.append(str(i) + " " + str(o))
             return tar
 
     def __sub__(self, o: object) -> bool:
         if type(o) == list:
             tar = []
-            for i in self.ls:
+            for i in self:
                 if not i in o:
-                    tar.append(i)
-            return tar
-        if type(o).__name__ == "shist":
-            tar = []
-            for i in self.ls:
-                if not i in o.ls:
                     tar.append(i)
             return tar
         if type(o) == int or type(o) == float:
             tar = []
-            for i in self.ls:
-                tar.append(i - o)
+            for i in self:
+                try:
+                    tar.append(i - o)
+                except:
+                    pass
             return tar
-
-    # *
-    def __mul__(self, o: object) -> list:
-        if type(o) == int:
-            return self.ls * o
-        else:
-            raise TypeError("Type Must Be int.")
 
     # **
     def __pow__(self, o: object) -> bool:
-        return list(map(lambda elem: elem ** o, self.ls))
+        return list(map(lambda elem: elem ** o, self))
 
     # /
     def __truediv__(self, o: object) -> bool:
-        return list(map(lambda elem: elem/o, self.ls))
+        return list(map(lambda elem: elem/o, self))
 
     # //
     def __floordiv__(self, o: object) -> bool:
-        return list(map(lambda elem: elem//o, self.ls))
+        return list(map(lambda elem: elem//o, self))
 
     # <<
     def __lshift__(self, o: object) -> bool:
@@ -337,7 +237,7 @@ class shist:
 
     # %
     def __mod__(self, o: object) -> bool:
-        return list(map(lambda elem: elem % o, self.ls))
+        return list(map(lambda elem: elem % o, self))
 
 
 """
