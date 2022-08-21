@@ -21,6 +21,9 @@ a <<= " And Welcome"
 a >>= "Yo, "
 print(a)
 
+# Or If You Want You Can Even Use += That Works Like <<=
+a += "... Again, Welcome :)"
+
 print(a - "Hello")  # Subtraction
 
 # Like Concationation, You Can Use -=
@@ -95,6 +98,9 @@ a = PyshaDict(
 
 # Inverse Of Dictionary
 print(a.inverse)
+
+# Or You Can Get inverse Like This :
+print(~a)
 
 # Get Key From Value !
 print(a.inverse.get("Tamimi"))

@@ -531,6 +531,14 @@ class PyshaString(str):
         return self
 
     """
+        This Function Is "+=" Operator. It Will Append Another String To The End Of This String.
+    """
+
+    def __iadd__(self, other):
+        self = self + other
+        return self
+
+    """
         This Function Is ">>=" Operator. It Will Append Another String To Start Of This String.
     """
 
@@ -578,3 +586,15 @@ class PyshaDict(dict):
         value = {v: k for k, v in value.items()}
         print(value)
         self.update(value)
+
+    def __invert__(self):
+        return self.inverse
+
+    def __isub__(self, other):
+        del self[other]
+        return self
+
+    def __sub__(self, other):
+        ans = self.copy()
+        del ans[other]
+        return ans

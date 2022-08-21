@@ -1,5 +1,4 @@
 import pyfiglet
-import datetime
 from classes import *
 from data_structures import *
 from auth import *
@@ -54,48 +53,6 @@ def pp(*args, curly_c=Fore.RESET, colon_c=Fore.RESET, quote_c=Fore.RESET, mode='
                 print(i, end=end)
         else:
             print(i, end=end)
-
-
-"""
-This Function Acts As A Decorator For Check Spent Time On Executing Functions.
-Args:
-    Gets One Argument For Printing Format. For Example :
-        @time("Spent Time Was _T_")
-        def test():
-            return True
-    And Output Of This Code After Calling test() Will Be Something Like That : 
-        Spent Time Was 0:00:00.100404
-
-Important Parameters : 
-    _T_ : Will Be Replaced With [Hour]:[Minute]:[Second].[MiliSecond]
-    _H_ : Will Be Replaced With [Hour]
-    _M_ : Will Be Replaced With [Minute]
-    _S_ : Will Be Replaced With [Second]
-    _MS_ : Will Be Replaced With [MiliSecond]
-
-"""
-
-
-def timer(string):
-    def sec(func):
-        def run(*args, **kwargs):
-            start = datetime.datetime.now()
-            func(*args, **kwargs)
-            end = datetime.datetime.now()
-            ans = string
-            s = ans.replace("_T_", str(end - start))
-            s = s.replace("_S_", str(end - start).split(':')
-                          [2].split('.')[0].strip())
-            try:
-                s = s.replace("_MS_", str(end - start).split(':')
-                              [2].split('.')[1].strip())
-            except:
-                s = s.replace("_MS_", "0")
-            s = s.replace("_M_", str(end - start).split(':')[1].strip())
-            s = s.replace("_H_", str(end - start).split(':')[0].strip())
-            pp(s)
-        return run
-    return sec
 
 
 """

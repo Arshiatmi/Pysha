@@ -412,11 +412,15 @@ class PercentPrinter:
         else:
             self._percent = p
 
-    def increase(self, p=1):
+    def increase(self, p=1, show=True):
         self._percent += p
+        if show:
+            self.show()
 
-    def finish(self):
+    def finish(self, show=True):
         self._percent = 100
+        if show:
+            self.show()
 
 
 """
