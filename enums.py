@@ -1,5 +1,6 @@
 from enum import *
 
+
 class Algorithms(Enum):
     XOR = 0
     Base64 = 1
@@ -8,6 +9,7 @@ class Algorithms(Enum):
     Base32 = 4
     Base16 = 5
     ROT13 = 6
+
 
 class AIModes(Enum):
     All = 0

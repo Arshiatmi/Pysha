@@ -1,3 +1,5 @@
+import platform
+from data_structures import PyshaDict
 from functions import *
 from os import environ, popen, remove
 
@@ -415,3 +417,84 @@ class PercentPrinter:
 
     def finish(self):
         self._percent = 100
+
+
+"""
+This Class Will Make An Environment For You To Have Easier And Better Experience :)
+"""
+
+
+class CrossPlatformer:
+    def __init__(self, supported_os=["linux", "windows", "mac"]) -> None:
+        self.user_os = platform.system().strip().lower()
+        self.all_commands = {}
+        self.supported_os = supported_os
+        self.platforms = {
+            "windows": ["windows", "win32"],
+            "linux": ["linux", "linux2"],
+            "mac": ["mac", "darwin"]
+        }
+
+    def get_os_name(self):
+        """Get User Os Name"""
+        if self.user_os == "linux" or self.user_os == "linux2":
+            return "Linux"
+        elif self.user_os == "darwin":
+            return "Mac"
+        elif self.user_os == "win32" or self.user_os == "windows":
+            return "Windows"
+        else:
+            return "Unknown"
+
+    def is_os_supported(self, os_name):
+        """Check If An Os Is Supported"""
+        for i, j in self.platforms.items():
+            if os_name.lower().strip() in j or os_name.lower().strip() == i:
+                return True
+        return False
+
+    def get_os_version(self):
+        """Get User Os Version"""
+        if self.user_os == "linux" or self.user_os == "linux2":
+            return platform.linux_distribution()[0]
+        elif self.user_os == "darwin":
+            return platform.mac_ver()[0]
+        elif self.user_os == "win32" or self.user_os == "windows":
+            return platform.win32_ver()[0]
+        else:
+            return "Unknown"
+
+    def get_os_command(self, name):
+        """
+        Get Command For User Os. Arguments :
+            name : Command Name
+        For Example :
+            If You Set add_os_commands("clear", {"linux": "clear", "windows": "cls", "mac": "clear"}) :
+                get_os_command("clear")
+            Will Return You The Command Depends On Your Os.
+        """
+        try:
+            return self.all_commands[name][self.user_os]
+        except:
+            return None
+
+    def add_os_commands(self, name, commands: dict):
+        """
+        Set Command For User Os. Arguments Are : 
+            name : Name Of Command
+            commands : Dictionary Of Commands
+        For Example : 
+            add_os_commands("git", {"linux": "git", "windows": "git.exe"})
+        Or : 
+            add_os_commands("clear", {"linux": "clear", "windows": "cls", "mac": "clear"})
+        """
+        for i in commands:
+            if not self.is_os_supported(i):
+                raise ValueError(f"This OS ({i}) Is Not Supported !")
+        self.all_commands[name] = commands
+
+    def __getitem__(self, name):
+        return self.get_os_command(name)
+
+    def __setitem__(self, name, commands):
+        self.add_os_commands(name, commands)
