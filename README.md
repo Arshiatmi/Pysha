@@ -1,7 +1,7 @@
 # Pysha
 Pysha Micro Framework. For Doing Something Beautiful In Python :)
 
-Because Currently This Micro Framework Is In Progress, I Will Some Helps Later.
+You can See examples of pysha in Examples directory.
 
 ## Installation
 
@@ -14,7 +14,7 @@ Add This At First Of Your Code :
 
 `from pysha import *`
 
-## Examples
+### Examples
 
 * Switch-Case
 
@@ -76,7 +76,30 @@ this = sys.modules[__name__]
 Load("test.txt")(this)
 ```
 
-**After Load Variables, They Are Accessable In Your Code ! **
+**After Load Variables, They Are Accessable In Your Code !**
+
+* Pysha Types
+
+```
+# PyshaString
+a = PyshaString("some string")
+print(a << " and something else") # "some string and something else"
+print(a - "some") # " string"
+print(a.replace_dict({"some":"one","string":"str"})) # "one int"
+
+# PyshaDict
+b = PyshaDict({"name":"Arshia"})
+print(~b) # {"Arshia":"name"}
+print(b - "name") # {}
+
+# PyshaList
+c = PyshaList(["name","hay"])
+print(c.count_deep("a")) # 2
+print(c >> 1) # ["hay","name"]
+print(c) # [ name, hay ]
+print(c + ["yo"]) # ["name","hay","yo"]
+
+```
 
 And Lots Of Beautiful Things :)
 
