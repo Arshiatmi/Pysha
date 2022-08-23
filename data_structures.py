@@ -106,31 +106,39 @@ class PyshaList(list):
         if not (type(tar) == int or type(tar) == str or type(tar) == bool):
             raise TypeError(
                 "CountDeep Just Supports String,Integer And Boolean Types.")
-        if not any(list(map(lambda x: type(x) == list, self))):
+        if not any(list(map(lambda x: type(x) == list or type(x) == set, self))):
+            if type(tar) == str and any(list(map(lambda x: type(x) == str, self))):
+                counted = 0
+                for index in range(len(self)):
+                    try:
+                        counted += self[index].count(tar)
+                    except:
+                        continue
+                return counted
             return self.count(tar)
-        obj = Stack()
+        indexes = Stack()
         lists = Stack()
         target_list = self
-        ind = 0
-        c = 0
-        while ind != len(self):
-            b = False
+        current_index = 0
+        counted = 0
+        while current_index != len(self):
+            has_new_list = False
             for i in target_list:
                 if type(tar) == type(i):
                     if tar == i:
-                        c += 1
+                        counted += 1
                 elif type(tar) != list:
-                    obj.push(ind)
+                    indexes.push(current_index)
                     lists.push(target_list)
                     target_list = i.copy()
-                    ind = 0
-                    b = True
+                    current_index = 0
+                    has_new_list = True
                     break
-                ind += 1
-            if not b:
-                ind = obj.pop() + 1
+                current_index += 1
+            if not has_new_list:
+                current_index = indexes.pop() + 1
                 target_list = lists.pop()
-        return c
+        return counted
 
     def shift_index(self, index, left_shift=True, how_many=1):
         for _ in range(how_many):
@@ -149,24 +157,24 @@ class PyshaList(list):
                                       1] = self[index - 1], self[index]
                 index = (index - 1) % len(self)
 
-    def __getitem__(self, o: object) -> int:
-        if type(o) == int:
-            return self[o]
-        else:
-            raise TypeError("Type Of Index Must Be int.")
-
-    def __setitem__(self, k: object, v: object) -> None:
+    def __setitem__(self, k: int, v: object) -> None:
         if type(k) == int:
-            self[k] = v
+            if k > len(self):
+                self.extend([None for _ in range(k - len(self) + 1)])
+                super(PyshaList, self).__setitem__(k, v)
+            else:
+                super(PyshaList, self).__setitem__(k, v)
         else:
             raise TypeError("Type Of Index Must Be int.")
 
     # List Operators + Some Beautiful Things :) #
 
-    def __add__(self, o: object) -> bool:
+    def __add__(self, o: object) -> list:
         if type(o) == list:
-            return self + o
-        if type(o) == int or type(o) == float:
+            cp = self.copy()
+            cp.extend(o)
+            return cp
+        else:
             tar = []
             for i in self:
                 try:
@@ -175,7 +183,17 @@ class PyshaList(list):
                     tar.append(str(i) + " " + str(o))
             return tar
 
-    def __sub__(self, o: object) -> bool:
+    def __iadd__(self, o: object) -> list:
+        if type(o) == list:
+            self.extend(o)
+        else:
+            for i in self:
+                try:
+                    self.append(i + o)
+                except:
+                    self.append(str(i) + " " + str(o))
+
+    def __sub__(self, o: object) -> list:
         if type(o) == list:
             tar = []
             for i in self:
@@ -192,19 +210,19 @@ class PyshaList(list):
             return tar
 
     # **
-    def __pow__(self, o: object) -> bool:
+    def __pow__(self, o: object) -> list:
         return list(map(lambda elem: elem ** o, self))
 
     # /
-    def __truediv__(self, o: object) -> bool:
+    def __truediv__(self, o: object) -> list:
         return list(map(lambda elem: elem/o, self))
 
     # //
-    def __floordiv__(self, o: object) -> bool:
+    def __floordiv__(self, o: object) -> list:
         return list(map(lambda elem: elem//o, self))
 
     # <<
-    def __lshift__(self, o: object) -> bool:
+    def __lshift__(self, o: object) -> list:
         if type(o) == int:
             return self.lshift(o)
         elif type(o) == dict:
@@ -220,7 +238,7 @@ class PyshaList(list):
             raise TypeError("Type Must Be int Or dict.")
 
     # >>
-    def __rshift__(self, o: object) -> bool:
+    def __rshift__(self, o: object) -> list:
         if type(o) == int:
             return self.rshift(o)
         elif type(o) == dict:
@@ -236,7 +254,7 @@ class PyshaList(list):
             raise TypeError("Type Must Be int Or dict.")
 
     # %
-    def __mod__(self, o: object) -> bool:
+    def __mod__(self, o: object) -> list:
         return list(map(lambda elem: elem % o, self))
 
 
@@ -484,7 +502,6 @@ class PyshaDict(dict):
     @inverse.setter
     def inverse(self, value):
         value = {v: k for k, v in value.items()}
-        print(value)
         self.update(value)
 
     def __invert__(self):
