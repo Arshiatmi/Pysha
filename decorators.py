@@ -1,6 +1,8 @@
 import sys
 import datetime
 
+from data_structures import PyshaString
+
 
 """
 This Function Acts As A Decorator For Retring On Some Exceptions That You Define.
@@ -100,6 +102,9 @@ Important Parameters :
     _S_ : Will Be Replaced With [Second]
     _MS_ : Will Be Replaced With [MiliSecond]
 
+Important :
+    You Can Escape All Of This Parameters With (\)
+
 """
 
 
@@ -109,17 +114,19 @@ def timer(string):
             start = datetime.datetime.now()
             func(*args, **kwargs)
             end = datetime.datetime.now()
-            ans = string
-            s = ans.replace("_T_", str(end - start))
-            s = s.replace("_S_", str(end - start).split(':')
-                          [2].split('.')[0].strip())
+            ans = PyshaString(string)
+            s = ans.replace_with_escape("_T_", str(end - start))
+            s = s.replace_with_escape("_S_", str(end - start).split(':')
+                                      [2].split('.')[0].strip())
             try:
-                s = s.replace("_MS_", str(end - start).split(':')
-                              [2].split('.')[1].strip())
+                s = s.replace_with_escape("_MS_", str(end - start).split(':')
+                                          [2].split('.')[1].strip())
             except:
-                s = s.replace("_MS_", "0")
-            s = s.replace("_M_", str(end - start).split(':')[1].strip())
-            s = s.replace("_H_", str(end - start).split(':')[0].strip())
+                s = s.replace_with_escape("_MS_", "0")
+            s = s.replace_with_escape("_M_", str(
+                end - start).split(':')[1].strip())
+            s = s.replace_with_escape("_H_", str(
+                end - start).split(':')[0].strip())
             print(s)
         return run
     return sec

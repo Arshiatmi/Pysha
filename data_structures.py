@@ -441,6 +441,34 @@ class PyshaString(str):
         return False
 
     """
+        This Function Will Replace Any String That You Want But You Can Define Some Parts
+        Not To Replace With Define Escapes !
+
+        Args :
+            string_to_find ->  String That You Want To Search For In String.
+                                
+            to_replace ->  String That You Want To Be Replaced With string_to_find.
+
+            escape_char ->  Escape Character That You Want To Define. ( Default Is \ Character )
+
+            remove_escapes ->  You Can Define That After Replacing, Escape Characters Should Remove
+                                Or Not. ( Default Is False )
+    """
+
+    def replace_with_escape(self, string_to_find, to_replace, escape_char='\\', remove_escapes=False):
+        last_index = self.find(string_to_find, 0)
+        while last_index != -1:
+            if self[last_index - 1] == escape_char:
+                if remove_escapes:
+                    self = self[:last_index-1] + self[last_index:]
+                last_index = self.find(string_to_find, last_index)
+                continue
+            self = self[:last_index] + to_replace + \
+                self[last_index + len(string_to_find):]
+            last_index = self.find(string_to_find, last_index + 1)
+        return self
+
+    """
         This Function Is "<<=" Operator. It Will Append Another String To The End Of This String.
     """
 
