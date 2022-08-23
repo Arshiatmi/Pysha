@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pysha"
-version = "0.1.0"
+version = "0.1.2.1"
 authors = [
   { name="MrMegaExpert", email="1arhacker1@gmail.com" },
 ]

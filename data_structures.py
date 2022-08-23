@@ -1,5 +1,5 @@
 from typing import TypeVar
-from exceptions import *
+from .exceptions import *
 
 ListOrDict = TypeVar('ListOrDict', list, dict)
 

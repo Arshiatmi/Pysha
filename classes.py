@@ -1,6 +1,5 @@
 import platform
-from data_structures import PyshaDict
-from functions import *
+from .functions import *
 from os import environ, popen, remove
 
 """

@@ -1,7 +1,7 @@
 import sys
 import datetime
 
-from data_structures import PyshaString
+from .data_structures import PyshaString
 
 
 """

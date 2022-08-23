@@ -1,8 +1,0 @@
-LICENSE
-README.md
-pyproject.toml
-setup.py
-pysha_Arshia_tmi.egg-info/PKG-INFO
-pysha_Arshia_tmi.egg-info/SOURCES.txt
-pysha_Arshia_tmi.egg-info/dependency_links.txt
-pysha_Arshia_tmi.egg-info/top_level.txt
