@@ -2,12 +2,12 @@ import time
 from typing import Callable, Union
 from os import mkdir, makedirs, rmdir
 from shutil import rmtree
-from .colors import *
-from .exceptions import *
+from colors import *
+from exceptions import *
 import re
 import readchar
 import sys
-from .security import *
+from security import *
 
 
 """

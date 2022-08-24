@@ -1,7 +1,8 @@
 from typing import TypeVar
-from .exceptions import *
+from exceptions import *
 
 ListOrDict = TypeVar('ListOrDict', list, dict)
+ListOrString = TypeVar('ListOrString', list, str)
 
 
 class Stack:
@@ -376,7 +377,8 @@ class PyshaString(str):
                     return i
 
     """
-        In This Function You Can Replace An Array With Another Array ! ( in a string )
+        In This Function You Can Replace An Array With Another Array ! ( in a string ).
+        Its Possible That You Replace An Array Of String With A Single String Too.
 
         Args :
             data_to_replace ->  Data That You Wanted To Be Replaced For Example If Data Is 
@@ -387,9 +389,13 @@ class PyshaString(str):
 
     """
 
-    def replace_array(self, data_to_replace: list, replace_with: list):
-        for c, i in enumerate(data_to_replace):
-            self = self.replace(i, replace_with[c])
+    def replace_array(self, data_to_replace: list, replace_with: ListOrString):
+        if type(replace_with) == str:
+            for i in data_to_replace:
+                self = self.replace(i, replace_with)
+        else:
+            for c, i in enumerate(data_to_replace):
+                self = self.replace(i, replace_with[c])
         return self
 
     """
