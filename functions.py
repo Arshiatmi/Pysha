@@ -1,5 +1,5 @@
 import time
-from typing import Callable, Union
+from typing import Callable, TypeVar
 from os import mkdir, makedirs, rmdir
 from shutil import rmtree
 from colors import *
@@ -8,6 +8,11 @@ import re
 import readchar
 import sys
 from security import *
+
+
+NoneOrStr = TypeVar('NoneOrStr', None, str)
+NoneOrStrOrInt = TypeVar('NoneOrStrOrInt', None, str, int)
+ListOrString = TypeVar('ListOrString', list, str)
 
 
 """
@@ -267,7 +272,7 @@ All Descriptions From This Function Came In `classes.py` - command Class.
 """
 
 
-def loop(cmd: str, mode='p', c=True) -> Union[None, str]:
+def loop(cmd: str, mode='p', c=True) -> NoneOrStr:
     if mode == "p":  # Print Mode
         alls = cmd.split(">")[0][1:]
         string = cmd.split("{")[1][:-1]
@@ -286,7 +291,8 @@ def loop(cmd: str, mode='p', c=True) -> Union[None, str]:
             if not (type(i) == int) and len(i) == 2:
                 temp = {arr_data[0]: i[0], arr_data[1]: i[1]}
             elif not (type(i) == int) and len(dic_tar) == 3:
-                temp = {arr_data[0]: i[0], arr_data[1]                        : i[1], arr_data[2]: i[2]}
+                temp = {arr_data[0]: i[0], arr_data[1]
+                    : i[1], arr_data[2]: i[2]}
             else:
                 temp = {arr_data[0]: i[0]}
             display(temp, string, c)
@@ -339,7 +345,8 @@ def loop(cmd: str, mode='p', c=True) -> Union[None, str]:
                     except:
                         pass
             elif not (type(i) == int) and len(i) == 3:
-                temp = {arr_data[0]: i[0], arr_data[1]                        : i[1], arr_data[2]: i[2]}
+                temp = {arr_data[0]: i[0], arr_data[1]
+                    : i[1], arr_data[2]: i[2]}
                 try:
                     ls[x][y][z] = get_ans(temp, string, c)
                     ls[x][y][z + 1]
@@ -375,7 +382,7 @@ Descrioptions Are Available In 'classes.py' And In command Class.
 """
 
 
-def condition(check: str, p=True, **kwargs) -> Union[None, str, int]:
+def condition(check: str, p=True, **kwargs) -> NoneOrStrOrInt:
     if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""", ''.join(check.split(' '))):
         raise ConditionError("An Error In Parsing Condition :(")
     if "eval" in check:
@@ -412,7 +419,7 @@ def condition(check: str, p=True, **kwargs) -> Union[None, str, int]:
 """
 
 
-def write_file(file_name: str, text: Union[str, list]) -> bool:
+def write_file(file_name: str, text: ListOrString) -> bool:
     if type(text) == str:
         try:
             a = open(file_name, "w")
@@ -446,7 +453,7 @@ def write_file(file_name: str, text: Union[str, list]) -> bool:
 """
 
 
-def read_file(file_name: str, mode="s") -> Union[list, str]:
+def read_file(file_name: str, mode="s") -> ListOrString:
     try:
         a = open(file_name, "r")
         d = a.readlines()

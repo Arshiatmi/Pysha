@@ -1,4 +1,5 @@
 # Pysha
+
 Pysha Micro Framework. For Doing Something Beautiful In Python :)
 
 You can See examples of pysha in Examples directory.
@@ -10,13 +11,14 @@ Just Run This Command :
 `pip install pysha`
 
 ## Usage
+
 Add This At First Of Your Code :
 
 `from pysha import *`
 
 ### Examples
 
-* Switch-Case
+- Switch-Case
 
 ```
 Switch(var).cases({
@@ -47,38 +49,51 @@ Switch(var).cases({
 })
 ```
 
-* Multi-Layer Ecnryption/Decryption
+- Interface
 
 ```
-variable = make_enc(alg=[Algorithms.XOR,Algorithms.Base64],key=10)
-variable.enc("Hello")
-variable.dec("Qm9mZmU=")
+@interface
+class Car:
+    name = None
+    speed = 0
+
+    def setSpeed(self,speed):
+        pass
+
+
+@interface(Car)
+class Tesla:
+    name = "Tesla"
+    speed = 0
+
+    def setSpeed(self, speed):
+        self.speed = speed
+
+    def getSpeed(self):
+        return self.speed
+
+
+@interface(Car) # Wrong Because setSpeed Is Not Defined. ( Will Raise Error )
+class BMW:
+    name = "BMW"
+    speed = 0
+
+@interface(Car) # Wrong Because setSpeed Is Not Defined Right ( Parameter Problem ). ( Will Raise Error )
+class Benz:
+    name = "Benz"
+    speed = 0
+
+    def setSpeed(self):
+        pass
+
+
+myCar = Tesla()
+myFriendCar = BMW() # Raises Error Because BMW Does Not Have setSpeed Method.
+myCar.setSpeed(100)
+# Rest Of Your Code...
 ```
 
-* Colored User-Input
-
-```
-name = colorprompt(colorize("(Fore.GREEN)[Enter Your Name :] "),char_color=fore["cyan"])
-password = passprompt(colorize("(Fore.GREEN)[Enter Your Password :] "),mask_color=fore["cyan"])
-pp(name)
-```
-
-* Save And Load Variables With Encryption
-
-```
-# Save 2 Variables
-Save("test.txt",name="Arshia",age=19)()
-
-# Load Those 2 Variables
-import sys
-this = sys.modules[__name__]
-
-Load("test.txt")(this)
-```
-
-**After Load Variables, They Are Accessable In Your Code !**
-
-* Pysha Types
+- Pysha Types
 
 ```
 # PyshaString
@@ -100,6 +115,37 @@ print(c) # [ name, hay ]
 print(c + ["yo"]) # ["name","hay","yo"]
 
 ```
+
+- Multi-Layer Ecnryption/Decryption
+
+```
+variable = make_enc(alg=[Algorithms.XOR,Algorithms.Base64],key=10)
+variable.enc("Hello")
+variable.dec("Qm9mZmU=")
+```
+
+- Colored User-Input
+
+```
+name = colorprompt(colorize("(Fore.GREEN)[Enter Your Name :] "),char_color=fore["cyan"])
+password = passprompt(colorize("(Fore.GREEN)[Enter Your Password :] "),mask_color=fore["cyan"])
+pp(name)
+```
+
+- Save And Load Variables With Encryption
+
+```
+# Save 2 Variables
+Save("test.txt",name="Arshia",age=19)()
+
+# Load Those 2 Variables
+import sys
+this = sys.modules[__name__]
+
+Load("test.txt")(this)
+```
+
+**After Load Variables, They Are Accessable In Your Code !**
 
 And Lots Of Beautiful Things :)
 
