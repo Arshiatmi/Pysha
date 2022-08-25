@@ -1,5 +1,8 @@
+from enum import Enum
 from inspect import signature
 import platform
+from secrets import choice
+from data_structures import PyshaString
 from functions import *
 from os import environ, popen, remove
 
@@ -582,3 +585,59 @@ class interface:
                         f"This Class Does Not Extends From {self._class.__name__} Interface. {is_allowed}")
                 return self._class(*args, **kwds)
             return wrapper
+
+
+class Cond:
+    def __init__(self, condition) -> None:
+        self.condition = condition
+
+    def __call__(self, t1, t2):
+        if self.condition:
+            return t1
+        else:
+            return t2
+
+
+class Loop:
+    def __init__(self, *args):
+        try:
+            self.x = list(map(lambda x: int(x) - 1, args))
+        except:
+            raise ValueError("Values Must Be Int.")
+        self.var_names = self.__get_var_name()
+        self.index = 0
+
+    def __get_var_name(self):
+        self.index += 1
+        return str(self.index)
+
+    class Modes(Enum):
+        Input = 0
+        Print = 1
+
+    def __format_text(self, text, to_replace={}):
+        text = PyshaString(text)
+        for i in self.var_names:
+            text.replace()
+
+    def __call__(self, text, mode=Modes.Input):
+        cur = len(self.x) - 1
+        self.y = [0 for _ in range(cur+1)]
+        while True:
+            if mode == self.Modes.Input:
+                print(text)
+            else:
+                print(text)
+            if self.y[cur] < self.x[cur]:
+                self.y[cur] += 1
+            elif list(self.x) == list(self.y):
+                break
+            else:
+                self.y[cur] = 0
+                ind = cur - 1
+                while self.y[ind] == self.x[cur]:
+                    self.y[ind] = 0
+                    ind -= 1
+                    if ind == 0:
+                        break
+                self.y[ind] += 1
