@@ -615,17 +615,20 @@ class Loop:
         Input = 0
         Print = 1
 
-    def __format_text(self, text, to_replace={}):
+    def __format_text(self, text, from_replace=[], to_replace=[]):
         text = PyshaString(text)
-        for i in self.var_names:
-            text.replace()
+        for c, i in enumerate(from_replace):
+            text = text.replace(i, str(to_replace[c]))
+        return text
 
     def __call__(self, text, mode=Modes.Input):
         cur = len(self.x) - 1
         self.y = [0 for _ in range(cur+1)]
+        anses = []
         while True:
+            text = self.__format_text(text, self.var_names, self.y)
             if mode == self.Modes.Input:
-                print(text)
+                anses.append(input(text))
             else:
                 print(text)
             if self.y[cur] < self.x[cur]:
@@ -641,3 +644,5 @@ class Loop:
                     if ind == 0:
                         break
                 self.y[ind] += 1
+        if mode == self.Modes.Input:
+            return anses
