@@ -100,17 +100,18 @@ myCar.setSpeed(100)
 a = PyshaString("some string")
 print(a << " and something else") # "some string and something else"
 print(a - "some") # " string"
-print(a.replace_dict({"some":"one","string":"str"})) # "one int"
+print(a.replace_dict({"some":"one","string":"int"})) # "one int"
 
 # PyshaDict
 b = PyshaDict({"name":"Arshia"})
 print(~b) # {"Arshia":"name"}
 print(b - "name") # {}
+print(~b.get("Arshia")) # "name"
 
 # PyshaList
 c = PyshaList(["name","hay"])
 print(c.count_deep("a")) # 2
-print(c >> 1) # ["hay","name"]
+print(c >> 1) # ["hay","name"] thats just right shift
 print(c) # [ name, hay ]
 print(c + ["yo"]) # ["name","hay","yo"]
 
@@ -184,6 +185,28 @@ variable.dec("Qm9mZmU=")
 name = colorprompt(colorize("(Fore.GREEN)[Enter Your Name :] "),char_color=fore["cyan"])
 password = passprompt(colorize("(Fore.GREEN)[Enter Your Password :] "),mask_color=fore["cyan"])
 pp(name)
+```
+
+- Text Options
+
+```
+banner("text",font="3-D") # make cool text with setted font ( uses pyfiglet and figlet fonts )
+rect("Hello\nI'm Arshia") # all characters and colors even distances can be customized too
+# Customizing helps will be added on wiki
+
+l(('-', Fore.CYAN), count=50) # Draw a line with specific character and color
+
+# and some other cool things :)
+```
+
+- Customizable PercentPrinter
+
+```
+a = PercentPrinter(chars=30,pass_color=fore["green"],loading_color=fore["cyan"])
+a.show(char_ok='@',char_loading='-')
+a.increase(50)
+a.finish(show=False)
+print("Done")
 ```
 
 - Save And Load Variables With Encryption
