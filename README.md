@@ -116,6 +116,60 @@ print(c + ["yo"]) # ["name","hay","yo"]
 
 ```
 
+- One line Conditions
+
+```
+a = command()
+print(a.condition("i > j ? i:j",i=10,j=20))
+
+# Or this way
+print(Cond(i>j)(i,j)) # This command still is not on pip newest version
+```
+
+- One line loop
+
+```
+a = command()
+a.loop("<i:2,j:3>{hey thats _j_ index in _i_ column}",mode="i")
+# "p" mode is for just printing and "i" mode is for get input.
+
+# Or this way ( Not still in newest pip version )
+ans = Loop(2,3)("Whats number [_1_][_2_] ?")
+# This will automatically loop through an array[2][3] and get input from it and will return answer 
+```
+
+- CrossPlatformer ( You can make cross platform apps easier )
+
+
+```
+cp = CrossPlatformer()
+cp["clearScreen"] = {"windows": "cls", "linux": "clear","mac":"clear"}
+cp["listFiles"] = {"windows": "dir", "linux": "ls","mac":"clear"}
+
+# rest of your code...
+
+print(cp["clearScreen"]) # automatically returns value depends on your platform.
+```
+
+- Cool Decorators
+
+```
+# just for no argument functions that runs once without calling it
+@once
+def init():
+    print("Initializing")
+
+# ignore and continue the process in case of ZeroDivisonError ( you can set '*' to ignore everything )
+@ignore(exceptions=[ZeroDivisionError])
+def test():
+    print(1 / 0)
+
+# retry the function in case of ZeroDivisonError until 3 times ( you can set '*' to ignore everything )
+@retry(count=3, exceptions=[ZeroDivisionError])
+def calculation():
+    print(1 / 0)
+```
+
 - Multi-Layer Ecnryption/Decryption
 
 ```
@@ -149,4 +203,4 @@ Load("test.txt")(this)
 
 And Lots Of Beautiful Things :)
 
-You Can Look At [Full Wiki](https://github.com/Arshiatmi/Pysha/wiki) To See More :)
+You Can Look At More [Examples](https://github.com/Arshiatmi/Pysha/tree/master/Examples) Or [Uncompleted Wiki](https://github.com/Arshiatmi/Pysha/wiki) To See More :)
