@@ -49,7 +49,7 @@ Switch(var).cases({
 })
 ```
 
-- Interface
+- Interface ( exists in github but you can not use this in current pip version )
 
 ```
 @interface
