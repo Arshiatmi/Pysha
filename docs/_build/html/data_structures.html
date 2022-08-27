@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>data_structures module &mdash; Pysha 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="decorators module" href="decorators.html" />
+    <link rel="prev" title="colors module" href="colors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Pysha
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Pysha</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth.html">auth module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colors.html">colors module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">data_structures module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorators.html">decorators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enums.html">enums module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysha.html">pysha module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">security module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pysha.html">pysha module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">auth module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">classes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">colors module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">data_structures module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorators.html">decorators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enums.html">enums module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">functions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">security module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pysha</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">Pysha</a> &raquo;</li>
+        
+      <li>data_structures module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/data_structures.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-data_structures">
+<span id="data-structures-module"></span><h1>data_structures module<a class="headerlink" href="#module-data_structures" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="data_structures.FIFO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_structures.</span></span><span class="sig-name descname"><span class="pre">FIFO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.FIFO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#data_structures.Queue" title="data_structures.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">Queue</span></code></a></p>
+<p>You Can Use This Insted Of Queue. All Methods Of Queue Are Available Here.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="data_structures.LIFO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_structures.</span></span><span class="sig-name descname"><span class="pre">LIFO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.LIFO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#data_structures.Stack" title="data_structures.Stack"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stack</span></code></a></p>
+<p>You Can Use This Insted Of Stack. All Methods Of Stack Are Available Here.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="data_structures.PyshaDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_structures.</span></span><span class="sig-name descname"><span class="pre">PyshaDict</span></span><a class="headerlink" href="#data_structures.PyshaDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<p>Thats Just Normal Dictionary Just With 2 Or 3 More Option.
+PyshaDict Operators :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>~myDict # Returns Dictionary Inverse</p></li>
+<li><p>myDict - “elem” # Returns Dicionary With Removed “elem” Key.</p></li>
+</ul>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="data_structures.PyshaDict.inverse">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inverse</span></span><a class="headerlink" href="#data_structures.PyshaDict.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>You Can Get inverse Of A Dictionary. For Example Dict -&gt; <cite>{“nickname”:”MrMegaExpert”}</cite>, Inverse -&gt; <cite>{“MrMegaExpert”:”nickname”}</cite>
+You Can Set And Change Dicitonary In Inverse Mode ! You Can Get Inverse Of A Dictionary In 2 Ways :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>myDict.inverse</p></li>
+<li><p>~myDict</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="data_structures.PyshaList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_structures.</span></span><span class="sig-name descname"><span class="pre">PyshaList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>PyshaList That Have Some Advanteges To Normal List.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaList.count_deep">
+<span class="sig-name descname"><span class="pre">count_deep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tar</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaList.count_deep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deep Count. If You Pass A list Of String, It Will Check If The tar ( Argument That Passed To This Function )
+Is Inside The list itself or is inside the elements of list or not. If you pass a list with complex dimentions
+it will count inside of all of elements even insidest element ! and it will count it for you.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaList.lshift">
+<span class="sig-name descname"><span class="pre">lshift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaList.lshift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Left Shift In Times That You Specify</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaList.make_array">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimentions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaList.make_array" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Make Array In Complex Dimentions. You Can Use This Method Like<span class="classifier"></span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">`PyshaList.make_array([1,2,4,5,4,32])`</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaList.rshift">
+<span class="sig-name descname"><span class="pre">rshift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaList.rshift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right Shift In Times That You Specify</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaList.set_array">
+<span class="sig-name descname"><span class="pre">set_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimentions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaList.set_array" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Set Array In Complex Dimentions. You Can Use This Method Like<span class="classifier"></span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">array</span> <span class="pre">=</span> <span class="pre">PyshaList.make_array([1,2,4,5,4,32])</span> <span class="pre">#</span> <span class="pre">Just</span> <span class="pre">A</span> <span class="pre">Complex</span> <span class="pre">Array</span>
+<span class="pre">array.set_array([0,2,4,0,4,3],&quot;test&quot;)</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Or Like This :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`array[0,2,4,0,4,3]</span> <span class="pre">=</span> <span class="pre">&quot;test&quot;`</span></code></p>
+</dd>
+</dl>
+<p>Cool, Right ? :)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaList.shift_index">
+<span class="sig-name descname"><span class="pre">shift_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how_many</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaList.shift_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>You Can Shift Your Array Better That Just lshift And rshift Methods. You Can Define Which Index To
+Shift, Type Of Shift ( left or right ) And how_many To Shift.</p>
+<dl class="simple">
+<dt>Arguments :</dt><dd><ul class="simple">
+<li><p>index, # Index That You Want To Shift</p></li>
+<li><p>left_shift=True, # Left Or Right Shift That You Can Specifiy. Default Is Left Shift</p></li>
+<li><p>how_many=1 # How Many Shifts That You Want. Default Is One</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="data_structures.PyshaString">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_structures.</span></span><span class="sig-name descname"><span class="pre">PyshaString</span></span><a class="headerlink" href="#data_structures.PyshaString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<p>In PyshaString You Have Lots Of Methods To Do Some Things.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaString.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_search</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaString.exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Function Will Check If A List Of Strings Exists In Another String. In Specific
+Part Of It Or Not. It Will Get a Part Of String And Will Check It With A List Of Strings.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><p>data_to_replace -&gt;  A List Of Data That You Want To Check If Exists In Another String.</p></li>
+<li><p>line_start -&gt;  Line Start Number ( Starts With 0 )</p></li>
+<li><p>line_end -&gt;  Line End Number ( Starts With 0 )</p></li>
+<li><p>start_index -&gt;  Start Index Number ( Starts With 0 )</p></li>
+<li><p>end_index -&gt;  End Index Number ( Starts With 0 )</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaString.find_first">
+<span class="sig-name descname"><span class="pre">find_first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_search:</span> <span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type=&lt;class</span> <span class="pre">'int'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaString.find_first" title="Permalink to this definition">¶</a></dt>
+<dd><p>In This Function You Can Search That an String Contains Some Other String From A List.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>data_to_search -&gt;  Strings That You Want To Search For. For Example</dt><dd><p>Search In List : [” “, “:”, “,”] And If Your String Is 
+“Hello, Im Arshia” It will Return 5 Thats Index Of “,”.
+If Your String Is “Arshia:Hey” It Will Return 6 Thats Index Of “:”.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>return_type -&gt;  You Can pass int To Return Index Of Found String. Or Pass Other</dt><dd><p>Things Like str To Return Found String.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaString.find_last">
+<span class="sig-name descname"><span class="pre">find_last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_search:</span> <span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type=&lt;class</span> <span class="pre">'int'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaString.find_last" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Function Is Exactly find_first But It Will Return Last Index Of Found String.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>data_to_search -&gt;  Strings That You Want To Search For. For Example</dt><dd><p>Search In List : [” “, “:”, “,”] And If Your String Is 
+“Hello, Im Arshia” It will Return 10 Thats Index Of ” “.
+If Your String Is “Arshia:Hey” It Will Return 6 Thats Index Of “:”.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>return_type -&gt;  You Can pass int To Return Index Of Found String. Or Pass Other</dt><dd><p>Things Like str To Return Found String.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaString.inside">
+<span class="sig-name descname"><span class="pre">inside</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_search:</span> <span class="pre">~data_structures.ListOrDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_mode='key'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type=&lt;class</span> <span class="pre">'bool'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaString.inside" title="Permalink to this definition">¶</a></dt>
+<dd><p>In This Function You Can Search That If A String Exists In Dict ( Or Inside Of All Elements ).
+Or If A String Exists In List And All Of Its Elements.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>data_to_search -&gt;  Data That Wanted To Search In That. For Example</dt><dd><p>Search In List : [“test”, “some”, “Hello World”] Or
+Search In dict : {“test”: “Hello World”, “some”: “Hello World”} 
+-&gt; ( search_mode must be “value” or “both” in dict input )
+if string is Hello It Will Return True !</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>search_mode -&gt;  If You Passed A Dictionary You Can Choose Between “key” Or “value”</dt><dd><p>Or “all”/”both” To Search In Both Of Them. It Does Not Do Anything If
+You Passed A List.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>return_type -&gt;  If You Passed A Dictionary You Can Choose Between bool and dict or …</dt><dd><p>if you pass bool, it will return True or False If It Finds Your String.
+if you pass dict, it will return a dict with key and value of found element.
+if you pass pass anything else, it will return oposite of search_mode. For
+Example If You passed “key” And You Found Your String, It Will Return “value”.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaString.replace_array">
+<span class="sig-name descname"><span class="pre">replace_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_with</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ListOrString</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaString.replace_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>In This Function You Can Replace An Array With Another Array ! ( in a string ).
+Its Possible That You Replace An Array Of String With A Single String Too.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>data_to_replace -&gt;  Data That You Wanted To Be Replaced For Example If Data Is </dt><dd><p>[“Hello”, “World”] And replace_with Argument Is [“Hi”, “There”]
+All Of “Hello” And “World” Will Be Replaced With “Hi” And “There”.</p>
+</dd>
+</dl>
+</li>
+<li><p>replace_with -&gt;  Described In data_to_replace Argument.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaString.replace_dict">
+<span class="sig-name descname"><span class="pre">replace_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaString.replace_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Is replace_array But You Can Pass Dictionary To Replace With.</p>
+<dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>data_to_replace -&gt;  A Dictionary Of Data To Replace. For Example </dt><dd><p>{“Hello”: “Hi”, “World”: “There”} Will Replace “Hello” With “Hi”
+And “World” With “There”. ( All Of String )</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.PyshaString.replace_with_escape">
+<span class="sig-name descname"><span class="pre">replace_with_escape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string_to_find</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_replace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">escape_char</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_escapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.PyshaString.replace_with_escape" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Function Will Replace Any String That You Want But You Can Define Some Parts
+Not To Replace With Define Escapes !</p>
+<dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><p>string_to_find -&gt;  String That You Want To Search For In String.</p></li>
+<li><p>to_replace -&gt;  String That You Want To Be Replaced With string_to_find.</p></li>
+<li><p>escape_char -&gt;  Escape Character That You Want To Define. ( Default Is Character )</p></li>
+<li><dl class="simple">
+<dt>remove_escapes -&gt;  You Can Define That After Replacing, Escape Characters Should Remove</dt><dd><p>Or Not. ( Default Is False )</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="data_structures.Queue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_structures.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Common Queue Data Structure That You Can Use Here.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.Queue.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Queue.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add Value To Queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.Queue.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Queue.display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display The Queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.Queue.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Queue.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove From Queue ( Returns The Removed Value )</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="data_structures.Queue.storage">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">storage</span></span><a class="headerlink" href="#data_structures.Queue.storage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="data_structures.Stack">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_structures.</span></span><span class="sig-name descname"><span class="pre">Stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Common Stack Data Structure That You Can Use Here.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.Stack.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Stack.display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display Stack Data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.Stack.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Stack.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop The Value From Stack ( Returns The Removed Value )</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_structures.Stack.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_structures.Stack.push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push The Value To Stack</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="data_structures.Stack.storage">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">storage</span></span><a class="headerlink" href="#data_structures.Stack.storage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="decorators.html" class="btn btn-neutral float-right" title="decorators module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="colors.html" class="btn btn-neutral float-left" title="colors module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2022, Arshiatmi
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

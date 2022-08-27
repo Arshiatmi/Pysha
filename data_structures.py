@@ -13,8 +13,8 @@ class Stack:
     def __init__(self, inf=1, capacity=0):
         """
             Arguements :
-                inf=1, # Set If Stack Is Infinite Or Not. Default Is Infinite Stack.
-                capacity=0 # Set Capacity In Case Of limited Stack.
+                * inf=1, # Set If Stack Is Infinite Or Not. Default Is Infinite Stack.
+                * capacity=0 # Set Capacity In Case Of limited Stack.
         """
         self.inf = inf
         if inf:
@@ -205,9 +205,9 @@ class PyshaList(list):
             Shift, Type Of Shift ( left or right ) And how_many To Shift.
 
             Arguments :
-                index, # Index That You Want To Shift
-                left_shift=True, # Left Or Right Shift That You Can Specifiy. Default Is Left Shift
-                how_many=1 # How Many Shifts That You Want. Default Is One
+                * index, # Index That You Want To Shift
+                * left_shift=True, # Left Or Right Shift That You Can Specifiy. Default Is Left Shift
+                * how_many=1 # How Many Shifts That You Want. Default Is One
         """
         for _ in range(how_many):
             if not left_shift:
@@ -331,7 +331,7 @@ class PyshaList(list):
     def make_array(dimentions):
         """
             Make Array In Complex Dimentions. You Can Use This Method Like : 
-                PyshaList.make_array([1,2,4,5,4,32])
+                ```PyshaList.make_array([1,2,4,5,4,32])```
         """
         ans = [None for _ in range(dimentions[-1])]
         for i in dimentions[:-1][::-1]:
@@ -341,10 +341,12 @@ class PyshaList(list):
     def set_array(self, dimentions, value):
         """
             Set Array In Complex Dimentions. You Can Use This Method Like : 
+                ```
                 array = PyshaList.make_array([1,2,4,5,4,32]) # Just A Complex Array
                 array.set_array([0,2,4,0,4,3],"test")
+                ```
             Or Like This :
-                array[0,2,4,0,4,3] = "test"
+                ```array[0,2,4,0,4,3] = "test"```
             Cool, Right ? :)
         """
         array = self
@@ -365,17 +367,17 @@ class PyshaString(str):
         Or If A String Exists In List And All Of Its Elements.
 
         Args :
-            data_to_search ->  Data That Wanted To Search In That. For Example
+            * data_to_search ->  Data That Wanted To Search In That. For Example
                                 Search In List : ["test", "some", "Hello World"] Or
                                 Search In dict : {"test": "Hello World", "some": "Hello World"} 
                                 -> ( search_mode must be "value" or "both" in dict input )
                                 if string is Hello It Will Return True !
 
-            search_mode ->  If You Passed A Dictionary You Can Choose Between "key" Or "value"
+            * search_mode ->  If You Passed A Dictionary You Can Choose Between "key" Or "value"
                             Or "all"/"both" To Search In Both Of Them. It Does Not Do Anything If
                             You Passed A List.
 
-            return_type ->  If You Passed A Dictionary You Can Choose Between bool and dict or ...
+            * return_type ->  If You Passed A Dictionary You Can Choose Between bool and dict or ...
                             if you pass bool, it will return True or False If It Finds Your String.
                             if you pass dict, it will return a dict with key and value of found element.
                             if you pass pass anything else, it will return oposite of search_mode. For
@@ -431,12 +433,12 @@ class PyshaString(str):
             In This Function You Can Search That an String Contains Some Other String From A List.
 
             Args :
-                data_to_search ->  Strings That You Want To Search For. For Example
+                * data_to_search ->  Strings That You Want To Search For. For Example
                                     Search In List : [" ", ":", ","] And If Your String Is 
                                     "Hello, Im Arshia" It will Return 5 Thats Index Of ",".
                                     If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
 
-                return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
+                * return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
                                 Things Like str To Return Found String.
 
         """
@@ -452,12 +454,12 @@ class PyshaString(str):
             This Function Is Exactly find_first But It Will Return Last Index Of Found String.
 
             Args :
-                data_to_search ->  Strings That You Want To Search For. For Example
+                * data_to_search ->  Strings That You Want To Search For. For Example
                                     Search In List : [" ", ":", ","] And If Your String Is 
                                     "Hello, Im Arshia" It will Return 10 Thats Index Of " ".
                                     If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
 
-                return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
+                * return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
                                 Things Like str To Return Found String.
 
         """
@@ -474,11 +476,11 @@ class PyshaString(str):
             Its Possible That You Replace An Array Of String With A Single String Too.
 
             Args :
-                data_to_replace ->  Data That You Wanted To Be Replaced For Example If Data Is 
+                * data_to_replace ->  Data That You Wanted To Be Replaced For Example If Data Is 
                                     ["Hello", "World"] And replace_with Argument Is ["Hi", "There"]
                                     All Of "Hello" And "World" Will Be Replaced With "Hi" And "There".
 
-                replace_with ->  Described In data_to_replace Argument.
+                * replace_with ->  Described In data_to_replace Argument.
 
         """
         if type(replace_with) == str:
@@ -494,7 +496,7 @@ class PyshaString(str):
             This Is replace_array But You Can Pass Dictionary To Replace With.
 
             Args :
-                data_to_replace ->  A Dictionary Of Data To Replace. For Example 
+                * data_to_replace ->  A Dictionary Of Data To Replace. For Example 
                                     {"Hello": "Hi", "World": "There"} Will Replace "Hello" With "Hi"
                                     And "World" With "There". ( All Of String )
 
@@ -509,15 +511,15 @@ class PyshaString(str):
             Part Of It Or Not. It Will Get a Part Of String And Will Check It With A List Of Strings.
 
             Args :
-                data_to_replace ->  A List Of Data That You Want To Check If Exists In Another String.
+                * data_to_replace ->  A List Of Data That You Want To Check If Exists In Another String.
 
-                line_start ->  Line Start Number ( Starts With 0 )
+                * line_start ->  Line Start Number ( Starts With 0 )
 
-                line_end ->  Line End Number ( Starts With 0 )
+                * line_end ->  Line End Number ( Starts With 0 )
 
-                start_index ->  Start Index Number ( Starts With 0 )
+                * start_index ->  Start Index Number ( Starts With 0 )
 
-                end_index ->  End Index Number ( Starts With 0 )
+                * end_index ->  End Index Number ( Starts With 0 )
 
         """
         if line_start == -1:
@@ -541,13 +543,13 @@ class PyshaString(str):
             Not To Replace With Define Escapes !
 
             Args :
-                string_to_find ->  String That You Want To Search For In String.
+                * string_to_find ->  String That You Want To Search For In String.
 
-                to_replace ->  String That You Want To Be Replaced With string_to_find.
+                * to_replace ->  String That You Want To Be Replaced With string_to_find.
 
-                escape_char ->  Escape Character That You Want To Define. ( Default Is \ Character )
+                * escape_char ->  Escape Character That You Want To Define. ( Default Is \ Character )
 
-                remove_escapes ->  You Can Define That After Replacing, Escape Characters Should Remove
+                * remove_escapes ->  You Can Define That After Replacing, Escape Characters Should Remove
                                     Or Not. ( Default Is False )
         """
         last_index = self.find(string_to_find, 0)
@@ -613,16 +615,16 @@ class PyshaDict(dict):
     """
         Thats Just Normal Dictionary Just With 2 Or 3 More Option.
         PyshaDict Operators :
-            ~myDict # Returns Dictionary Inverse
-            myDict - "elem" # Returns Dicionary With Removed "elem" Key.
+            * ~myDict # Returns Dictionary Inverse
+            * myDict - "elem" # Returns Dicionary With Removed "elem" Key.
     """
     @property
     def inverse(self):
         """
-            You Can Get inverse Of A Dictionary. For Example Dict -> {"nickname":"MrMegaExpert"}, Inverse -> {"MrMegaExpert":"nickname"}
+            You Can Get inverse Of A Dictionary. For Example Dict -> `{"nickname":"MrMegaExpert"}`, Inverse -> `{"MrMegaExpert":"nickname"}`
             You Can Set And Change Dicitonary In Inverse Mode ! You Can Get Inverse Of A Dictionary In 2 Ways :
-                myDict.inverse
-                ~myDict
+                * myDict.inverse
+                * ~myDict
         """
         return PyshaDict({v: k for k, v in self.items()})
 

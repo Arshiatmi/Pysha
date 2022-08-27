@@ -5,9 +5,9 @@ import getpass
 class Auth:
     """
     Authentication Class
-      Mode 0 -> Not Show Password
-      Mode 1 -> Star Password
-      Mode 2 -> Normal Input
+    * Mode 0 -> Not Show Password
+    * Mode 1 -> Star Password
+    * Mode 2 -> Normal Input
     """
 
     def __init__(self, first_prompt="Enter Your Username : ", second_prompt="Enter Your Password : ", mode=0, mask='*'):
@@ -19,10 +19,10 @@ class Auth:
     def auth(self, c=True, mask_color=fore["reset"], inp_color=fore["reset"], mask='*'):
         """
         Argumets : 
-            c           ->  If Its True colorize Function Will Be Executed On Prompts.
-            mask_color  ->  Set Color For Password Mask.
-            inp_color   ->  Set Color For Username Mask.
-            mask        ->  Set Mask Character.
+            * c           ->  If Its True colorize Function Will Be Executed On Prompts.
+            * mask_color  ->  Set Color For Password Mask.
+            * inp_color   ->  Set Color For Username Mask.
+            * mask        ->  Set Mask Character.
         """
         tar = self.mask
         if mask != '*':

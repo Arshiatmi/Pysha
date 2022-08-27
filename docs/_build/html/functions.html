@@ -1,0 +1,749 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>functions module &mdash; Pysha 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pysha module" href="pysha.html" />
+    <link rel="prev" title="exceptions module" href="exceptions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Pysha
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Pysha</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth.html">auth module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colors.html">colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html">data_structures module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorators.html">decorators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enums.html">enums module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">exceptions module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysha.html">pysha module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">security module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pysha.html">pysha module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">auth module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">classes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">colors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_structures.html">data_structures module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorators.html">decorators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enums.html">enums module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">functions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">security module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pysha</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">Pysha</a> &raquo;</li>
+        
+      <li>functions module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/functions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-functions">
+<span id="functions-module"></span><h1>functions module<a class="headerlink" href="#module-functions" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.append_file">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">append_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#functions.append_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>You Can Append to A File.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>file_name</p></li>
+<li><p>text</p></li>
+</ul>
+</div></blockquote>
+<p>Returns True If Its Successfully Done, Else Return False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.between">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string_to_check</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">case_sensetive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.between" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks If An String Exists Between Two Characters In Another String.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>string -&gt;   A Simple String. (We Need To Check If This String Exists</dt><dd><p>In Another String Or Not) For Example If You Want To Check
+If ‘hello’ is between ” Characters, You Need To Pass hello
+As This Argument.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>string_to_check -&gt;   A Big String That We Want To Check And Dive In :)</dt><dd><p>For Example ‘hello My Name Is Arshia And “hello” Is
+ok Now As i think :)’ And Pass It As This Argument.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>start_sign -&gt; This Should Be The Start Character That You Are Looking For.</dt><dd><p>For Example You Can Pass ” As This Argument ( Continue Of Previous
+Part Example ) . But In Another Example That You Want To Check A Tag For
+Example html Tag You Can Pass “&lt;” As Start.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>end_sign -&gt; This Should Be The Start Character That You Are Looking For.</dt><dd><p>For Example You Can Pass ” As This Argument ( Continue Of Previous
+Part Example ) . Continue Of Tag Example You Can Pass “&gt;” As End.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>exact -&gt; Basically, Checks For &lt;html&gt; Not &lt;<em>html</em>&gt;.This Argument Will Check</dt><dd><p>For exact Value. For Example If This Option Was False And You Want
+To Check For Tags In  String “This &lt;html Test Fake Text&gt; Is Ok.” It
+Will Return True But If This Option Is True,For That String Will
+Return False. Because It Looks For Exact “&lt;html&gt;” Not &lt; Then Anything
+Then html Then Again Anything And &gt; Character.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>case_sensetive -&gt; If Its True, Lower Case Or Upper Case In Words Are Important.</dt><dd><p>For Example If Its True, “Html” Is Different From “html” But
+If Its False, “Html” And “html” Are Equal.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<dl>
+<dt>Example :</dt><dd><p>1. between(“:”,’The : Is Not Between “” Chars.’,’”’)
+1. Returns :</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>False</p></li>
+</ol>
+</div></blockquote>
+<p>2. between(“:”,’The “:” Is Between “” Chars !’,’”’)
+2. Returns :</p>
+<blockquote>
+<div><ol class="arabic simple" start="2">
+<li><p>True</p></li>
+</ol>
+</div></blockquote>
+</dd>
+</dl>
+<p>Returns True If Its Found In target Text Else, Returns False.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.between_index">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">between_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string_to_check</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">case_sensetive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.between_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acts Like Between Function But It Will Return Index Insted Of Boolean Value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.colorize">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">colorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#functions.colorize" title="Permalink to this definition">¶</a></dt>
+<dd><p>It Will Colorize The Input.
+Example :</p>
+<blockquote>
+<div><p><cite>colorize(“(Fore.GREEN)[Hello !]”)</cite></p>
+</div></blockquote>
+<dl class="simple">
+<dt>Output :</dt><dd><ul class="simple">
+<li><p>Green Foreground -&gt; <a href="#id9"><span class="problematic" id="id10">|Hello !|</span></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Possible Colors:
+<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></p>
+<blockquote>
+<div><dl class="simple">
+<dt>fore = {</dt><dd><p>“green” : Fore.GREEN,
+“black”:Fore.BLACK,
+“red”:Fore.RED,
+“yellow”:Fore.YELLOW,
+“blue”:Fore.BLUE,
+“cyan”:Fore.CYAN,
+“light_black”:Fore.LIGHTBLACK_EX,
+“light_blue”:Fore.LIGHTBLUE_EX,
+“light_cyan”:Fore.LIGHTCYAN_EX,
+“light_green”:Fore.LIGHTGREEN_EX,
+“light_magenta”:Fore.LIGHTMAGENTA_EX,
+“light_red”:Fore.LIGHTRED_EX,
+“light_white”:Fore.LIGHTWHITE_EX,
+“light_yellow”:Fore.LIGHTYELLOW_EX,
+“magenta”:Fore.MAGENTA,
+“reset”:Fore.RESET,
+“white”:Fore.WHITE</p>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>back = {</dt><dd><p>“green”:Back.GREEN,
+“black”:Back.BLACK,
+“red”:Back.RED,
+“yellow”:Back.YELLOW,
+“blue”:Back.BLUE,
+“cyan”:Back.CYAN,
+“light_black”:Back.LIGHTBLACK_EX,
+“light_blue”:Back.LIGHTBLUE_EX,
+“light_cyan”:Back.LIGHTCYAN_EX,
+“light_green”:Back.LIGHTGREEN_EX,
+“light_magenta”:Back.LIGHTMAGENTA_EX,
+“light_red”:Back.LIGHTRED_EX,
+“light_white”:Back.LIGHTWHITE_EX,
+“light_yellow”:Back.LIGHTYELLOW_EX,
+“magenta”:Back.MAGENTA,
+“reset”:Back.RESET,
+“white”:Back.WHITE</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<blockquote>
+<div><dl class="simple">
+<dt>You Can Always Access The Colors Like That :</dt><dd><ul class="simple">
+<li><p>pysha.fore[…]</p></li>
+<li><p>pysha.back[…]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.colorprompt">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">colorprompt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=&lt;colorama.ansitowin32.StreamWrapper</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_color='\x1b[39m'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.colorprompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Will Act Like Input. But Characters That User Enters Will Be Colored :)
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>prompt      -&gt;   The Text For Print And Wait For Input.</p></li>
+<li><p>out         -&gt;   Just Standard Output. DO NOT TOUCH THIS :/</p></li>
+<li><dl class="simple">
+<dt>char_color  -&gt;   The Color Of Character. Each Character Will Have This </dt><dd><p>Color.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.condition">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">NoneOrStrOrInt</span></span></span><a class="headerlink" href="#functions.condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Descrioptions Are Available In ‘classes.py’ And In command Class.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.create_dir">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">create_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#functions.create_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries To Create A Directory.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>dir_name -&gt;  Directory Name. You Can Pass An String Like ‘test’ Or </dt><dd><p>‘test/test1/test2’ For Directory. But If You Want To 
+Make Parents Too, You Have To Pass Next Argument Manually
+Too.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>create_parents(Default:False) -&gt;  If Its False, Parents Will Not Be</dt><dd><p>Created If They Are Not Exists. 
+And If Its True, Parents Will Be
+Created Too !</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Returns True If Its Successfully Done, Else Return False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.delay_loop">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">delay_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.delay_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Function Will Try To Loop A Function In Specific count/infinite count.
+Example :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>delay_loop(10,func,5,args,kwargs)</p></li>
+</ul>
+</div></blockquote>
+<p>In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.display">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#functions.display" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Related To Loop Command. It Will Print String And Replace _i_ , _i++_ … With The Value.</dt><dd><dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><p>temp    -&gt;     Carries Variables.</p></li>
+<li><p>string  -&gt;     The String Pattern That Should Be Printed In Output.</p></li>
+<li><p>c       -&gt;     If Its True, Answer Will colorized. And Else Won’t Be Colorized.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.escape_translator">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">escape_translator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#functions.escape_translator" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Function Will Help You To Recover Escaped Characters That Wrongly Splitted.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>target         -&gt;   A List Of Splitted String/ A String That You Want To Escape.</p></li>
+<li><p>char           -&gt;   The Character That You Want To Escape.</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Example :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`escape_translator(&quot;Hello</span> <span class="pre">Lets</span> <span class="pre">Escape</span> <span class="pre">All</span> <span class="pre">&lt;</span> <span class="pre">That</span> <span class="pre">Have</span> <span class="pre">\</span> <span class="pre">Like</span> <span class="pre">\&lt;</span> <span class="pre">.</span> <span class="pre">All</span> <span class="pre">\&lt;</span> <span class="pre">Will</span> <span class="pre">Be</span> <span class="pre">Escaped.&quot;,&quot;&lt;&quot;)`</span></code></p>
+</dd>
+<dt>Out :</dt><dd><p><cite>[‘Hello Lets Escape All ‘, ‘ That Have Like &lt; . All &lt; Will Be Escaped.’]</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.get_ans">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">get_ans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#functions.get_ans" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Related To Loop Command. It Will Get Input And Replace _i_ , _i++_ … With The Value.</dt><dd><dl class="simple">
+<dt>Args :</dt><dd><ul class="simple">
+<li><p>temp    -&gt;     Carries Variables.</p></li>
+<li><p>string  -&gt;     The String Pattern That Should Be Printed In Output.</p></li>
+<li><p>c       -&gt;     If Its True, Answer Will colorized. And Else Won’t Be Colorized.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.index_split">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">index_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.index_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split String By Index.
+Example :</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`index_split(&quot;Hello</span> <span class="pre">My</span> <span class="pre">Name</span> <span class="pre">Is</span> <span class="pre">Arshia&quot;,10)`</span></code></p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns :</dt><dd><p><cite>[‘Hello My N’, ‘me Is Arshia’]</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.loop">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'p'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">NoneOrStr</span></span></span><a class="headerlink" href="#functions.loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>All Descriptions From This Function Came In <cite>classes.py</cite> - command Class.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.make_array">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">make_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimentions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.make_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make An Array In Dimentions That You Gave.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.make_possibles">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">make_possibles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.make_possibles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries To Get Possible Situations Of For Loops ( Max 3 Variable ).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.merge">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dont_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Function Will Merge Some List Or Some Dict Or Some Dict And List !
+Example :</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`merge([&quot;a&quot;,&quot;b&quot;],{&quot;c&quot;:&quot;d&quot;,&quot;e&quot;:&quot;f&quot;},[&quot;g&quot;,&quot;h&quot;])`</span></code></p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`{&quot;a&quot;:&quot;&quot;,&quot;b&quot;:&quot;&quot;,&quot;c&quot;:&quot;&quot;,&quot;d&quot;:&quot;&quot;,&quot;e&quot;:&quot;&quot;,&quot;f&quot;:&quot;&quot;,&quot;g&quot;:&quot;&quot;,&quot;h&quot;:&quot;&quot;}`</span></code></p>
+</dd>
+<dt>Example :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`merge([&quot;a&quot;,&quot;b&quot;],{&quot;c&quot;:&quot;d&quot;,&quot;e&quot;:&quot;f&quot;},[&quot;g&quot;,&quot;h&quot;],force_list=True)`</span></code></p>
+</dd>
+<dt>Returns :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;e&quot;,&quot;d&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;]`</span></code></p>
+</dd>
+<dt>Example :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`merge([&quot;a&quot;,&quot;b&quot;],{&quot;c&quot;:&quot;d&quot;,&quot;e&quot;:&quot;f&quot;},[&quot;g&quot;,&quot;h&quot;],force_list=True,dont_change=True)`</span></code></p>
+</dd>
+<dt>Returns :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;]`</span></code></p>
+</dd>
+<dt>Example:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`merge([&quot;a&quot;,&quot;b&quot;],[&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;],[&quot;g&quot;,&quot;h&quot;])`</span></code></p>
+</dd>
+<dt>Returns :</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;]`</span></code></p>
+</dd>
+</dl>
+<p>In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.not_between_index">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">not_between_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string_to_check</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">case_sensetive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.not_between_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse Of Between Plus Index Of Target.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>string -&gt;   A Simple String. (We Need To Check If This String Exists</dt><dd><p>In Another String Or Not) For Example If You Want To Check
+If ‘hello’ is not between ” Characters, You Need To Pass hello
+As This Argument.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>string_to_check -&gt;   A Big String That We Want To Check And Dive In :)</dt><dd><p>For Example ‘hello My Name Is Arshia And “hello” Is
+ok Now As i think :)’ And Pass It As This Argument.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>start_sign -&gt; This Should Be The Start Character That You Are Looking For.</dt><dd><p>For Example You Can Pass ” As This Argument ( Continue Of Previous
+Part Example ) . But In Another Example That You Want To Check Text
+That Does Not In A Tag For Example html Tag You Can Pass “&lt;” As Start.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>end_sign -&gt; This Should Be The Start Character That You Are Looking For.</dt><dd><p>For Example You Can Pass ” As This Argument ( Continue Of Previous
+Part Example ) . Continue Of Tag Example You Can Pass “&gt;” As End.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>case_sensetive -&gt; If Its True, Lower Case Or Upper Case In Words Are Important.</dt><dd><p>For Example If Its True, “Html” Is Different From “html” But
+If Its False, “Html” And “html” Are Equal.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Example :</dt><dd><ul class="simple">
+<li><p>not_between_index(“:”,’Arshia Said : “Hello ! There Is : Hiding Here :)”’,’”’,’”’)</p></li>
+<li><dl class="simple">
+<dt>Returns :</dt><dd><p><cite>12</cite></p>
+</dd>
+</dl>
+</li>
+<li><p>not_between_index(“:”,’”:” Is Not Out Of “” Sign. But Now : It Is.’,’”’,’”’)</p></li>
+<li><dl class="simple">
+<dt>Returns :</dt><dd><p><cite>35</cite></p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Returns True If Its Found Out Of target Sign, Else Returns False.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.passprompt">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">passprompt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=&lt;colorama.ansitowin32.StreamWrapper</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_color='\x1b[39m'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask='*'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#functions.passprompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>This Will Get Password And Replace Characters With A Mask For Example ‘*’.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>prompt      -&gt;   The Text For Print And Wait For Input.</p></li>
+<li><p>out         -&gt;   Just Standard Output. DO NOT TOUCH THIS :/</p></li>
+<li><dl class="simple">
+<dt>mask_color  -&gt;   The Color Of Mask. For Example You Can Print Red Stars For</dt><dd><p>Each Character :))</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>mask        -&gt;   The Mask. Every Character That User Type, Will Be Replaced With</dt><dd><p>This Character :)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.read_file">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'s'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ListOrString</span></span></span><a class="headerlink" href="#functions.read_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>You Can Read Data From A File :)
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>file_name</p></li>
+<li><dl class="simple">
+<dt>mode(Default:’s’)<span class="classifier">The Mode Can Be ‘s’ Or ‘l’ Means List Or String.</span></dt><dd><p>If You Want To Get Output As String Mode ‘s’ Will
+Be Good For You And If You Want To Get As list
+Mode ‘l’ Is Good For You.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Returns list of lines Of The File If mode Is ‘l’, string of lines
+If mode is ‘s’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.replace_in_file">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">replace_in_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_to_replace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#functions.replace_in_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries To Replace A Dictionary.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>file_name -&gt;  File Name. You Can Pass File Name That You Want Data </dt><dd><p>To Change.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>data_to_replace -&gt;  Data That You Want To Replace As Dictinary.</dt><dd><p>For Example : {‘test’:’test1’} Will Replace All
+‘test’ With ‘test1’ In The File.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Returns True If Its Successfully Done, Else Return False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.rm_dir">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">rm_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#functions.rm_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries To Remove A Directory.
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>dir_name -&gt;  Directory Name. You Can Pass An String Like ‘test’ Or </dt><dd><p>‘test/test1/test2’ For Directory. If You Want To Force
+Remove That Childs Will Remove Too, Pass Next Argument
+Manually.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>force(Default:False) -&gt;  If Its False And If directory Has Childs,</dt><dd><p>Directory Won’t Be Removed.But If Its False
+Doesn’t Matter What We Are Cold-Blood Murderes
+And We Kill Them All :)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Returns True If Its Successfully Done, Else Return False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.set_array">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">set_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimentions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.set_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set An Array Value In Complicated Dimentions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.write_file">
+<span class="sig-prename descclassname"><span class="pre">functions.</span></span><span class="sig-name descname"><span class="pre">write_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ListOrString</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#functions.write_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>You Can Write Into A File :)
+Args :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>file_name</p></li>
+<li><p>text</p></li>
+</ul>
+</div></blockquote>
+<p>Returns True If Its Successfully Done, Else Return False</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pysha.html" class="btn btn-neutral float-right" title="pysha module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="exceptions.html" class="btn btn-neutral float-left" title="exceptions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2022, Arshiatmi
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

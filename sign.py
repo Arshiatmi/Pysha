@@ -170,9 +170,12 @@ cp.add_os_commands(
 cp["clear"] = {"linux": "clear", "windows": "cls", "mac": "clear"}
 """
 
-
+c = 0
 while True:
     for i in animation_frames:
         print(i)
         time.sleep(0.05)
         os.system(cp["clear"])
+    c += 1
+    if c == 4:
+        break

@@ -166,14 +166,18 @@ class command:
         """
         This Function Act As c++ One Line Condition.
         You Can Use This Function Like :
-            condition('i > j ? "i Is Grater" : "j Is Grater"',i=20,j=23)
+
+            `condition('i > j ? "i Is Grater" : "j Is Grater"',i=20,j=23)`
+
         Output Will Be :
-            "j Is Grater"
+
+            `"j Is Grater"`
 
         Notes & Warnings :
-            -> '(Quotes) Are Not Working, Always Use "(Double Quotes)
+
+            `-> '(Quotes) Are Not Working, Always Use "(Double Quotes)`
         """
-        if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""", ''.join(check.split(' '))):
+        if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):\W{,1}(\"?)[!-~]+(\"?)""", ''.join(check.split(' '))):
             raise ConditionError("An Error In Parsing Condition :(")
         if "eval" in check:
             if not check[check.find("eval") - 1:].startswith("\eval"):
@@ -208,20 +212,22 @@ class command:
                     Use This 2 Thing Together.
 
             Args : 
-                string          ->    The String Pattern That You Want To Make.
 
-                priority        ->    If Its 0 First System Commands Will Replace Then
+                * string          ->    The String Pattern That You Want To Make.
+
+                * priority        ->    If Its 0 First System Commands Will Replace Then
                                     Python Commands Will Replace. And If Its 1 First
                                     Python Commands Will Replace Then System Commands
                                     Will Be Replaced. Default Is 0.
 
-                strip_response  ->     Default Is True. It Wanted To Know That Your
+                * strip_response  ->     Default Is True. It Wanted To Know That Your
                                         String That Replaced Should Be striped ? ( Remove
                                         Addtion New Lines And Spaces In Start And End Of 
                                         String ? )
 
             Example :
-                exe("You Current Directory :\n $(dir)\nFinished :)")
+
+                * exe("You Current Directory :\n $(dir)\nFinished :)")
         """
         s = re.compile(
             "\$\([A-Za-z0-9_ \$\&\!\@\#\%\^\*\+\=\-\]\[\~\?\'\"\;\:]+\)")
@@ -321,21 +327,27 @@ class Switch:
         """
             This Function Should Get A Dictionary That Key Is Case And Value Is Function That Will Run On That
             Case. You Can Pass Lots Of Types For Example :
+            ```
                 Case(5):
                     [
                         func,
                         arguments,
                         kwargs
                     ]
+            ```
             Or :
+            ```
                 Case(1):
                     " \
                         print("yay")
                     "
+            ```
             Or :
+            ```
                 Case(6):
                     lambda x,y:
                         print(x,y)
+            ```
             For More Models You Can See Examples.
         """
         for i, j in all_funcs.items():
@@ -400,9 +412,9 @@ class PercentPrinter:
     def __init__(self, chars=100, pass_color=fore["reset"], loading_color=fore["reset"]):
         """
             Arguments :
-                chars=50, # Characters Of Progressbar
-                pass_color=fore["reset"], # The Color Of Passed Part
-                loading_color=fore["reset"], # The Color Of Loading Part ( Still Not Fulled Part )
+                * chars=50, # Characters Of Progressbar
+                * pass_color=fore["reset"], # The Color Of Passed Part
+                * loading_color=fore["reset"], # The Color Of Loading Part ( Still Not Fulled Part )
         """
         self._percent = 0
         self.chars = chars
@@ -475,7 +487,7 @@ class CrossPlatformer:
     def __init__(self, supported_os=["linux", "windows", "mac"]) -> None:
         """
             Arguments : 
-                supported_os # You Can Set Supported Oses. Default is ["linux", "windows", "mac"]
+                * supported_os # You Can Set Supported Oses. Default is ["linux", "windows", "mac"]
         """
         self.user_os = platform.system().strip().lower()
         self.all_commands = {}
@@ -518,10 +530,12 @@ class CrossPlatformer:
     def get_os_command(self, name):
         """
         Get Command For User Os. Arguments :
-            name : Command Name
+            * name : Command Name
         For Example :
+
             If You Set add_os_commands("clear", {"linux": "clear", "windows": "cls", "mac": "clear"}) :
-                get_os_command("clear")
+                * get_os_command("clear")
+
             Will Return You The Command Depends On Your Os.
         """
         try:
@@ -532,12 +546,12 @@ class CrossPlatformer:
     def add_os_commands(self, name, commands: dict):
         """
         Set Command For User Os. Arguments Are : 
-            name : Name Of Command
-            commands : Dictionary Of Commands
+            * name : Name Of Command
+            * commands : Dictionary Of Commands
         For Example : 
-            add_os_commands("git", {"linux": "git", "windows": "git.exe"})
+            * add_os_commands("git", {"linux": "git", "windows": "git.exe"})
         Or : 
-            add_os_commands("clear", {"linux": "clear", "windows": "cls", "mac": "clear"})
+            * add_os_commands("clear", {"linux": "clear", "windows": "cls", "mac": "clear"})
         """
         for i in commands:
             if not self.is_os_supported(i):
@@ -556,8 +570,10 @@ class interface:
         You Can Make Interfaces ( Inspired From PHP ! ) .
         In Fact You Can Define An Structure That All Of Classes That Extends That Interface Must Have This
         Structure That You Defined.
+
         You Can Use It Like Decorator. For Example : 
 
+        ```
         @interface
         class UserStructure:
             name = None
@@ -578,8 +594,9 @@ class interface:
             family = None
             username = None
             password = None
+        ```
     """
-    instances = {}
+    instances: dict = {}
 
     def __init__(self, target_class):
         self.is_parent_interface = False
@@ -669,11 +686,11 @@ class Cond:
     """
         Thats Just Normal One line Conditions That Exists in C++. ( Inspired From C++ )
         You Can Use It Like : 
-            Cond( condition )( if_its_true, if_its_false )
+            * Cond( condition )( if_its_true, if_its_false )
         For Example :
-            Cond(i > j)(i,j)
+            * Cond(i > j)(i,j)
         Or Cool Things Like :
-            Cond(i > j)(minus,add)(i,j)
+            * Cond(i > j)(minus,add)(i,j)
         Thats Your Creativity That Makes Your Application Cool :)
     """
 
@@ -691,11 +708,11 @@ class Loop:
     """
         This Option Is Unique Too Pysha. Its Not From Anywhere Else But Anyway I Think Its Not That Cool :/
         You Can Use It Like : 
-            Loop(x,y)("Enter Number[_1_][_2_] :",Loop.Modes.Input) # Input Mode Is Default
+            ```Loop(x,y)("Enter Number[_1_][_2_] :",Loop.Modes.Input) # Input Mode Is Default```
 
-        Modes : 
-            Input = 0
-            Print = 1
+        ### Modes : 
+            * Input = 0
+            * Print = 1
 
         Input Is Where You Want To Get Input Just Not Print The Text In x * y Times. It Will Return x * y Array Contains Inputs.
         Print Is Where You Want To Just Print The Text In x * y Times.

@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>security module &mdash; Pysha 0.1.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pysha module" href="pysha.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Pysha
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Pysha</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth.html">auth module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colors.html">colors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html">data_structures module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorators.html">decorators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enums.html">enums module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pysha.html">pysha module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">security module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pysha.html">pysha module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">auth module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">classes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">colors module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_structures.html">data_structures module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorators.html">decorators module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enums.html">enums module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">functions module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">security module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pysha</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">Pysha</a> &raquo;</li>
+        
+      <li>security module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/security.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-security">
+<span id="security-module"></span><h1>security module<a class="headerlink" href="#module-security" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="security.Crypto">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">Crypto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enc_ls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_ls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Crypto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Crypto Class Is Made For Do Encryption And Decryption More Coder Friendly :)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="security.Crypto.dec">
+<span class="sig-name descname"><span class="pre">dec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Crypto.dec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="security.Crypto.enc">
+<span class="sig-name descname"><span class="pre">enc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Crypto.enc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="security.Load">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">Load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Class To Load Saved Variables</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="security.Load.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Load.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="security.Load.vars">
+<span class="sig-name descname"><span class="pre">vars</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#security.Load.vars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="security.Save">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">Save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Class To Save Some Variables With Some Simple Encryption.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="security.Save.add_var">
+<span class="sig-name descname"><span class="pre">add_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Save.add_var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="security.Save.add_vars">
+<span class="sig-name descname"><span class="pre">add_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.Save.add_vars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="security.Save.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#security.Save.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b16_de">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b16_de</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b16_de" title="Permalink to this definition">¶</a></dt>
+<dd><p>base16 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b16_en">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b16_en</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b16_en" title="Permalink to this definition">¶</a></dt>
+<dd><p>base16 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b32_de">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b32_de</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b32_de" title="Permalink to this definition">¶</a></dt>
+<dd><p>base32 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b32_en">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b32_en</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b32_en" title="Permalink to this definition">¶</a></dt>
+<dd><p>base32 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b64_de">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b64_de</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b64_de" title="Permalink to this definition">¶</a></dt>
+<dd><p>base64 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b64_en">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b64_en</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b64_en" title="Permalink to this definition">¶</a></dt>
+<dd><p>base64 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b85_de">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b85_de</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b85_de" title="Permalink to this definition">¶</a></dt>
+<dd><p>base85 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.b85_en">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">b85_en</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.b85_en" title="Permalink to this definition">¶</a></dt>
+<dd><p>base85 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.cipher_de">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">cipher_de</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.cipher_de" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cipher Decoder function. got string And key At The End; It Will Decrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.cipher_en">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">cipher_en</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.cipher_en" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cipher Encoder function. got string And key At The End; It Will Encrypt Your
+Data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.make_enc">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">make_enc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.make_enc" title="Permalink to this definition">¶</a></dt>
+<dd><p>make_enc Function Will Make You An instance Of Crypto Class That Contains A
+Chain Of Encryption Algorithm. In Fact You Are Free To Use Just One Or More.
+Args/Kwargs :</p>
+<blockquote>
+<div><dl class="simple">
+<dt>alg     -&gt;    The Algorithm That Can Be Like Algorithms.XOR Or Like </dt><dd><p>[Algorithms.XOR,Algorithms.Base64]</p>
+</dd>
+</dl>
+<p>key     -&gt;    The Target Key That You Want To Use In Encryption Process.</p>
+</div></blockquote>
+<p>Example :</p>
+<blockquote>
+<div><p>a = make_enc([Algorithms.XOR,Algorithms.Base64],10)
+a.enc(“Hello”)    # Encrypt “Hello” Equals “Qm9mZmU=”
+a.dec(“Qm9mZmU=”) # Decrypt “Qm9mZmU” Equals “Hello”</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.rot13">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">rot13</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.rot13" title="Permalink to this definition">¶</a></dt>
+<dd><p>ROT13 function. It Will Encrypt Your Data In This Algorythm.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.unrot13">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">unrot13</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.unrot13" title="Permalink to this definition">¶</a></dt>
+<dd><p>ROT13 Decoder function. It Will Decrypt Your Data In This Algorythm.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="security.xor">
+<span class="sig-prename descclassname"><span class="pre">security.</span></span><span class="sig-name descname"><span class="pre">xor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#security.xor" title="Permalink to this definition">¶</a></dt>
+<dd><p>xor function. got string And key At The End; It Will Encrypt/Decrypt Your
+Data.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="pysha.html" class="btn btn-neutral float-left" title="pysha module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2022, Arshiatmi
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
