@@ -6,13 +6,25 @@ ListOrString = TypeVar('ListOrString', list, str)
 
 
 class Stack:
+    """
+        The Common Stack Data Structure That You Can Use Here.
+    """
+
     def __init__(self, inf=1, capacity=0):
+        """
+            Arguements :
+                inf=1, # Set If Stack Is Infinite Or Not. Default Is Infinite Stack.
+                capacity=0 # Set Capacity In Case Of limited Stack.
+        """
         self.inf = inf
         if inf:
             self.__storage = []
         else:
             self.ind = 0
             self.__storage = [0 for _ in range(capacity)]
+            if capacity == 0:
+                raise ValueError(
+                    "If You Set Inf Mode To Limited You Must Set Capacity For Stack.")
             self.capacity = capacity
 
     @property
@@ -20,6 +32,9 @@ class Stack:
         return self.__storage
 
     def push(self, elem):
+        """
+            Push The Value To Stack
+        """
         if self.inf:
             self.__storage.append(elem)
         else:
@@ -29,20 +44,33 @@ class Stack:
             self.ind += 1
 
     def pop(self):
+        """
+            Pop The Value From Stack ( Returns The Removed Value )
+        """
         if self.__storage:
             return self.__storage.pop()
         else:
             raise StackError("Stack Is Empty !")
 
     def display(self):
+        """
+            Display Stack Data
+        """
         return self.storage
 
 
 class LIFO(Stack):
+    """
+        You Can Use This Insted Of Stack. All Methods Of Stack Are Available Here.
+    """
     pass
 
 
 class Queue:
+    """
+        The Common Queue Data Structure That You Can Use Here.
+    """
+
     def __init__(self, inf=1, capacity=0):
         self.inf = inf
         if inf:
@@ -50,6 +78,9 @@ class Queue:
         else:
             self.ind = 0
             self.__storage = [0 for _ in range(capacity)]
+            if capacity == 0:
+                raise ValueError(
+                    "If You Set Inf Mode To Limited You Must Set Capacity For Queue.")
             self.capacity = capacity
 
     @property
@@ -57,6 +88,9 @@ class Queue:
         return self.__storage
 
     def add(self, elem):
+        """
+            Add Value To Queue.
+        """
         if self.inf:
             self.__storage.append(elem)
         else:
@@ -66,20 +100,33 @@ class Queue:
             self.ind += 1
 
     def remove(self):
+        """
+            Remove From Queue ( Returns The Removed Value )
+        """
         if self.__storage:
             return self.__storage.pop(0)
         else:
             raise QueueError("Queue Is Empty !")
 
     def display(self):
+        """
+            Display The Queue.
+        """
         return self.storage
 
 
 class FIFO(Queue):
+    """
+        You Can Use This Insted Of Queue. All Methods Of Queue Are Available Here.
+    """
     pass
 
 
 class PyshaList(list):
+    """
+        PyshaList That Have Some Advanteges To Normal List.
+    """
+
     def __str__(self):
         s = "["
         for i in self:
@@ -95,19 +142,30 @@ class PyshaList(list):
         return s
 
     def lshift(self, times):
+        """
+            Left Shift In Times That You Specify
+        """
         for _ in range(times):
             self = self[1:] + [self[0]]
 
     def rshift(self, times):
+        """
+            Right Shift In Times That You Specify
+        """
         for _ in range(times):
             self = [self[-1]] + self[:-1]
 
     # Just String,Int And Boolean Are Handled Here.
     def count_deep(self, tar):
+        """
+            Deep Count. If You Pass A list Of String, It Will Check If The tar ( Argument That Passed To This Function )
+            Is Inside The list itself or is inside the elements of list or not. If you pass a list with complex dimentions
+            it will count inside of all of elements even insidest element ! and it will count it for you.
+        """
         if not (type(tar) == int or type(tar) == str or type(tar) == bool):
             raise TypeError(
                 "CountDeep Just Supports String,Integer And Boolean Types.")
-        if not any(list(map(lambda x: type(x) == list or type(x) == set, self))):
+        if not any(list(map(lambda x: type(x) == list or type(x) == set or type(x) == tuple, self))):
             if type(tar) == str and any(list(map(lambda x: type(x) == str, self))):
                 counted = 0
                 for index in range(len(self)):
@@ -142,6 +200,15 @@ class PyshaList(list):
         return counted
 
     def shift_index(self, index, left_shift=True, how_many=1):
+        """
+            You Can Shift Your Array Better That Just lshift And rshift Methods. You Can Define Which Index To
+            Shift, Type Of Shift ( left or right ) And how_many To Shift.
+
+            Arguments :
+                index, # Index That You Want To Shift
+                left_shift=True, # Left Or Right Shift That You Can Specifiy. Default Is Left Shift
+                how_many=1 # How Many Shifts That You Want. Default Is One
+        """
         for _ in range(how_many):
             if not left_shift:
                 if index == len(self) - 1:
@@ -165,6 +232,8 @@ class PyshaList(list):
                 super(PyshaList, self).__setitem__(k, v)
             else:
                 super(PyshaList, self).__setitem__(k, v)
+        elif type(k) == tuple:
+            self.set_array(k, v)
         else:
             raise TypeError("Type Of Index Must Be int.")
 
@@ -258,13 +327,38 @@ class PyshaList(list):
     def __mod__(self, o: object) -> list:
         return list(map(lambda elem: elem % o, self))
 
+    @staticmethod
+    def make_array(dimentions):
+        """
+            Make Array In Complex Dimentions. You Can Use This Method Like : 
+                PyshaList.make_array([1,2,4,5,4,32])
+        """
+        ans = [None for _ in range(dimentions[-1])]
+        for i in dimentions[:-1][::-1]:
+            ans = [ans for _ in range(i)]
+        return ans
 
-"""
-In PyshaString You Have Lots Of Methods To Do Some Things.
-"""
+    def set_array(self, dimentions, value):
+        """
+            Set Array In Complex Dimentions. You Can Use This Method Like : 
+                array = PyshaList.make_array([1,2,4,5,4,32]) # Just A Complex Array
+                array.set_array([0,2,4,0,4,3],"test")
+            Or Like This :
+                array[0,2,4,0,4,3] = "test"
+            Cool, Right ? :)
+        """
+        array = self
+        for i in dimentions:
+            array = array[i]
+        array = value
+        return array
 
 
 class PyshaString(str):
+    """
+        In PyshaString You Have Lots Of Methods To Do Some Things.
+    """
+
     def inside(self, data_to_search: ListOrDict, search_mode="key", return_type=bool):
         """
         In This Function You Can Search That If A String Exists In Dict ( Or Inside Of All Elements ).
@@ -332,21 +426,20 @@ class PyshaString(str):
         else:
             raise TypeError("Type Must Be list Or dict.")
 
-    """
-        In This Function You Can Search That an String Contains Some Other String From A List.
-
-        Args :
-            data_to_search ->  Strings That You Want To Search For. For Example
-                                Search In List : [" ", ":", ","] And If Your String Is 
-                                "Hello, Im Arshia" It will Return 5 Thats Index Of ",".
-                                If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
-
-            return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
-                            Things Like str To Return Found String.
-
-    """
-
     def find_first(self, data_to_search: list, return_type=int):
+        """
+            In This Function You Can Search That an String Contains Some Other String From A List.
+
+            Args :
+                data_to_search ->  Strings That You Want To Search For. For Example
+                                    Search In List : [" ", ":", ","] And If Your String Is 
+                                    "Hello, Im Arshia" It will Return 5 Thats Index Of ",".
+                                    If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
+
+                return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
+                                Things Like str To Return Found String.
+
+        """
         for c, i in enumerate(self):
             if i in data_to_search:
                 if return_type == int:
@@ -354,21 +447,20 @@ class PyshaString(str):
                 else:
                     return i
 
-    """
-        This Function Is Exactly find_first But It Will Return Last Index Of Found String.
-
-        Args :
-            data_to_search ->  Strings That You Want To Search For. For Example
-                                Search In List : [" ", ":", ","] And If Your String Is 
-                                "Hello, Im Arshia" It will Return 10 Thats Index Of " ".
-                                If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
-
-            return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
-                            Things Like str To Return Found String.
-
-    """
-
     def find_last(self, data_to_search: list, return_type=int):
+        """
+            This Function Is Exactly find_first But It Will Return Last Index Of Found String.
+
+            Args :
+                data_to_search ->  Strings That You Want To Search For. For Example
+                                    Search In List : [" ", ":", ","] And If Your String Is 
+                                    "Hello, Im Arshia" It will Return 10 Thats Index Of " ".
+                                    If Your String Is "Arshia:Hey" It Will Return 6 Thats Index Of ":".
+
+                return_type ->  You Can pass int To Return Index Of Found String. Or Pass Other
+                                Things Like str To Return Found String.
+
+        """
         for c, i in enumerate(self[::-1]):
             if i in data_to_search:
                 if return_type == int:
@@ -376,20 +468,19 @@ class PyshaString(str):
                 else:
                     return i
 
-    """
-        In This Function You Can Replace An Array With Another Array ! ( in a string ).
-        Its Possible That You Replace An Array Of String With A Single String Too.
-
-        Args :
-            data_to_replace ->  Data That You Wanted To Be Replaced For Example If Data Is 
-                                ["Hello", "World"] And replace_with Argument Is ["Hi", "There"]
-                                All Of "Hello" And "World" Will Be Replaced With "Hi" And "There".
-
-            replace_with ->  Described In data_to_replace Argument.
-
-    """
-
     def replace_array(self, data_to_replace: list, replace_with: ListOrString):
+        """
+            In This Function You Can Replace An Array With Another Array ! ( in a string ).
+            Its Possible That You Replace An Array Of String With A Single String Too.
+
+            Args :
+                data_to_replace ->  Data That You Wanted To Be Replaced For Example If Data Is 
+                                    ["Hello", "World"] And replace_with Argument Is ["Hi", "There"]
+                                    All Of "Hello" And "World" Will Be Replaced With "Hi" And "There".
+
+                replace_with ->  Described In data_to_replace Argument.
+
+        """
         if type(replace_with) == str:
             for i in data_to_replace:
                 self = self.replace(i, replace_with)
@@ -398,39 +489,37 @@ class PyshaString(str):
                 self = self.replace(i, replace_with[c])
         return self
 
-    """
-        This Is replace_array But You Can Pass Dictionary To Replace With.
-
-        Args :
-            data_to_replace ->  A Dictionary Of Data To Replace. For Example 
-                                {"Hello": "Hi", "World": "There"} Will Replace "Hello" With "Hi"
-                                And "World" With "There". ( All Of String )
-
-    """
-
     def replace_dict(self, data_to_replace: dict):
+        """
+            This Is replace_array But You Can Pass Dictionary To Replace With.
+
+            Args :
+                data_to_replace ->  A Dictionary Of Data To Replace. For Example 
+                                    {"Hello": "Hi", "World": "There"} Will Replace "Hello" With "Hi"
+                                    And "World" With "There". ( All Of String )
+
+        """
         for j, i in data_to_replace.items():
             self = self.replace(j, i)
         return self
 
-    """
-        This Function Will Check If A List Of Strings Exists In Another String. In Specific
-        Part Of It Or Not. It Will Get a Part Of String And Will Check It With A List Of Strings.
-
-        Args :
-            data_to_replace ->  A List Of Data That You Want To Check If Exists In Another String.
-                                
-            line_start ->  Line Start Number ( Starts With 0 )
-
-            line_end ->  Line End Number ( Starts With 0 )
-
-            start_index ->  Start Index Number ( Starts With 0 )
-
-            end_index ->  End Index Number ( Starts With 0 )
-
-    """
-
     def exists(self, data_to_search: list, line_start=-1, line_end=-1, start_index=-1, end_index=-1):
+        """
+            This Function Will Check If A List Of Strings Exists In Another String. In Specific
+            Part Of It Or Not. It Will Get a Part Of String And Will Check It With A List Of Strings.
+
+            Args :
+                data_to_replace ->  A List Of Data That You Want To Check If Exists In Another String.
+
+                line_start ->  Line Start Number ( Starts With 0 )
+
+                line_end ->  Line End Number ( Starts With 0 )
+
+                start_index ->  Start Index Number ( Starts With 0 )
+
+                end_index ->  End Index Number ( Starts With 0 )
+
+        """
         if line_start == -1:
             line_start = 0
         if line_end == -1:
@@ -446,22 +535,21 @@ class PyshaString(str):
                 return True
         return False
 
-    """
-        This Function Will Replace Any String That You Want But You Can Define Some Parts
-        Not To Replace With Define Escapes !
-
-        Args :
-            string_to_find ->  String That You Want To Search For In String.
-                                
-            to_replace ->  String That You Want To Be Replaced With string_to_find.
-
-            escape_char ->  Escape Character That You Want To Define. ( Default Is \ Character )
-
-            remove_escapes ->  You Can Define That After Replacing, Escape Characters Should Remove
-                                Or Not. ( Default Is False )
-    """
-
     def replace_with_escape(self, string_to_find, to_replace, escape_char='\\', remove_escapes=False):
+        """
+            This Function Will Replace Any String That You Want But You Can Define Some Parts
+            Not To Replace With Define Escapes !
+
+            Args :
+                string_to_find ->  String That You Want To Search For In String.
+
+                to_replace ->  String That You Want To Be Replaced With string_to_find.
+
+                escape_char ->  Escape Character That You Want To Define. ( Default Is \ Character )
+
+                remove_escapes ->  You Can Define That After Replacing, Escape Characters Should Remove
+                                    Or Not. ( Default Is False )
+        """
         last_index = self.find(string_to_find, 0)
         while last_index != -1:
             if self[last_index - 1] == escape_char:
@@ -474,63 +562,68 @@ class PyshaString(str):
             last_index = self.find(string_to_find, last_index + 1)
         return self
 
-    """
-        This Function Is "<<=" Operator. It Will Append Another String To The End Of This String.
-    """
-
     def __ilshift__(self, other):
+        """
+            This Function Is "<<=" Operator. It Will Append Another String To The End Of This String.
+        """
         self = self + other
         return self
-
-    """
-        This Function Is "+=" Operator. It Will Append Another String To The End Of This String.
-    """
 
     def __iadd__(self, other):
+        """
+            This Function Is "+=" Operator. It Will Append Another String To The End Of This String.
+        """
         self = self + other
         return self
 
-    """
-        This Function Is ">>=" Operator. It Will Append Another String To Start Of This String.
-    """
-
     def __irshift__(self, other):
+        """
+            This Function Is ">>=" Operator. It Will Append Another String To Start Of This String.
+        """
         self = other + self
         return self
 
-    """
-        This Function Is "<<" Operator. It Will Append Another String To The End Of This String. ( Not Set )
-    """
-
     def __lshift__(self, other):
+        """
+            This Function Is "<<" Operator. It Will Append Another String To The End Of This String. ( Not Set )
+        """
         return self + other
 
-    """
-        This Function Is ">>" Operator. It Will Append Another String To Start Of This String. ( Not Set )
-    """
-
     def __rshift__(self, other):
+        """
+            This Function Is ">>" Operator. It Will Append Another String To Start Of This String. ( Not Set )
+        """
         return other + self
 
-    """
-        This Function Is "-=" Operator. It Will Remove A String From This String.
-    """
-
     def __isub__(self, other):
+        """
+            This Function Is "-=" Operator. It Will Remove A String From This String.
+        """
         self = self.replace(other, "")
         return self
 
-    """
-        This Function Is "-" Operator. It Will Remove A String From This String. ( Not Set )
-    """
-
     def __sub__(self, other):
+        """
+            This Function Is "-" Operator. It Will Remove A String From This String. ( Not Set )
+        """
         return self.replace(other, "")
 
 
 class PyshaDict(dict):
+    """
+        Thats Just Normal Dictionary Just With 2 Or 3 More Option.
+        PyshaDict Operators :
+            ~myDict # Returns Dictionary Inverse
+            myDict - "elem" # Returns Dicionary With Removed "elem" Key.
+    """
     @property
     def inverse(self):
+        """
+            You Can Get inverse Of A Dictionary. For Example Dict -> {"nickname":"MrMegaExpert"}, Inverse -> {"MrMegaExpert":"nickname"}
+            You Can Set And Change Dicitonary In Inverse Mode ! You Can Get Inverse Of A Dictionary In 2 Ways :
+                myDict.inverse
+                ~myDict
+        """
         return PyshaDict({v: k for k, v in self.items()})
 
     @inverse.setter

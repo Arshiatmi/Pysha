@@ -6,13 +6,12 @@ from data_structures import PyshaString
 from functions import *
 from os import environ, popen, remove
 
-"""
-    This Class Will Be Use For Fun Part Of This Framework :)
-    Most Important Part Of This Framework Exists In This Class.
-"""
-
 
 class command:
+    """
+        This Class Will Be Use For Fun Part Of This Framework :)
+    """
+
     def __init__(self):
         self.arr_data = []
         self.dic_tar = {}
@@ -30,34 +29,33 @@ class command:
         else:
             self._mode = m
 
-    """
-    2 Types Of Loop Currently Exists. i(Input) and p(Print) Mode.
-    In print mode you can make a print loop like that :
-        <i:3>{You Are In _i_ Loop}
-    And This Will Be Printed Like That : 
-        You Are In 0 Loop
-        You Are In 1 Loop
-        You Are In 2 Loop
-
-    And In Input Mode You Can Do This :
-        <i:3>{Enter _i_ Number : }
-    It Will Get 3 Input Like This :
-        Enter 0 Number : (input0)
-        Enter 1 Number : (input1)
-        Enter 2 Number : (input2)
-    And Will Return [input0,input1,input2]
-
-    More Options :
-        <i:3>{Enter _i++_ Number : }
-        <i:3>{Enter _i--_ Number : }
-        <i:2,j:2>{Enter Row _i++_ And Column _j++_  Number : }
-        <i:2>{Enter (Fore.CYAN)[_i++_] Number : }
-    
-    Notes :
-        Just Maded Maximum For 2 Variables Not More.
-    """
-
     def loop(self, cmd, mode='p', c=True):
+        """
+        2 Types Of Loop Currently Exists. i(Input) and p(Print) Mode.
+        In print mode you can make a print loop like that :
+            <i:3>{You Are In _i_ Loop}
+        And This Will Be Printed Like That : 
+            You Are In 0 Loop
+            You Are In 1 Loop
+            You Are In 2 Loop
+
+        And In Input Mode You Can Do This :
+            <i:3>{Enter _i_ Number : }
+        It Will Get 3 Input Like This :
+            Enter 0 Number : (input0)
+            Enter 1 Number : (input1)
+            Enter 2 Number : (input2)
+        And Will Return [input0,input1,input2]
+
+        More Options :
+            <i:3>{Enter _i++_ Number : }
+            <i:3>{Enter _i--_ Number : }
+            <i:2,j:2>{Enter Row _i++_ And Column _j++_  Number : }
+            <i:2>{Enter (Fore.CYAN)[_i++_] Number : }
+
+        Notes :
+            Just Maded Maximum For 2 Variables Not More.
+        """
         if self.mode != 'p':
             mode = self.mode
         if mode == "p":  # Print Mode
@@ -164,18 +162,17 @@ class command:
         else:
             raise ValueError("Mode Should Be 'p' Or 'i' !")
 
-    """
-    This Function Act As c++ One Line Condition.
-    You Can Use This Function Like :
-        condition('i > j ? "i Is Grater" : "j Is Grater"',i=20,j=23)
-    Output Will Be :
-        "j Is Grater"
-    
-    Notes & Warnings :
-        -> '(Quotes) Are Not Working, Always Use "(Double Quotes)
-    """
-
     def condition(self, check, p=True, **kwargs):
+        """
+        This Function Act As c++ One Line Condition.
+        You Can Use This Function Like :
+            condition('i > j ? "i Is Grater" : "j Is Grater"',i=20,j=23)
+        Output Will Be :
+            "j Is Grater"
+
+        Notes & Warnings :
+            -> '(Quotes) Are Not Working, Always Use "(Double Quotes)
+        """
         if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""", ''.join(check.split(' '))):
             raise ConditionError("An Error In Parsing Condition :(")
         if "eval" in check:
@@ -202,31 +199,30 @@ class command:
             else:
                 return eval(not_ok, kwargs, {})
 
-    """
-        In Progress But This Function Should Get Text Between () Of $(cmd)
-        And Run It In Terminal Then Replace The Output With $(cmd) And Should
-        Get #(cmd) Too And Run It As Python Code And Replace This Output Too.
-            Problem Now :
-                Use This 2 Thing Together.
-        
-        Args : 
-            string          ->    The String Pattern That You Want To Make.
-
-            priority        ->    If Its 0 First System Commands Will Replace Then
-                                Python Commands Will Replace. And If Its 1 First
-                                Python Commands Will Replace Then System Commands
-                                Will Be Replaced. Default Is 0.
-            
-            strip_response  ->     Default Is True. It Wanted To Know That Your
-                                    String That Replaced Should Be striped ? ( Remove
-                                    Addtion New Lines And Spaces In Start And End Of 
-                                    String ? )
-        
-        Example :
-            exe("You Current Directory :\n $(dir)\nFinished :)")
-    """
-
     def exe(self, string, priority=0, strip_response=True):
+        """
+            In Progress But This Function Should Get Text Between () Of $(cmd)
+            And Run It In Terminal Then Replace The Output With $(cmd) And Should
+            Get #(cmd) Too And Run It As Python Code And Replace This Output Too.
+                Problem Now :
+                    Use This 2 Thing Together.
+
+            Args : 
+                string          ->    The String Pattern That You Want To Make.
+
+                priority        ->    If Its 0 First System Commands Will Replace Then
+                                    Python Commands Will Replace. And If Its 1 First
+                                    Python Commands Will Replace Then System Commands
+                                    Will Be Replaced. Default Is 0.
+
+                strip_response  ->     Default Is True. It Wanted To Know That Your
+                                        String That Replaced Should Be striped ? ( Remove
+                                        Addtion New Lines And Spaces In Start And End Of 
+                                        String ? )
+
+            Example :
+                exe("You Current Directory :\n $(dir)\nFinished :)")
+        """
         s = re.compile(
             "\$\([A-Za-z0-9_ \$\&\!\@\#\%\^\*\+\=\-\]\[\~\?\'\"\;\:]+\)")
         p = re.compile(
@@ -276,12 +272,11 @@ class command:
                 "Priority Should Be 0 (System First) Or 1 (Python First).")
 
 
-"""
-    The Famous Switch-Case :)
-"""
-
-
 class Switch:
+    """
+        The Famous Switch-Case :)
+    """
+
     def __init__(self, var):
         self.var = var
 
@@ -323,6 +318,26 @@ class Switch:
                     return
 
     def cases(self, all_funcs):
+        """
+            This Function Should Get A Dictionary That Key Is Case And Value Is Function That Will Run On That
+            Case. You Can Pass Lots Of Types For Example :
+                Case(5):
+                    [
+                        func,
+                        arguments,
+                        kwargs
+                    ]
+            Or :
+                Case(1):
+                    " \
+                        print("yay")
+                    "
+            Or :
+                Case(6):
+                    lambda x,y:
+                        print(x,y)
+            For More Models You Can See Examples.
+        """
         for i, j in all_funcs.items():
             if self.var == i or (hasattr(i, '__name__') and i.__name__ == "Case" and i.tar == self.var) or (hasattr(i, 'tar') and i.tar == self.var) or (hasattr(i, '__name__') and i.__name__ == "Default"):
                 if hasattr(j, '__call__'):
@@ -353,47 +368,67 @@ class Switch:
                     return
 
 
-"""
-    Default Case Of Switch-Case
-"""
-
-
 class Default:
+    """
+        Default Case Of Switch-Case. Its Not Doing Anything But You Can Use It On Your Switch Cases.
+    """
     pass
 
 
-"""
-    Define Every Case
-"""
-
-
 class Case:
+    """
+        Define Case Of Switch-Case. Just In Case You Want To Use It Like Case(x).
+    """
+
     def __init__(self, tar):
         self.tar = tar
 
 
-"""
-    Define Variables Of Switch-Case ( Just lambda Case )
-"""
-
-
 class Vars:
+    """
+        In Case You Want To Define Some Variables In lambdas, You Can Set Attributes Of This Class.
+    """
     pass
 
 
-"""
-    Pretty Percent Printer For Loading Some Progress Or Downloading :)
-"""
-
-
 class PercentPrinter:
+    """
+        Pretty Percent Printer For Loading Some Progress Or Downloading :)
+        In Fact, Its Progressbar Itself :)
+    """
+
     def __init__(self, chars=100, pass_color=fore["reset"], loading_color=fore["reset"]):
+        """
+            Arguments :
+                chars=50, # Characters Of Progressbar
+                pass_color=fore["reset"], # The Color Of Passed Part
+                loading_color=fore["reset"], # The Color Of Loading Part ( Still Not Fulled Part )
+        """
         self._percent = 0
         self.chars = chars
         self.pass_color = pass_color
         self.loading_color = loading_color
+        self.char_ok = '#'
+        self.char_loading = '-'
+
+    def config(self, char_ok, char_loading):
+        """
+            Set char_ok And char_loading For Progressbar.
+        """
+        self.char_ok = char_ok
+        self.char_loading = char_loading
 
     def show(self, char_ok='#', char_loading='-', end='\n'):
+        """
+            This Function Just Shows The Progressbar.
+        """
+        if char_ok == '#':
+            if self.char_ok != '#':
+                char_ok = self.char_ok
+        if char_loading == '-':
+            if self.char_loading != '-':
+                char_loading = self.char_loading
+
         num = self._percent
         string = "\r"
         string += (self.pass_color + char_ok + Fore.RESET) * \
@@ -416,23 +451,32 @@ class PercentPrinter:
             self._percent = p
 
     def increase(self, p=1, show=True):
+        """
+            Increses Progressbar In Percents That You Set.
+        """
         self._percent += p
         if show:
             self.show()
 
     def finish(self, show=True):
+        """
+            Finishes The Progressbar.
+        """
         self._percent = 100
         if show:
             self.show()
 
 
-"""
-This Class Will Make An Environment For You To Have Easier And Better Experience :)
-"""
-
-
 class CrossPlatformer:
+    """
+        This Class Will Make An Environment For You To Have Easier And Better Experience :)
+    """
+
     def __init__(self, supported_os=["linux", "windows", "mac"]) -> None:
+        """
+            Arguments : 
+                supported_os # You Can Set Supported Oses. Default is ["linux", "windows", "mac"]
+        """
         self.user_os = platform.system().strip().lower()
         self.all_commands = {}
         self.supported_os = supported_os
@@ -508,6 +552,33 @@ class CrossPlatformer:
 
 
 class interface:
+    """
+        You Can Make Interfaces ( Inspired From PHP ! ) .
+        In Fact You Can Define An Structure That All Of Classes That Extends That Interface Must Have This
+        Structure That You Defined.
+        You Can Use It Like Decorator. For Example : 
+
+        @interface
+        class UserStructure:
+            name = None
+            family = None
+            username = None
+            password = None
+
+        @interface(UserStructure)
+        class SpecialUsers:
+            name = None
+            family = None
+            username = None
+            password = None
+
+        @interface(UserStructure)
+        class Users:
+            name = None
+            family = None
+            username = None
+            password = None
+    """
     instances = {}
 
     def __init__(self, target_class):
@@ -527,22 +598,24 @@ class interface:
             self._parent = target_class
             self.is_parent_interface = False
 
-    def get_class_attrs(self):
+    def __get_class_attrs(self):
         method_list = [method for method in dir(
             self._class) if method not in dir(self)]
         return method_list
 
-    def get_class_attr_types(self):
-        attrs = self.get_class_attrs()
+    def __get_class_attr_types(self):
+        attrs = self.__get_class_attrs()
         method_list = [func for func in attrs if callable(
             getattr(self._class, func))]
         variables = [func for func in attrs if not callable(
             getattr(self._class, func))]
         return method_list, variables
 
-    def is_ok(self):
-        attrs = self.get_class_attr_types()
-        parent_attrs = self._parent.get_class_attr_types()
+    def __is_ok(self):
+        if not self._parent:
+            return True
+        attrs = self.__get_class_attr_types()
+        parent_attrs = self._parent.__get_class_attr_types()
         for methods in attrs[0]:
             this_sig = signature(getattr(self._class, methods))
             this_params = this_sig.parameters
@@ -558,13 +631,18 @@ class interface:
         return True
 
     def has_attr(self, attr):
-        if attr in self.get_class_attrs():
+        """
+            Checks If This Class Has Specific Attribute Or Not. ( Checks For Every Attribute Like Methods,Variables,... )
+        """
+        if attr in self.__get_class_attrs():
             return True
         return False
 
-    def is_allowed_structure(self, parent):
-        parent_attrs = parent.get_class_attrs()
-        is_ok = self.is_ok()
+    def is_allowed_structure(self):
+        """
+            Checks If Has Allowed Structure Or Not.
+        """
+        is_ok = self.__is_ok()
         if is_ok != True:
             return is_ok
         return True
@@ -588,6 +666,17 @@ class interface:
 
 
 class Cond:
+    """
+        Thats Just Normal One line Conditions That Exists in C++. ( Inspired From C++ )
+        You Can Use It Like : 
+            Cond( condition )( if_its_true, if_its_false )
+        For Example :
+            Cond(i > j)(i,j)
+        Or Cool Things Like :
+            Cond(i > j)(minus,add)(i,j)
+        Thats Your Creativity That Makes Your Application Cool :)
+    """
+
     def __init__(self, condition) -> None:
         self.condition = condition
 
@@ -599,6 +688,19 @@ class Cond:
 
 
 class Loop:
+    """
+        This Option Is Unique Too Pysha. Its Not From Anywhere Else But Anyway I Think Its Not That Cool :/
+        You Can Use It Like : 
+            Loop(x,y)("Enter Number[_1_][_2_] :",Loop.Modes.Input) # Input Mode Is Default
+
+        Modes : 
+            Input = 0
+            Print = 1
+
+        Input Is Where You Want To Get Input Just Not Print The Text In x * y Times. It Will Return x * y Array Contains Inputs.
+        Print Is Where You Want To Just Print The Text In x * y Times.
+    """
+
     def __init__(self, *args):
         try:
             self.x = list(map(lambda x: int(x) - 1, args))
@@ -606,6 +708,9 @@ class Loop:
             raise ValueError("Values Must Be Int.")
         self.var_names = self.__get_var_name()
         self.index = 0
+        self.ans_array = [None for _ in range(self.x[-1])]
+        for i in self.x[:-1][::-1]:
+            self.ans_array = [self.ans_array for _ in range(i)]
 
     def __get_var_name(self):
         self.index += 1
@@ -624,11 +729,10 @@ class Loop:
     def __call__(self, text, mode=Modes.Input):
         cur = len(self.x) - 1
         self.y = [0 for _ in range(cur+1)]
-        anses = []
         while True:
             text = self.__format_text(text, self.var_names, self.y)
             if mode == self.Modes.Input:
-                anses.append(input(text))
+                set_array(self.ans_array, self.y, input(text))
             else:
                 print(text)
             if self.y[cur] < self.x[cur]:
@@ -645,4 +749,4 @@ class Loop:
                         break
                 self.y[ind] += 1
         if mode == self.Modes.Input:
-            return anses
+            return self.ans_array

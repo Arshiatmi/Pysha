@@ -4,20 +4,18 @@ import datetime
 from data_structures import PyshaString
 
 
-"""
-This Function Acts As A Decorator For Retring On Some Exceptions That You Define.
-For Example You Can Set That If Running A Function Have HTTPConnectionError, Function
-Retries And Run Again. You Can Define Count Of Retries Too.
-
-Agrs : 
-    count : Count Of Retries For Target Function
-    exceptions : a list contains all exceptions that should retry on them or '*' character
-                means all of exceptions should be retried.
-
-"""
-
-
 def retry(count, exceptions='*'):
+    """
+    This Function Acts As A Decorator For Retring On Some Exceptions That You Define.
+    For Example You Can Set That If Running A Function Have HTTPConnectionError, Function
+    Retries And Run Again. You Can Define Count Of Retries Too.
+
+    Agrs : 
+        count : Count Of Retries For Target Function
+        exceptions : a list contains all exceptions that should retry on them or '*' character
+                    means all of exceptions should be retried.
+
+    """
     def decorator(func):
         def wrapper(*args, **kwargs):
             tested = 0
@@ -38,18 +36,16 @@ def retry(count, exceptions='*'):
     return decorator
 
 
-"""
-This Function Acts As A Decorator For Ignoring Some Exceptions That You Define.
-For Example You Can Set That If Running A Function Have ZeroDivisionError, Function
-Ignore The Problem And Not Make Exception.
-
-Agrs : 
-    exceptions That Should Be A List Of Exceptions You Want To Ignore Or '*' Character
-     That Means All Of Exceptions Must Ignore.
-"""
-
-
 def ignore(exceptions='*'):
+    """
+    This Function Acts As A Decorator For Ignoring Some Exceptions That You Define.
+    For Example You Can Set That If Running A Function Have ZeroDivisionError, Function
+    Ignore The Problem And Not Make Exception.
+
+    Agrs : 
+        exceptions That Should Be A List Of Exceptions You Want To Ignore Or '*' Character
+        That Means All Of Exceptions Must Ignore.
+    """
     def decorator(func):
         def wrapper(*args, **kwargs):
             try:
@@ -66,18 +62,16 @@ def ignore(exceptions='*'):
     return decorator
 
 
-"""
-This Function Acts As A Decorator For Process Initialization. Every Function
-That Has This Decorator Will Be Called Before The Main Function Once. Important
-Thing Is That Function Must Not Have Any Arguments Or Kwarguments To Be Called.
-
-Important Thing : 
-    * This Function Will Be Called Before The Main Function.
-    * Function Must Not Have Any Arguments Or Kwarguments To Be Called.
-"""
-
-
 def once(func):
+    """
+    This Function Acts As A Decorator For Process Initialization. Every Function
+    That Has This Decorator Will Be Called Before The Main Function Once. Important
+    Thing Is That Function Must Not Have Any Arguments Or Kwarguments To Be Called.
+
+    Important Thing : 
+        * This Function Will Be Called Before The Main Function.
+        * Function Must Not Have Any Arguments Or Kwarguments To Be Called.
+    """
     func()
 
     def decorator(*args, **kwargs):
@@ -85,30 +79,28 @@ def once(func):
     return decorator
 
 
-"""
-This Function Acts As A Decorator For Check Spent Time On Executing Functions.
-Args:
-    Gets One Argument For Printing Format. For Example :
-        @time("Spent Time Was _T_")
-        def test():
-            return True
-    And Output Of This Code After Calling test() Will Be Something Like That : 
-        Spent Time Was 0:00:00.100404
-
-Important Parameters : 
-    _T_ : Will Be Replaced With [Hour]:[Minute]:[Second].[MiliSecond]
-    _H_ : Will Be Replaced With [Hour]
-    _M_ : Will Be Replaced With [Minute]
-    _S_ : Will Be Replaced With [Second]
-    _MS_ : Will Be Replaced With [MiliSecond]
-
-Important :
-    You Can Escape All Of This Parameters With (\)
-
-"""
-
-
 def timer(string):
+    """
+    This Function Acts As A Decorator For Check Spent Time On Executing Functions.
+    Args:
+        Gets One Argument For Printing Format. For Example :
+            @time("Spent Time Was _T_")
+            def test():
+                return True
+        And Output Of This Code After Calling test() Will Be Something Like That : 
+            Spent Time Was 0:00:00.100404
+
+    Important Parameters : 
+        _T_ : Will Be Replaced With [Hour]:[Minute]:[Second].[MiliSecond]
+        _H_ : Will Be Replaced With [Hour]
+        _M_ : Will Be Replaced With [Minute]
+        _S_ : Will Be Replaced With [Second]
+        _MS_ : Will Be Replaced With [MiliSecond]
+
+    Important :
+        You Can Escape All Of This Parameters With (\)
+
+    """
     def sec(func):
         def run(*args, **kwargs):
             start = datetime.datetime.now()

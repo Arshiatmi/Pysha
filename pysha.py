@@ -5,27 +5,26 @@ from auth import *
 from enums import *
 from decorators import *
 
-"""
-Abbreviation of Pretty Print.
-Args:
-    You Can Give As Much As You Can For Print :)
-
-Kwargs:
-    curly_c : Set Curly Brackets Colors or "{}" Color.
-    colon_c : Set Colon Colors or ":" Color.
-    quote_c : Set Quote Colors or "'" Color.
-    mode    : Set Mode Of pp. Modes Are 'k' And 'i'. You Can Read About
-                Them In Modes Part.
-    end     : This Will Set End Of Print. Default Is '\n'.
-
-Modes : 
-    k : This Will Use all colors That You Specified As Kwargs.
-    i : This Will Ignore Colors(curly_c,colon_c,quote_c) That You
-            Specified In Kwargs. 
-"""
-
 
 def pp(*args, curly_c=Fore.RESET, colon_c=Fore.RESET, quote_c=Fore.RESET, mode='k', end='\n'):
+    """
+    Abbreviation of Pretty Print.
+    Args:
+        You Can Give As Much As You Can For Print :)
+
+    Kwargs:
+        curly_c : Set Curly Brackets Colors or "{}" Color.
+        colon_c : Set Colon Colors or ":" Color.
+        quote_c : Set Quote Colors or "'" Color.
+        mode    : Set Mode Of pp. Modes Are 'k' And 'i'. You Can Read About
+                    Them In Modes Part.
+        end     : This Will Set End Of Print. Default Is '\n'.
+
+    Modes : 
+        k : This Will Use all colors That You Specified As Kwargs.
+        i : This Will Ignore Colors(curly_c,colon_c,quote_c) That You
+                Specified In Kwargs. 
+    """
     for i in args:
         if type(i) == list:
             print("[", ' , '.join([str(j) for j in i]), "]", end=end)
@@ -55,58 +54,56 @@ def pp(*args, curly_c=Fore.RESET, colon_c=Fore.RESET, quote_c=Fore.RESET, mode='
             print(i, end=end)
 
 
-"""
-This Function Will Draw A Rectangle Plus Your Target Text Middle Of It.
-Args:
-    Just Your Texts. You Can Pass It Like rect("hello","Thanks") Or rect("hello\nThanks")
-kwargs:
-    text_color    ->   Color Of Your Text.
-
-    first_line    ->   This Parameter Will Set First Line Character And Color.
-                        You Can Pass A Character, Default Text Color Will Be Setted.
-                        Or You Can Pass A Tuple That Contains Character And Color Like
-                        ('-',Fore.RED).
-
-    sep           ->   This Parameter Will Set Corners Character And Color.
-                        You Can Pass A Character, Default Text Color Will Be Setted.
-                        Or You Can Pass A Tuple That Contains Character And Color Like
-                        ('-',Fore.RED).
-
-    last_line     ->   This Parameter Will Set Last Line Character And Color.
-                        You Can Pass A Character, Default Text Color Will Be Setted.
-                        Or You Can Pass A Tuple That Contains Character And Color Like
-                        ('-',Fore.RED).
-
-    distance_up   ->   This Parameter Will Set Distance Between Text And First Line.
-                        You Can Pass An Integer That Is Line Numbers Of Distance.
-
-    distance_down ->   This Parameter Will Set Distance Between Text And Last Line.
-                        You Can Pass An Integer That Is Line Numbers Of Distance.
-
-    length        ->   This Parameter Will Set Number Of Characters In First/Last
-                        Line. You Can Pass An Integer That Is Character Count Of First/Last Line.
-
-    p            ->   This Parameter Will Set Print Mode. If Its True It Will Print
-                        And If Its False It Will Return Rectangle As String.
-
-
-Example : 
-    * Code
-        rect("Hello\nWelcome To Pysha :)",first_line='-',last_line='-',distance_up=2,distance_down=2)
-    
-    * Output
-        ------------------------------
-        |                            |
-        |                            |
-        |           Hello            |
-        |    Welcome To Pysha :)     |
-        |                            |
-        |                            |
-        ------------------------------
-"""
-
-
 def rect(*args, text_color=Fore.RESET, first_line=("=", Fore.RESET), sep=("|", Fore.RESET), last_line=("=", Fore.RESET), distance_up=1, distance_down=1, length=30, p=True):
+    """
+    This Function Will Draw A Rectangle Plus Your Target Text Middle Of It.
+    Args:
+        Just Your Texts. You Can Pass It Like rect("hello","Thanks") Or rect("hello\nThanks")
+    kwargs:
+        text_color    ->   Color Of Your Text.
+
+        first_line    ->   This Parameter Will Set First Line Character And Color.
+                            You Can Pass A Character, Default Text Color Will Be Setted.
+                            Or You Can Pass A Tuple That Contains Character And Color Like
+                            ('-',Fore.RED).
+
+        sep           ->   This Parameter Will Set Corners Character And Color.
+                            You Can Pass A Character, Default Text Color Will Be Setted.
+                            Or You Can Pass A Tuple That Contains Character And Color Like
+                            ('-',Fore.RED).
+
+        last_line     ->   This Parameter Will Set Last Line Character And Color.
+                            You Can Pass A Character, Default Text Color Will Be Setted.
+                            Or You Can Pass A Tuple That Contains Character And Color Like
+                            ('-',Fore.RED).
+
+        distance_up   ->   This Parameter Will Set Distance Between Text And First Line.
+                            You Can Pass An Integer That Is Line Numbers Of Distance.
+
+        distance_down ->   This Parameter Will Set Distance Between Text And Last Line.
+                            You Can Pass An Integer That Is Line Numbers Of Distance.
+
+        length        ->   This Parameter Will Set Number Of Characters In First/Last
+                            Line. You Can Pass An Integer That Is Character Count Of First/Last Line.
+
+        p            ->   This Parameter Will Set Print Mode. If Its True It Will Print
+                            And If Its False It Will Return Rectangle As String.
+
+
+    Example : 
+        * Code
+            rect("Hello\nWelcome To Pysha :)",first_line='-',last_line='-',distance_up=2,distance_down=2)
+
+        * Output
+            ------------------------------
+            |                            |
+            |                            |
+            |           Hello            |
+            |    Welcome To Pysha :)     |
+            |                            |
+            |                            |
+            ------------------------------
+    """
     ans = []
     for i in args:
         ans.extend(i.split('\n'))
@@ -156,31 +153,29 @@ def rect(*args, text_color=Fore.RESET, first_line=("=", Fore.RESET), sep=("|", F
         return s
 
 
-"""
-This Function Directly Use pyfiglet Library For Making A Banner.
-Args:
-    text -> The Text That You Want To Convert To A Banner.
-
-    font -> Target Font From Figlet. If You Pass Empty Font Will Be Default
-              Figlet Font.
-
-    p    -> This Parameter Will Set Print Mode. If Its True It Will Print
-              And If Its False It Will Return Banner As String.
-
-Example : 
-    * Code
-        banner("pysha","chunky")
-    
-    * Output
-        ______               __
-        |   __ \.--.--.-----.|  |--.---.-.
-        |    __/|  |  |__ --||     |  _  |
-        |___|   |___  |_____||__|__|___._|
-                |_____|
-"""
-
-
 def banner(text, font="", p=True):
+    """
+    This Function Directly Use pyfiglet Library For Making A Banner.
+    Args:
+        text -> The Text That You Want To Convert To A Banner.
+
+        font -> Target Font From Figlet. If You Pass Empty Font Will Be Default
+                Figlet Font.
+
+        p    -> This Parameter Will Set Print Mode. If Its True It Will Print
+                And If Its False It Will Return Banner As String.
+
+    Example : 
+        * Code
+            banner("pysha","chunky")
+
+        * Output
+            ______               __
+            |   __ \.--.--.-----.|  |--.---.-.
+            |    __/|  |  |__ --||     |  _  |
+            |___|   |___  |_____||__|__|___._|
+                    |_____|
+    """
     if font:
         try:
             if p:
@@ -198,21 +193,19 @@ def banner(text, font="", p=True):
         return pyfiglet.figlet_format(text)
 
 
-"""
-This Function Will Draw A Line In Terminal.
-Kwargs:
-    char -> You Can Pass (char='-') Then Color Will Be Normal Color. Or
-            You Can Pass (char=('-',Fore.[color])) Then Color Will Be [color].
-            Default Is ('=',Fore.RESET)
-
-    count -> Count Of Characters That Line Have.
-
-    p     -> This Parameter Will Set Print Mode. If Its True It Will Print
-              And If Its False It Will Return Line As String.
-"""
-
-
 def l(char=('=', Fore.RESET), count=30, p=True):
+    """
+    This Function Will Draw A Line In Terminal.
+    Kwargs:
+        char -> You Can Pass (char='-') Then Color Will Be Normal Color. Or
+                You Can Pass (char=('-',Fore.[color])) Then Color Will Be [color].
+                Default Is ('=',Fore.RESET)
+
+        count -> Count Of Characters That Line Have.
+
+        p     -> This Parameter Will Set Print Mode. If Its True It Will Print
+                And If Its False It Will Return Line As String.
+    """
     if type(char) == str or ((type(char) == list or type(char) == set or type(char) == tuple) and len(char) == 1):
         char = char, Fore.RESET
     if p:
@@ -221,27 +214,26 @@ def l(char=('=', Fore.RESET), count=30, p=True):
         return char[1] + char[0] * count + Fore.RESET
 
 
-"""
-This Function Will pp The Arguments.
-You Can Set A Prompt If You Want. ( Prompt Will Not Be pp )
-After pp And Prompt It Will Get Input And Returns Input.
-You Can Change Prompt Color By Pass (prompt,Fore.[color]) To Prompt.
-Kwargs:
-    prompt -> You Can Pass (prompt='Enter Your Name : ') And It Will Act As
-              input('Enter Your Name : '). Or You Can Pass (prompt=('Name : ',Fore.RED))
-              And It Will Print 'Name : ' In Red Color.
-Example : 
-    * Code
-        name = xp("(Fore.RED)[W3LC0M3] To (Fore.GREEN)[T3ST] Application.",prompt=('Name : ',Fore.CYAN))
-        pp(name)
-    * Output
-        _RED ->|W3LC0M3|_ To _GREEN -> |T3ST|_ Application.
-        _CYAN -> |Name :|_ (input)
-        (input)
-"""
-
-
 def xp(*args, prompt=('', Fore.RESET)):
+    """
+    This Function Will pp The Arguments.
+    You Can Set A Prompt If You Want. ( Prompt Will Not Be pp )
+    After pp And Prompt It Will Get Input And Returns Input.
+    You Can Change Prompt Color By Pass (prompt,Fore.[color]) To Prompt.
+    Kwargs:
+        prompt -> You Can Pass (prompt='Enter Your Name : ') And It Will Act As
+                input('Enter Your Name : '). Or You Can Pass (prompt=('Name : ',Fore.RED))
+                And It Will Print 'Name : ' In Red Color.
+    Example : 
+        * Code
+            name = xp("(Fore.RED)[W3LC0M3] To (Fore.GREEN)[T3ST] Application.",prompt=('Name : ',Fore.CYAN))
+            pp(name)
+        * Output
+            _RED ->|W3LC0M3|_ To _GREEN -> |T3ST|_ Application.
+            _CYAN -> |Name :|_ (input)
+            (input)
+    """
+
     if (len(prompt) == 1 and (type(prompt) == tuple or type(prompt) == list or type(prompt) == set)) or type(prompt) == str:
         prompt = prompt, Fore.RESET
     pp(*args, mode='i', end='')

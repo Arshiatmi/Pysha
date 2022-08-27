@@ -4,12 +4,13 @@ from exceptions import *
 from enums import Algorithms
 from pickle import Unpickler, Pickler
 
-"""
-Crypto Class Is Made For Do Encryption And Decryption More Coder Friendly :)
-"""
-
 
 class Crypto:
+
+    """
+    Crypto Class Is Made For Do Encryption And Decryption More Coder Friendly :)
+    """
+
     def __init__(self, enc_ls, dec_ls, key):
         self.enc_ls = enc_ls
         self.dec_ls = dec_ls
@@ -67,12 +68,11 @@ class Crypto:
         return '('.join([str(i).split(' ')[1] for i in self.enc_ls]) + f"(string)) -> Key Is {self.key}"
 
 
-"""
-A Class To Save Some Variables With Some Simple Encryption.
-"""
-
-
 class Save:
+    """
+    A Class To Save Some Variables With Some Simple Encryption.
+    """
+
     def __init__(self, file_name, **kwargs):
         self.file_name = file_name
         self.vars_list = kwargs
@@ -90,12 +90,11 @@ class Save:
         Pickler(open(self.file_name, "wb")).dump(self.vars_list)
 
 
-"""
-A Class To Load Saved Variables
-"""
-
-
 class Load:
+    """
+    A Class To Load Saved Variables
+    """
+
     def __init__(self, file_name):
         self.file_name = file_name
         self.vars_list = Unpickler(open(self.file_name, "rb")).load()
@@ -112,13 +111,11 @@ class Load:
             setattr(module, i, j)
 
 
-"""
-xor function. got string And key At The End; It Will Encrypt/Decrypt Your
-Data.
-"""
-
-
 def xor(string, key=0):
+    """
+    xor function. got string And key At The End; It Will Encrypt/Decrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -134,13 +131,11 @@ def xor(string, key=0):
     return ans
 
 
-"""
-base64 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-Data.
-"""
-
-
 def b64_en(string, k=""):
+    """
+    base64 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -150,13 +145,11 @@ def b64_en(string, k=""):
     return base64.b64encode(string).decode('utf-8')
 
 
-"""
-base64 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-Data.
-"""
-
-
 def b64_de(string, k=""):
+    """
+    base64 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -166,13 +159,11 @@ def b64_de(string, k=""):
     return base64.b64decode(string).decode('utf-8')
 
 
-"""
-base32 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-Data.
-"""
-
-
 def b32_en(string, k=""):
+    """
+    base32 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -182,13 +173,11 @@ def b32_en(string, k=""):
     return base64.b32encode(string).decode('utf-8')
 
 
-"""
-base32 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-Data.
-"""
-
-
 def b32_de(string, k=""):
+    """
+    base32 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -198,13 +187,11 @@ def b32_de(string, k=""):
     return base64.b32decode(string).decode('utf-8')
 
 
-"""
-base16 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-Data.
-"""
-
-
 def b16_en(string, k=""):
+    """
+    base16 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -214,13 +201,11 @@ def b16_en(string, k=""):
     return base64.b16encode(string).decode('utf-8')
 
 
-"""
-base16 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-Data.
-"""
-
-
 def b16_de(string, k=""):
+    """
+    base16 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -230,13 +215,11 @@ def b16_de(string, k=""):
     return base64.b16decode(string).decode('utf-8')
 
 
-"""
-base85 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-Data.
-"""
-
-
 def b85_en(string, k=""):
+    """
+    base85 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -246,13 +229,11 @@ def b85_en(string, k=""):
     return base64.b85encode(string).decode('utf-8')
 
 
-"""
-base85 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-Data.
-"""
-
-
 def b85_de(string, k=""):
+    """
+    base85 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
+    Data.
+    """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
     elif type(string) == bytes:
@@ -262,13 +243,11 @@ def b85_de(string, k=""):
     return base64.b85decode(string).decode('utf-8')
 
 
-"""
-Cipher Encoder function. got string And key At The End; It Will Encrypt Your
-Data.
-"""
-
-
 def cipher_en(s, key=1):
+    """
+    Cipher Encoder function. got string And key At The End; It Will Encrypt Your
+    Data.
+    """
     if type(key) == str:
         try:
             key = int(key)
@@ -295,13 +274,11 @@ def cipher_en(s, key=1):
     return ans
 
 
-"""
-Cipher Decoder function. got string And key At The End; It Will Decrypt Your
-Data.
-"""
-
-
 def cipher_de(s, key=1):
+    """
+    Cipher Decoder function. got string And key At The End; It Will Decrypt Your
+    Data.
+    """
     if type(key) == str:
         try:
             key = int(key)
@@ -328,12 +305,10 @@ def cipher_de(s, key=1):
     return ans
 
 
-"""
-ROT13 function. It Will Encrypt Your Data In This Algorythm.
-"""
-
-
 def rot13(string):
+    """
+    ROT13 function. It Will Encrypt Your Data In This Algorythm.
+    """
     slow = string.ascii_lowercase
     sup = string.ascii_uppercase
 
@@ -350,12 +325,10 @@ def rot13(string):
     return ans
 
 
-"""
-ROT13 Decoder function. It Will Decrypt Your Data In This Algorythm.
-"""
-
-
 def unrot13(string):
+    """
+    ROT13 Decoder function. It Will Decrypt Your Data In This Algorythm.
+    """
     slow = string.ascii_lowercase
     sup = string.ascii_uppercase
 
@@ -372,24 +345,22 @@ def unrot13(string):
     return ans
 
 
-"""
-make_enc Function Will Make You An instance Of Crypto Class That Contains A
- Chain Of Encryption Algorithm. In Fact You Are Free To Use Just One Or More.
-Args/Kwargs :
-    alg     ->    The Algorithm That Can Be Like Algorithms.XOR Or Like 
-                    [Algorithms.XOR,Algorithms.Base64]
-    
-    key     ->    The Target Key That You Want To Use In Encryption Process.
-
-Example :
-
-    a = make_enc([Algorithms.XOR,Algorithms.Base64],10)
-    a.enc("Hello")    # Encrypt "Hello" Equals "Qm9mZmU="
-    a.dec("Qm9mZmU=") # Decrypt "Qm9mZmU" Equals "Hello"
-"""
-
-
 def make_enc(alg, key=b""):
+    """
+    make_enc Function Will Make You An instance Of Crypto Class That Contains A
+    Chain Of Encryption Algorithm. In Fact You Are Free To Use Just One Or More.
+    Args/Kwargs :
+        alg     ->    The Algorithm That Can Be Like Algorithms.XOR Or Like 
+                        [Algorithms.XOR,Algorithms.Base64]
+
+        key     ->    The Target Key That You Want To Use In Encryption Process.
+
+    Example :
+
+        a = make_enc([Algorithms.XOR,Algorithms.Base64],10)
+        a.enc("Hello")    # Encrypt "Hello" Equals "Qm9mZmU="
+        a.dec("Qm9mZmU=") # Decrypt "Qm9mZmU" Equals "Hello"
+    """
     if str(type(alg)) == "<enum 'Algorithms'>":
         if alg.name == Algorithms.XOR.name:
             return Crypto([xor], [xor], key)
@@ -408,7 +379,7 @@ def make_enc(alg, key=b""):
         else:
             raise AlgorithmError(
                 f"This Algorithm Is Not Available. We Will Be Happy If You Help Us To Make It :)\nGithub : https://github.com/Arshiatmi/Pysha")
-    elif type(alg) == list or type(alg) == set:
+    elif type(alg) == list or type(alg) == set or type(alg) == tuple:
         ls_en = []
         ls_de = []
         for i in alg:

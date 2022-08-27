@@ -136,11 +136,10 @@ a.loop("<i:2,j:3>{hey thats _j_ index in _i_ column}",mode="i")
 
 # Or this way ( Not still in newest pip version )
 ans = Loop(2,3)("Whats number [_1_][_2_] ?")
-# This will automatically loop through an array[2][3] and get input from it and will return answer 
+# This will automatically loop through an array[2][3] and get input from it and will return answer
 ```
 
 - CrossPlatformer ( You can make cross platform apps easier )
-
 
 ```
 cp = CrossPlatformer()
@@ -203,7 +202,8 @@ l(('-', Fore.CYAN), count=50) # Draw a line with specific character and color
 
 ```
 a = PercentPrinter(chars=30,pass_color=fore["green"],loading_color=fore["cyan"])
-a.show(char_ok='@',char_loading='-')
+a.config(char_ok='@',char_loading='-')
+a.show(char_ok='%',char_loading='`') # Overwrite Config But Not Changes It.
 a.increase(50)
 a.finish(show=False)
 print("Done")

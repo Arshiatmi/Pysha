@@ -2,6 +2,9 @@ from enum import *
 
 
 class Algorithms(Enum):
+    """
+        The Algorythms That You Can Make Encryption Chain From.
+    """
     XOR = 0
     Base64 = 1
     Cipher = 2
@@ -9,8 +12,3 @@ class Algorithms(Enum):
     Base32 = 4
     Base16 = 5
     ROT13 = 6
-
-
-class AIModes(Enum):
-    All = 0
-    Some = 1
