@@ -49,7 +49,7 @@ Switch(var).cases({
 })
 ```
 
-- Interface ( exists in github but you can not use this in current pip version )
+- Interface
 
 ```
 @interface
@@ -124,7 +124,7 @@ a = command()
 print(a.condition("i > j ? i:j",i=10,j=20))
 
 # Or this way
-print(Cond(i>j)(i,j)) # This command still is not on pip newest version
+print(Cond(i>j)(i,j))
 ```
 
 - One line loop
@@ -134,7 +134,7 @@ a = command()
 a.loop("<i:2,j:3>{hey thats _j_ index in _i_ column}",mode="i")
 # "p" mode is for just printing and "i" mode is for get input.
 
-# Or this way ( Not still in newest pip version )
+# Or this way
 ans = Loop(2,3)("Whats number [_1_][_2_] ?")
 # This will automatically loop through an array[2][3] and get input from it and will return answer
 ```
