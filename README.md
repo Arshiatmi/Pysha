@@ -226,4 +226,4 @@ Load("test.txt")(this)
 
 And Lots Of Beautiful Things :)
 
-You Can Look At More [Examples](https://github.com/Arshiatmi/Pysha/tree/master/Examples) Or [Uncompleted Wiki](https://github.com/Arshiatmi/Pysha/wiki) To See More :)
+You Can Look At More [Examples](https://github.com/Arshiatmi/Pysha/tree/master/Examples) Or [Docs](https://pysha.readthedocs.io/en/latest/) To See More :)

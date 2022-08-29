@@ -347,19 +347,19 @@ def unrot13(string):
 
 def make_enc(alg, key=b""):
     """
-    make_enc Function Will Make You An instance Of Crypto Class That Contains A
-    Chain Of Encryption Algorithm. In Fact You Are Free To Use Just One Or More.
-    Args/Kwargs :
-        alg     ->    The Algorithm That Can Be Like Algorithms.XOR Or Like 
-                        [Algorithms.XOR,Algorithms.Base64]
+make_enc Function Will Make You An instance Of Crypto Class That Contains A
+Chain Of Encryption Algorithm. In Fact You Are Free To Use Just One Or More.
+Args/Kwargs :
+* alg     ->    The Algorithm That Can Be Like Algorithms.XOR Or Like 
+                [Algorithms.XOR,Algorithms.Base64]
 
-        key     ->    The Target Key That You Want To Use In Encryption Process.
+* key     ->    The Target Key That You Want To Use In Encryption Process.
 
-    Example :
+Example :
 
-        a = make_enc([Algorithms.XOR,Algorithms.Base64],10)
-        a.enc("Hello")    # Encrypt "Hello" Equals "Qm9mZmU="
-        a.dec("Qm9mZmU=") # Decrypt "Qm9mZmU" Equals "Hello"
+```a = make_enc([Algorithms.XOR,Algorithms.Base64],10)
+a.enc("Hello")    # Encrypt "Hello" Equals "Qm9mZmU="
+a.dec("Qm9mZmU=") # Decrypt "Qm9mZmU" Equals "Hello"```
     """
     if str(type(alg)) == "<enum 'Algorithms'>":
         if alg.name == Algorithms.XOR.name:

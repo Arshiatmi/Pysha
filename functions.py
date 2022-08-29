@@ -17,14 +17,14 @@ ListOrString = TypeVar('ListOrString', list, str)
 
 def colorprompt(prompt: str, out=sys.stdout, char_color=fore["reset"]):
     """
-    This Will Act Like Input. But Characters That User Enters Will Be Colored :)
-    Args :
-        * prompt      ->   The Text For Print And Wait For Input.
+This Will Act Like Input. But Characters That User Enters Will Be Colored :)
+Args :
+* prompt      ->   The Text For Print And Wait For Input.
 
-        * out         ->   Just Standard Output. DO NOT TOUCH THIS :/
+* out         ->   Just Standard Output. DO NOT TOUCH THIS :/
 
-        * char_color  ->   The Color Of Character. Each Character Will Have This 
-                        Color.
+* char_color  ->   The Color Of Character. Each Character Will Have This 
+                Color.
 
     """
     out.write(prompt)
@@ -51,17 +51,17 @@ def colorprompt(prompt: str, out=sys.stdout, char_color=fore["reset"]):
 
 def passprompt(prompt: str, out=sys.stdout, mask_color=fore["reset"], mask='*') -> str:
     """
-    This Will Get Password And Replace Characters With A Mask For Example '*'.
-    Args :
-        * prompt      ->   The Text For Print And Wait For Input.
+This Will Get Password And Replace Characters With A Mask For Example '*'.
+Args :
+* prompt      ->   The Text For Print And Wait For Input.
 
-        * out         ->   Just Standard Output. DO NOT TOUCH THIS :/
+* out         ->   Just Standard Output. DO NOT TOUCH THIS :/
 
-        * mask_color  ->   The Color Of Mask. For Example You Can Print Red Stars For
-                        Each Character :))
+* mask_color  ->   The Color Of Mask. For Example You Can Print Red Stars For
+                Each Character :))
 
-        * mask        ->   The Mask. Every Character That User Type, Will Be Replaced With
-                        This Character :)
+* mask        ->   The Mask. Every Character That User Type, Will Be Replaced With
+                This Character :)
     """
     out.write(prompt)
     out.flush()
@@ -87,17 +87,17 @@ def passprompt(prompt: str, out=sys.stdout, mask_color=fore["reset"], mask='*') 
 
 def escape_translator(target, char: str) -> list:
     """
-    This Function Will Help You To Recover Escaped Characters That Wrongly Splitted.
-    Args :
-        * target         ->   A List Of Splitted String/ A String That You Want To Escape.
+This Function Will Help You To Recover Escaped Characters That Wrongly Splitted.
+Args :
+* target         ->   A List Of Splitted String/ A String That You Want To Escape.
 
-        * char           ->   The Character That You Want To Escape.
+* char           ->   The Character That You Want To Escape.
 
-    Example :
-        ```escape_translator("Hello Lets Escape All < That Have \ Like \< . All \< Will Be Escaped.","<")```
+Example :
+```escape_translator("Hello Lets Escape All < That Have \ Like \< . All \< Will Be Escaped.","<")```
 
-    Out :
-        `['Hello Lets Escape All ', ' That Have \\ Like \\< . All \\< Will Be Escaped.']`
+Out :
+`['Hello Lets Escape All ', ' That Have \\ Like \\< . All \\< Will Be Escaped.']`
     """
 
     if type(target) == str:
@@ -127,58 +127,58 @@ def escape_translator(target, char: str) -> list:
 
 def colorize(string: str) -> str:
     """
-    It Will Colorize The Input.
-    Example :
-        `colorize("(Fore.GREEN)[Hello !]")`
-    Output :
-        * Green Foreground -> |Hello !|
+It Will Colorize The Input.
+Example :
+```colorize("(Fore.GREEN)[Hello !]")```
+Output :
+* Green Foreground -> |Hello !|
 
-    Possible Colors:
-    ```
-        fore = {
-            "green" : Fore.GREEN,
-            "black":Fore.BLACK,
-            "red":Fore.RED,
-            "yellow":Fore.YELLOW,
-            "blue":Fore.BLUE,
-            "cyan":Fore.CYAN,
-            "light_black":Fore.LIGHTBLACK_EX,
-            "light_blue":Fore.LIGHTBLUE_EX,
-            "light_cyan":Fore.LIGHTCYAN_EX,
-            "light_green":Fore.LIGHTGREEN_EX,
-            "light_magenta":Fore.LIGHTMAGENTA_EX,
-            "light_red":Fore.LIGHTRED_EX,
-            "light_white":Fore.LIGHTWHITE_EX,
-            "light_yellow":Fore.LIGHTYELLOW_EX,
-            "magenta":Fore.MAGENTA,
-            "reset":Fore.RESET,
-            "white":Fore.WHITE
-        }
+Possible Colors:
+```
+fore = {
+    "green" : Fore.GREEN,
+    "black":Fore.BLACK,
+    "red":Fore.RED,
+    "yellow":Fore.YELLOW,
+    "blue":Fore.BLUE,
+    "cyan":Fore.CYAN,
+    "light_black":Fore.LIGHTBLACK_EX,
+    "light_blue":Fore.LIGHTBLUE_EX,
+    "light_cyan":Fore.LIGHTCYAN_EX,
+    "light_green":Fore.LIGHTGREEN_EX,
+    "light_magenta":Fore.LIGHTMAGENTA_EX,
+    "light_red":Fore.LIGHTRED_EX,
+    "light_white":Fore.LIGHTWHITE_EX,
+    "light_yellow":Fore.LIGHTYELLOW_EX,
+    "magenta":Fore.MAGENTA,
+    "reset":Fore.RESET,
+    "white":Fore.WHITE
+}
 
-        back = {
-            "green":Back.GREEN,
-            "black":Back.BLACK,
-            "red":Back.RED,
-            "yellow":Back.YELLOW,
-            "blue":Back.BLUE,
-            "cyan":Back.CYAN,
-            "light_black":Back.LIGHTBLACK_EX,
-            "light_blue":Back.LIGHTBLUE_EX,
-            "light_cyan":Back.LIGHTCYAN_EX,
-            "light_green":Back.LIGHTGREEN_EX,
-            "light_magenta":Back.LIGHTMAGENTA_EX,
-            "light_red":Back.LIGHTRED_EX,
-            "light_white":Back.LIGHTWHITE_EX,
-            "light_yellow":Back.LIGHTYELLOW_EX,
-            "magenta":Back.MAGENTA,
-            "reset":Back.RESET,
-            "white":Back.WHITE
-        }
-    ```
+back = {
+    "green":Back.GREEN,
+    "black":Back.BLACK,
+    "red":Back.RED,
+    "yellow":Back.YELLOW,
+    "blue":Back.BLUE,
+    "cyan":Back.CYAN,
+    "light_black":Back.LIGHTBLACK_EX,
+    "light_blue":Back.LIGHTBLUE_EX,
+    "light_cyan":Back.LIGHTCYAN_EX,
+    "light_green":Back.LIGHTGREEN_EX,
+    "light_magenta":Back.LIGHTMAGENTA_EX,
+    "light_red":Back.LIGHTRED_EX,
+    "light_white":Back.LIGHTWHITE_EX,
+    "light_yellow":Back.LIGHTYELLOW_EX,
+    "magenta":Back.MAGENTA,
+    "reset":Back.RESET,
+    "white":Back.WHITE
+}
+```
 
-        You Can Always Access The Colors Like That :
-            * pysha.fore[...]
-            * pysha.back[...]
+You Can Always Access The Colors Like That :
+* pysha.fore[...]
+* pysha.back[...]
     """
     data = re.findall("\(Back|\(Fore\.[A-Z]*\)\[[^\[\]]*\]", string)
     print(data)
@@ -222,11 +222,12 @@ def make_possibles(data):
 
 def display(temp: dict, string: str, c=True) -> None:
     """
-    Related To Loop Command. It Will Print String And Replace _i_ , _i++_ ... With The Value.
-        Args :
-            * temp    ->     Carries Variables.
-            * string  ->     The String Pattern That Should Be Printed In Output.
-            * c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
+Related To Loop Command. It Will Print String And Replace _i_ , _i++_ ... With The Value.
+
+Args :
+* temp    ->     Carries Variables.
+* string  ->     The String Pattern That Should Be Printed In Output.
+* c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
     """
     ans = string
     for i, j in temp.items():
@@ -240,11 +241,12 @@ def display(temp: dict, string: str, c=True) -> None:
 
 def get_ans(temp: dict, string: str, c=True) -> str:
     """
-    Related To Loop Command. It Will Get Input And Replace _i_ , _i++_ ... With The Value.
-        Args :
-            * temp    ->     Carries Variables.
-            * string  ->     The String Pattern That Should Be Printed In Output.
-            * c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
+Related To Loop Command. It Will Get Input And Replace _i_ , _i++_ ... With The Value.
+
+Args :
+    * temp    ->     Carries Variables.
+    * string  ->     The String Pattern That Should Be Printed In Output.
+    * c       ->     If Its True, Answer Will colorized. And Else Won't Be Colorized.
     """
     ans = string
     for i, j in temp.items():
@@ -395,11 +397,12 @@ def condition(check: str, p=True, **kwargs) -> NoneOrStrOrInt:
 
 def write_file(file_name: str, text: ListOrString) -> bool:
     """
-        You Can Write Into A File :)
-        Args :
-            * file_name
-            * text
-        Returns True If Its Successfully Done, Else Return False
+You Can Write Into A File :)
+
+Args :
+* file_name
+* text
+Returns True If Its Successfully Done, Else Return False
     """
     if type(text) == str:
         try:
@@ -421,17 +424,18 @@ def write_file(file_name: str, text: ListOrString) -> bool:
 
 def read_file(file_name: str, mode="s") -> ListOrString:
     """
-        You Can Read Data From A File :)
-        Args :
-            * file_name
+You Can Read Data From A File :)
 
-            * mode(Default:'s') :   The Mode Can Be 's' Or 'l' Means List Or String.
-                                If You Want To Get Output As String Mode 's' Will
-                                Be Good For You And If You Want To Get As list
-                                Mode 'l' Is Good For You.
+Args :
+* file_name
 
-        Returns list of lines Of The File If mode Is 'l', string of lines
-        If mode is 's'.
+* mode(Default:'s') :   The Mode Can Be 's' Or 'l' Means List Or String.
+                    If You Want To Get Output As String Mode 's' Will
+                    Be Good For You And If You Want To Get As list
+                    Mode 'l' Is Good For You.
+
+Returns list of lines Of The File If mode Is 'l', string of lines
+If mode is 's'.
     """
     try:
         a = open(file_name, "r")
@@ -450,11 +454,12 @@ def read_file(file_name: str, mode="s") -> ListOrString:
 
 def append_file(file_name: str, text: str) -> bool:
     """
-        You Can Append to A File.
-        Args :
-            * file_name
-            * text
-        Returns True If Its Successfully Done, Else Return False
+You Can Append to A File.
+
+Args :
+* file_name
+* text
+Returns True If Its Successfully Done, Else Return False
     """
 
     if type(text) == str:
@@ -477,19 +482,20 @@ def append_file(file_name: str, text: str) -> bool:
 
 def create_dir(dir_name: str, create_parents=False) -> bool:
     """
-        Tries To Create A Directory.
-        Args :
-            * dir_name ->  Directory Name. You Can Pass An String Like 'test' Or 
-                    'test/test1/test2' For Directory. But If You Want To 
-                    Make Parents Too, You Have To Pass Next Argument Manually
-                    Too.
+Tries To Create A Directory.
 
-            * create_parents(Default:False) ->  If Its False, Parents Will Not Be
-                                                Created If They Are Not Exists. 
-                                                And If Its True, Parents Will Be
-                                                Created Too !
+Args :
+* dir_name ->  Directory Name. You Can Pass An String Like 'test' Or 
+        'test/test1/test2' For Directory. But If You Want To 
+        Make Parents Too, You Have To Pass Next Argument Manually
+        Too.
 
-        Returns True If Its Successfully Done, Else Return False
+* create_parents(Default:False) ->  If Its False, Parents Will Not Be
+                                    Created If They Are Not Exists. 
+                                    And If Its True, Parents Will Be
+                                    Created Too !
+
+Returns True If Its Successfully Done, Else Return False
     """
     if create_parents:
         try:
@@ -507,16 +513,17 @@ def create_dir(dir_name: str, create_parents=False) -> bool:
 
 def replace_in_file(file_name: str, data_to_replace: dict) -> bool:
     """
-        Tries To Replace A Dictionary.
-        Args :
-            * file_name ->  File Name. You Can Pass File Name That You Want Data 
-                        To Change.
+Tries To Replace A Dictionary.
 
-            * data_to_replace ->  Data That You Want To Replace As Dictinary.
-                                For Example : {'test':'test1'} Will Replace All
-                                'test' With 'test1' In The File.
+Args :
+* file_name ->  File Name. You Can Pass File Name That You Want Data 
+            To Change.
 
-        Returns True If Its Successfully Done, Else Return False
+* data_to_replace ->  Data That You Want To Replace As Dictinary.
+                    For Example : {'test':'test1'} Will Replace All
+                    'test' With 'test1' In The File.
+
+Returns True If Its Successfully Done, Else Return False
     """
     f = open(file_name, "r")
     data = f.readlines()
@@ -532,19 +539,20 @@ def replace_in_file(file_name: str, data_to_replace: dict) -> bool:
 
 def rm_dir(dir_name: str, force=False) -> bool:
     """
-        Tries To Remove A Directory.
-        Args :
-            * dir_name ->  Directory Name. You Can Pass An String Like 'test' Or 
-                    'test/test1/test2' For Directory. If You Want To Force
-                    Remove That Childs Will Remove Too, Pass Next Argument
-                    Manually.
+Tries To Remove A Directory.
 
-            * force(Default:False) ->  If Its False And If directory Has Childs,
-                                    Directory Won't Be Removed.But If Its False
-                                    Doesn't Matter What We Are Cold-Blood Murderes
-                                    And We Kill Them All :)
+Args :
+* dir_name ->  Directory Name. You Can Pass An String Like 'test' Or 
+        'test/test1/test2' For Directory. If You Want To Force
+        Remove That Childs Will Remove Too, Pass Next Argument
+        Manually.
 
-        Returns True If Its Successfully Done, Else Return False
+* force(Default:False) ->  If Its False And If directory Has Childs,
+                        Directory Won't Be Removed.But If Its False
+                        Doesn't Matter What We Are Cold-Blood Murderes
+                        And We Kill Them All :)
+
+Returns True If Its Successfully Done, Else Return False
     """
     if not force:
         try:
@@ -562,47 +570,46 @@ def rm_dir(dir_name: str, force=False) -> bool:
 
 def between(string, string_to_check, start_sign='"', end_sign='"', exact=False, case_sensetive=True):
     """
-        Checks If An String Exists Between Two Characters In Another String.
-        Args :
-            * string ->   A Simple String. (We Need To Check If This String Exists
-                        In Another String Or Not) For Example If You Want To Check
-                        If 'hello' is between " Characters, You Need To Pass hello
-                        As This Argument.
+Checks If An String Exists Between Two Characters In Another String.
 
-            * string_to_check ->   A Big String That We Want To Check And Dive In :)
-                                For Example 'hello My Name Is Arshia And "hello" Is
-                                ok Now As i think :)' And Pass It As This Argument.
+Args :
+* string ->   A Simple String. (We Need To Check If This String Exists
+            In Another String Or Not) For Example If You Want To Check
+            If 'hello' is between " Characters, You Need To Pass hello
+            As This Argument.
 
-            * start_sign -> This Should Be The Start Character That You Are Looking For.
-                        For Example You Can Pass " As This Argument ( Continue Of Previous
-                        Part Example ) . But In Another Example That You Want To Check A Tag For
-                        Example html Tag You Can Pass "<" As Start.
+* string_to_check ->   A Big String That We Want To Check And Dive In :)
+                    For Example 'hello My Name Is Arshia And "hello" Is
+                    ok Now As i think :)' And Pass It As This Argument.
 
-            * end_sign -> This Should Be The Start Character That You Are Looking For.
-                        For Example You Can Pass " As This Argument ( Continue Of Previous
-                        Part Example ) . Continue Of Tag Example You Can Pass ">" As End.
+* start_sign -> This Should Be The Start Character That You Are Looking For.
+            For Example You Can Pass " As This Argument ( Continue Of Previous
+            Part Example ) . But In Another Example That You Want To Check A Tag For
+            Example html Tag You Can Pass "<" As Start.
 
-            * exact -> Basically, Checks For <html> Not <*html*>.This Argument Will Check
-                    For exact Value. For Example If This Option Was False And You Want
-                    To Check For Tags In  String "This <html Test Fake Text> Is Ok." It
-                    Will Return True But If This Option Is True,For That String Will
-                    Return False. Because It Looks For Exact "<html>" Not < Then Anything
-                    Then html Then Again Anything And > Character.
+* end_sign -> This Should Be The Start Character That You Are Looking For.
+            For Example You Can Pass " As This Argument ( Continue Of Previous
+            Part Example ) . Continue Of Tag Example You Can Pass ">" As End.
 
-            * case_sensetive -> If Its True, Lower Case Or Upper Case In Words Are Important.
-                            For Example If Its True, "Html" Is Different From "html" But
-                            If Its False, "Html" And "html" Are Equal.
+* exact -> Basically, Checks For <html> Not <*html*>.This Argument Will Check
+        For exact Value. For Example If This Option Was False And You Want
+        To Check For Tags In  String "This <html Test Fake Text> Is Ok." It
+        Will Return True But If This Option Is True,For That String Will
+        Return False. Because It Looks For Exact "<html>" Not < Then Anything
+        Then html Then Again Anything And > Character.
+
+* case_sensetive -> If Its True, Lower Case Or Upper Case In Words Are Important.
+                For Example If Its True, "Html" Is Different From "html" But
+                If Its False, "Html" And "html" Are Equal.
 
 
-        Example :
-            1. between(":",'The : Is Not Between "" Chars.','"')
-            1. Returns :
-                1. False
-            2. between(":",'The ":" Is Between "" Chars !','"')
-            2. Returns :
-                2. True
+Example :
+1. between(":",'The : Is Not Between "" Chars.','"') Returns :
+1. False
+2. between(":",'The ":" Is Between "" Chars !','"') Returns :
+2. True
 
-        Returns True If Its Found In target Text Else, Returns False.
+Returns True If Its Found In target Text Else, Returns False.
     """
     is_in = False
     ts = ""
@@ -668,39 +675,40 @@ def between_index(string, string_to_check, start_sign='"', end_sign='"', exact=F
 
 def not_between_index(string, string_to_check, start_sign='"', end_sign='"', case_sensetive=True, start=0):
     """
-        Reverse Of Between Plus Index Of Target.
-        Args :
-            * string ->   A Simple String. (We Need To Check If This String Exists
-                        In Another String Or Not) For Example If You Want To Check
-                        If 'hello' is not between " Characters, You Need To Pass hello
-                        As This Argument.
+Reverse Of Between Plus Index Of Target.
 
-            * string_to_check ->   A Big String That We Want To Check And Dive In :)
-                                For Example 'hello My Name Is Arshia And "hello" Is
-                                ok Now As i think :)' And Pass It As This Argument.
+Args :
+* string ->   A Simple String. (We Need To Check If This String Exists
+            In Another String Or Not) For Example If You Want To Check
+            If 'hello' is not between " Characters, You Need To Pass hello
+            As This Argument.
 
-            * start_sign -> This Should Be The Start Character That You Are Looking For.
-                        For Example You Can Pass " As This Argument ( Continue Of Previous
-                        Part Example ) . But In Another Example That You Want To Check Text
-                        That Does Not In A Tag For Example html Tag You Can Pass "<" As Start.
+* string_to_check ->   A Big String That We Want To Check And Dive In :)
+                    For Example 'hello My Name Is Arshia And "hello" Is
+                    ok Now As i think :)' And Pass It As This Argument.
 
-            * end_sign -> This Should Be The Start Character That You Are Looking For.
-                        For Example You Can Pass " As This Argument ( Continue Of Previous
-                        Part Example ) . Continue Of Tag Example You Can Pass ">" As End.
+* start_sign -> This Should Be The Start Character That You Are Looking For.
+            For Example You Can Pass " As This Argument ( Continue Of Previous
+            Part Example ) . But In Another Example That You Want To Check Text
+            That Does Not In A Tag For Example html Tag You Can Pass "<" As Start.
 
-            * case_sensetive -> If Its True, Lower Case Or Upper Case In Words Are Important.
-                            For Example If Its True, "Html" Is Different From "html" But
-                            If Its False, "Html" And "html" Are Equal.
+* end_sign -> This Should Be The Start Character That You Are Looking For.
+            For Example You Can Pass " As This Argument ( Continue Of Previous
+            Part Example ) . Continue Of Tag Example You Can Pass ">" As End.
 
-        Example :
-            * not_between_index(":",'Arshia Said : "Hello ! There Is : Hiding Here :)"','"','"')
-            *  Returns :
-                `12`
-            *  not_between_index(":",'":" Is Not Out Of "" Sign. But Now : It Is.','"','"')
-            *  Returns :
-                `35`
+* case_sensetive -> If Its True, Lower Case Or Upper Case In Words Are Important.
+                For Example If Its True, "Html" Is Different From "html" But
+                If Its False, "Html" And "html" Are Equal.
 
-        Returns True If Its Found Out Of target Sign, Else Returns False.
+Example :
+* not_between_index(":",'Arshia Said : "Hello ! There Is : Hiding Here :)"','"','"')
+*  Returns :
+    `12`
+*  not_between_index(":",'":" Is Not Out Of "" Sign. But Now : It Is.','"','"')
+*  Returns :
+    `35`
+
+Returns True If Its Found Out Of target Sign, Else Returns False.
     """
     is_in = False
     ts = ""
@@ -725,22 +733,23 @@ def not_between_index(string, string_to_check, start_sign='"', end_sign='"', cas
 
 def index_split(string, ind):
     """
-        Split String By Index.
-        Example :
-            ```index_split("Hello My Name Is Arshia",10)```
-        Returns :
-            `['Hello My N', 'me Is Arshia']`
+Split String By Index.
+Example :
+```index_split("Hello My Name Is Arshia",10)```
+Returns :
+```['Hello My N', 'me Is Arshia']```
     """
     return [string[:ind], string[ind + 1:]]
 
 
 def delay_loop(delay: int, func: Callable, count: int = -1, *args, **kwargs):
     """
-        This Function Will Try To Loop A Function In Specific count/infinite count.
-        Example :
-            * delay_loop(10,func,5,args,kwargs)
+This Function Will Try To Loop A Function In Specific count/infinite count.
 
-        In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.
+Example :
+* delay_loop(10,func,5,args,kwargs)
+
+In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.
     """
     if count == -1:
         index = 0
@@ -756,28 +765,28 @@ def delay_loop(delay: int, func: Callable, count: int = -1, *args, **kwargs):
 
 def merge(*args, force_list=False, dont_change=False):
     """
-        This Function Will Merge Some List Or Some Dict Or Some Dict And List !
-        Example :
-            ```merge(["a","b"],{"c":"d","e":"f"},["g","h"])```
-        Returns :
-            ```{"a":"","b":"","c":"","d":"","e":"","f":"","g":"","h":""}```
+This Function Will Merge Some List Or Some Dict Or Some Dict And List !
+Example :
+```merge(["a","b"],{"c":"d","e":"f"},["g","h"])```
+Returns :
+```{"a":"","b":"","c":"","d":"","e":"","f":"","g":"","h":""}```
 
-        Example :
-            ```merge(["a","b"],{"c":"d","e":"f"},["g","h"],force_list=True)```
-        Returns :
-            ```["a","b","c","e","d","f","g","h"]```
+Example :
+```merge(["a","b"],{"c":"d","e":"f"},["g","h"],force_list=True)```
+Returns :
+```["a","b","c","e","d","f","g","h"]```
 
-        Example :
-            ```merge(["a","b"],{"c":"d","e":"f"},["g","h"],force_list=True,dont_change=True)```
-        Returns :
-            ```["a","b","c","d","e","f","g","h"]```
+Example :
+```merge(["a","b"],{"c":"d","e":"f"},["g","h"],force_list=True,dont_change=True)```
+Returns :
+```["a","b","c","d","e","f","g","h"]```
 
-        Example:
-            ```merge(["a","b"],["c","d","e","f"],["g","h"])```
-        Returns :
-            ```["a","b","c","d","e","f","g","h"]```
+Example:
+```merge(["a","b"],["c","d","e","f"],["g","h"])```
+Returns :
+```["a","b","c","d","e","f","g","h"]```
 
-        In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.
+In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.
     """
     if list(filter(lambda x: type(x) == dict, args)):
         if not force_list:
