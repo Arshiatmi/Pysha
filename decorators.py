@@ -1,5 +1,6 @@
 import sys
 import datetime
+from inspect import signature
 
 from data_structures import PyshaString
 
@@ -124,3 +125,120 @@ Important :
             print(s)
         return run
     return sec
+
+class interface:
+    """
+You Can Make Interfaces ( Inspired From PHP ! ) .
+In Fact You Can Define An Structure That All Of Classes That Extends That Interface Must Have This
+Structure That You Defined.
+
+You Can Use It Like Decorator. For Example : 
+
+```
+@interface
+class UserStructure:
+    name = None
+    family = None
+    username = None
+    password = None
+
+@interface(UserStructure)
+class SpecialUsers:
+    name = None
+    family = None
+    username = None
+    password = None
+
+@interface(UserStructure)
+class Users:
+    name = None
+    family = None
+    username = None
+    password = None
+```
+    """
+    instances: dict = {}
+
+    def __init__(self, target_class):
+        self.is_parent_interface = False
+        try:
+            class_name = target_class.__name__
+        except:
+            try:
+                class_name = target_class._class.__name__
+            except:
+                raise ValueError("You Should Pass className.")
+        if (type(target_class) == type):
+            self._class = target_class
+            self.is_parent_interface = True
+            interface.instances[class_name] = self
+        else:
+            self._parent = target_class
+            self.is_parent_interface = False
+
+    def __get_class_attrs(self):
+        method_list = [method for method in dir(
+            self._class) if method not in dir(self)]
+        return method_list
+
+    def __get_class_attr_types(self):
+        attrs = self.__get_class_attrs()
+        method_list = [func for func in attrs if callable(
+            getattr(self._class, func))]
+        variables = [func for func in attrs if not callable(
+            getattr(self._class, func))]
+        return method_list, variables
+
+    def __is_ok(self):
+        if not self._parent:
+            return True
+        attrs = self.__get_class_attr_types()
+        parent_attrs = self._parent.__get_class_attr_types()
+        for methods in attrs[0]:
+            this_sig = signature(getattr(self._class, methods))
+            this_params = this_sig.parameters
+            parent_sig = signature(getattr(self._parent._class, methods))
+            parent_params = parent_sig.parameters
+            if (this_params) == parent_params:
+                continue
+            return f"Parameters Of Methods Are Not Equal (child( {' '.join(this_params)} ) , parent( {' '.join(parent_params) }))"
+        for variable in parent_attrs[1]:
+            if self.has_attr(variable):
+                continue
+            return f"Variable Problem. ( {variable} Not Defined In Child Class )"
+        return True
+
+    def has_attr(self, attr):
+        """
+            Checks If This Class Has Specific Attribute Or Not. ( Checks For Every Attribute Like Methods,Variables,... )
+        """
+        if attr in self.__get_class_attrs():
+            return True
+        return False
+
+    def is_allowed_structure(self):
+        """
+            Checks If Has Allowed Structure Or Not.
+        """
+        is_ok = self.__is_ok()
+        if is_ok != True:
+            return is_ok
+        return True
+
+    def __call__(self, *parent_args, **parent_kwds):
+        if self.is_parent_interface:
+            return self._class(*parent_args, **parent_kwds)
+        else:
+            def wrapper(*args, **kwds):
+                self._class = parent_args[0]
+                interface.instances[self._class.__name__] = self._class
+                try:
+                    is_allowed = self.is_allowed_structure(self._parent)
+                except:
+                    raise ValueError("There Is No Interface With This Name.")
+                if is_allowed != True:
+                    raise ValueError(
+                        f"This Class Does Not Extends From {self._class.__name__} Interface. {is_allowed}")
+                return self._class(*args, **kwds)
+            return wrapper
+

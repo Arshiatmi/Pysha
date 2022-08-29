@@ -2,6 +2,11 @@
 
 Pysha Micro Framework. For Doing Something Beautiful In Python :)
 
+- 💣 super power
+- 🩸 bleeding edge
+- 🔨 holistic approach
+- 🤯 gamechanging
+
 You can See examples of pysha in Examples directory.
 
 ## Installation
