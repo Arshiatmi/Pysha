@@ -8,7 +8,7 @@ from pickle import Unpickler, Pickler
 class Crypto:
 
     """
-    Crypto Class Is Made For Do Encryption And Decryption More Coder Friendly :)
+Crypto Class Is Made For Do Encryption And Decryption More Coder Friendly :)
     """
 
     def __init__(self, enc_ls, dec_ls, key):
@@ -70,7 +70,22 @@ class Crypto:
 
 class Save:
     """
-    A Class To Save Some Variables With Some Simple Encryption.
+A Class To Save Some Variables With Some Simple Encryption. Example : 
+
+```
+Save("file.txt",name="test",family="123",...)()
+
+# Or 
+handler = Save("file.txt")
+handler.add_var("name","Arshia")
+handler.add_vars({"nickname":"MrMegaExpert","age":21})
+handler.save() # Or handler()
+
+# Or 
+handler = Save("file.txt")
+handler["name"] = "Arshia"
+handler.save() # Or handler()
+```
     """
 
     def __init__(self, file_name, **kwargs):
@@ -83,6 +98,12 @@ class Save:
     def add_vars(self, **kwargs):
         self.vars_list.update(kwargs)
 
+    def __setitem__(self, key, value):
+        self.vars_list[key] = value
+
+    def __getitem__(self, key):
+        return self.vars_list[key]
+
     def __call__(self):
         Pickler(open(self.file_name, "wb")).dump(self.vars_list)
 
@@ -92,7 +113,23 @@ class Save:
 
 class Load:
     """
-    A Class To Load Saved Variables
+A Class To Load Saved Variables. Example : 
+
+```
+def test():
+    print(name)
+
+Load("file.txt")(test)
+
+# Or 
+handler = Load("file.txt")
+print(handler.vars) # All Variables As Dictionary
+
+# Or 
+Load("file.txt")()
+print(name) # If You Saved name It Will Be Shown :)
+```
+
     """
 
     def __init__(self, file_name):
@@ -102,19 +139,24 @@ class Load:
     def vars(self):
         return self.vars_list
 
-    def __call__(self, module):
+    def __call__(self, module=None):
         for i, j in self.vars_list.items():
-            setattr(module, i, j)
+            if not module:
+                globals()[i] = j
+            else:
+                setattr(module, i, j)
 
-    def load(self, module):
+    def load(self, module=None):
         for i, j in self.vars_list.items():
-            setattr(module, i, j)
+            if not module:
+                globals()[i] = j
+            else:
+                setattr(module, i, j)
 
 
-def xor(string, key=0):
+def _xor(string, key=0):
     """
-    xor function. got string And key At The End; It Will Encrypt/Decrypt Your
-    Data.
+xor function. got string And key At The End; It Will Encrypt/Decrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -131,10 +173,9 @@ def xor(string, key=0):
     return ans
 
 
-def b64_en(string, k=""):
+def _b64_en(string, k=""):
     """
-    base64 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-    Data.
+base64 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -145,10 +186,9 @@ def b64_en(string, k=""):
     return base64.b64encode(string).decode('utf-8')
 
 
-def b64_de(string, k=""):
+def _b64_de(string, k=""):
     """
-    base64 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-    Data.
+base64 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -159,10 +199,9 @@ def b64_de(string, k=""):
     return base64.b64decode(string).decode('utf-8')
 
 
-def b32_en(string, k=""):
+def _b32_en(string, k=""):
     """
-    base32 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-    Data.
+base32 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -173,10 +212,9 @@ def b32_en(string, k=""):
     return base64.b32encode(string).decode('utf-8')
 
 
-def b32_de(string, k=""):
+def _b32_de(string, k=""):
     """
-    base32 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-    Data.
+base32 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -187,10 +225,9 @@ def b32_de(string, k=""):
     return base64.b32decode(string).decode('utf-8')
 
 
-def b16_en(string, k=""):
+def _b16_en(string, k=""):
     """
-    base16 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-    Data.
+base16 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -201,10 +238,9 @@ def b16_en(string, k=""):
     return base64.b16encode(string).decode('utf-8')
 
 
-def b16_de(string, k=""):
+def _b16_de(string, k=""):
     """
-    base16 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-    Data.
+base16 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -215,10 +251,9 @@ def b16_de(string, k=""):
     return base64.b16decode(string).decode('utf-8')
 
 
-def b85_en(string, k=""):
+def _b85_en(string, k=""):
     """
-    base85 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your
-    Data.
+base85 Encoder function. got string And key (Fake) At The End; It Will Encrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -229,10 +264,9 @@ def b85_en(string, k=""):
     return base64.b85encode(string).decode('utf-8')
 
 
-def b85_de(string, k=""):
+def _b85_de(string, k=""):
     """
-    base85 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your
-    Data.
+base85 Decoder function. got string And key (Fake) At The End; It Will Decrypt Your Data.
     """
     if type(string) == str:
         string = bytes(string, encoding='utf-8')
@@ -243,10 +277,9 @@ def b85_de(string, k=""):
     return base64.b85decode(string).decode('utf-8')
 
 
-def cipher_en(s, key=1):
+def _cipher_en(s, key=1):
     """
-    Cipher Encoder function. got string And key At The End; It Will Encrypt Your
-    Data.
+Cipher Encoder function. got string And key At The End; It Will Encrypt Your,Data.
     """
     if type(key) == str:
         try:
@@ -274,10 +307,9 @@ def cipher_en(s, key=1):
     return ans
 
 
-def cipher_de(s, key=1):
+def _cipher_de(s, key=1):
     """
-    Cipher Decoder function. got string And key At The End; It Will Decrypt Your
-    Data.
+Cipher Decoder function. got string And key At The End; It Will Decrypt Your Data.
     """
     if type(key) == str:
         try:
@@ -305,9 +337,9 @@ def cipher_de(s, key=1):
     return ans
 
 
-def rot13(string):
+def _rot13(string):
     """
-    ROT13 function. It Will Encrypt Your Data In This Algorythm.
+ROT13 function. It Will Encrypt Your Data In This Algorythm.
     """
     slow = string.ascii_lowercase
     sup = string.ascii_uppercase
@@ -325,9 +357,9 @@ def rot13(string):
     return ans
 
 
-def unrot13(string):
+def _unrot13(string):
     """
-    ROT13 Decoder function. It Will Decrypt Your Data In This Algorythm.
+ROT13 Decoder function. It Will Decrypt Your Data In This Algorythm.
     """
     slow = string.ascii_lowercase
     sup = string.ascii_uppercase
@@ -363,19 +395,19 @@ a.dec("Qm9mZmU=") # Decrypt "Qm9mZmU" Equals "Hello"```
     """
     if str(type(alg)) == "<enum 'Algorithms'>":
         if alg.name == Algorithms.XOR.name:
-            return Crypto([xor], [xor], key)
+            return Crypto([_xor], [_xor], key)
         elif alg.name == Algorithms.ROT13.name:
-            return Crypto([rot13], [unrot13], key)
+            return Crypto([_rot13], [_unrot13], key)
         elif alg.name == Algorithms.Base64.name:
-            return Crypto([b64_en], [b64_de], key)
+            return Crypto([_b64_en], [_b64_de], key)
         elif alg.name == Algorithms.Cipher.name:
-            return Crypto([cipher_en], [cipher_de], key)
+            return Crypto([_cipher_en], [_cipher_de], key)
         elif alg.name == Algorithms.Base16.name:
-            return Crypto([b16_en], [b16_de], key)
+            return Crypto([_b16_en], [_b16_de], key)
         elif alg.name == Algorithms.Base32.name:
-            return Crypto([b32_en], [b32_de], key)
+            return Crypto([_b32_en], [_b32_de], key)
         elif alg.name == Algorithms.Base85.name:
-            return Crypto([b85_en], [b85_de], key)
+            return Crypto([_b85_en], [_b85_de], key)
         else:
             raise AlgorithmError(
                 f"This Algorithm Is Not Available. We Will Be Happy If You Help Us To Make It :)\nGithub : https://github.com/Arshiatmi/Pysha")
@@ -384,26 +416,26 @@ a.dec("Qm9mZmU=") # Decrypt "Qm9mZmU" Equals "Hello"```
         ls_de = []
         for i in alg:
             if hasattr(i, 'name') and i.name == Algorithms.XOR.name:
-                ls_en.append(xor)
-                ls_de.append(xor)
+                ls_en.append(_xor)
+                ls_de.append(_xor)
             elif hasattr(i, 'name') and i.name == Algorithms.Base64.name:
-                ls_en.append(b64_en)
-                ls_de.append(b64_de)
+                ls_en.append(_b64_en)
+                ls_de.append(_b64_de)
             elif hasattr(i, 'name') and i.name == Algorithms.Cipher.name:
-                ls_en.append(cipher_en)
-                ls_de.append(cipher_de)
+                ls_en.append(_cipher_en)
+                ls_de.append(_cipher_de)
             elif hasattr(i, 'name') and i.name == Algorithms.Base16.name:
-                ls_en.append(b16_en)
-                ls_de.append(b16_de)
+                ls_en.append(_b16_en)
+                ls_de.append(_b16_de)
             elif hasattr(i, 'name') and i.name == Algorithms.Base32.name:
-                ls_en.append(b32_en)
-                ls_de.append(b32_de)
+                ls_en.append(_b32_en)
+                ls_de.append(_b32_de)
             elif hasattr(i, 'name') and i.name == Algorithms.Base85.name:
-                ls_en.append(b85_en)
-                ls_de.append(b85_de)
+                ls_en.append(_b85_en)
+                ls_de.append(_b85_de)
             elif hasattr(i, 'name') and i.name == Algorithms.ROT13.name:
-                ls_en.append(rot13)
-                ls_de.append(unrot13)
+                ls_en.append(_rot13)
+                ls_de.append(_unrot13)
             else:
                 raise AlgorithmError(
                     f"Type {i} Is Not Supported. Just (Algorithms.Base64/Algorithms.XOR/Algorithms.Cypher) Is Supported.")

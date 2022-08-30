@@ -7,7 +7,7 @@ from os import environ, popen, remove
 
 class command:
     """
-        This Class Will Be Use For Fun Part Of This Framework :)
+This Class Will Be Use For Fun Part Of This Framework :)
     """
 
     def __init__(self):
@@ -278,7 +278,7 @@ Example :
 
 class Switch:
     """
-        The Famous Switch-Case :)
+The Famous Switch-Case :)
     """
 
     def __init__(self, var):
@@ -380,14 +380,14 @@ For More Models You Can See Examples.
 
 class Default:
     """
-        Default Case Of Switch-Case. Its Not Doing Anything But You Can Use It On Your Switch Cases.
+Default Case Of Switch-Case. Its Not Doing Anything But You Can Use It On Your Switch Cases.
     """
     pass
 
 
 class Case:
     """
-        Define Case Of Switch-Case. Just In Case You Want To Use It Like Case(x).
+Define Case Of Switch-Case. Just In Case You Want To Use It Like Case(x).
     """
 
     def __init__(self, tar):
@@ -396,15 +396,15 @@ class Case:
 
 class Vars:
     """
-        In Case You Want To Define Some Variables In lambdas, You Can Set Attributes Of This Class.
+In Case You Want To Define Some Variables In lambdas, You Can Set Attributes Of This Class.
     """
     pass
 
 
 class PercentPrinter:
     """
-        Pretty Percent Printer For Loading Some Progress Or Downloading :)
-        In Fact, Its Progressbar Itself :)
+Pretty Percent Printer For Loading Some Progress Or Downloading :)
+In Fact, Its Progressbar Itself :)
     """
 
     def __init__(self, chars=100, pass_color=fore["reset"], loading_color=fore["reset"]):
@@ -423,14 +423,14 @@ Arguments :
 
     def config(self, char_ok, char_loading):
         """
-            Set char_ok And char_loading For Progressbar.
+Set char_ok And char_loading For Progressbar.
         """
         self.char_ok = char_ok
         self.char_loading = char_loading
 
     def show(self, char_ok='#', char_loading='-', end='\n'):
         """
-            This Function Just Shows The Progressbar.
+This Function Just Shows The Progressbar.
         """
         if char_ok == '#':
             if self.char_ok != '#':
@@ -462,7 +462,7 @@ Arguments :
 
     def increase(self, p=1, show=True):
         """
-            Increses Progressbar In Percents That You Set.
+Increses Progressbar In Percents That You Set.
         """
         self._percent += p
         if show:
@@ -470,7 +470,7 @@ Arguments :
 
     def finish(self, show=True):
         """
-            Finishes The Progressbar.
+Finishes The Progressbar.
         """
         self._percent = 100
         if show:
@@ -479,7 +479,7 @@ Arguments :
 
 class CrossPlatformer:
     """
-        This Class Will Make An Environment For You To Have Easier And Better Experience :)
+This Class Will Make An Environment For You To Have Easier And Better Experience :)
     """
 
     def __init__(self, supported_os=["linux", "windows", "mac"]) -> None:

@@ -7,14 +7,14 @@ ListOrString = TypeVar('ListOrString', list, str)
 
 class Stack:
     """
-        The Common Stack Data Structure That You Can Use Here.
+The Common Stack Data Structure That You Can Use Here.
     """
 
     def __init__(self, inf=1, capacity=0):
         """
-            Arguements :
-                * inf=1, # Set If Stack Is Infinite Or Not. Default Is Infinite Stack.
-                * capacity=0 # Set Capacity In Case Of limited Stack.
+Arguements :
+* inf=1, # Set If Stack Is Infinite Or Not. Default Is Infinite Stack.
+* capacity=0 # Set Capacity In Case Of limited Stack.
         """
         self.inf = inf
         if inf:
@@ -33,7 +33,7 @@ class Stack:
 
     def push(self, elem):
         """
-            Push The Value To Stack
+Push The Value To Stack
         """
         if self.inf:
             self.__storage.append(elem)
@@ -45,7 +45,7 @@ class Stack:
 
     def pop(self):
         """
-            Pop The Value From Stack ( Returns The Removed Value )
+Pop The Value From Stack ( Returns The Removed Value )
         """
         if self.__storage:
             return self.__storage.pop()
@@ -54,21 +54,21 @@ class Stack:
 
     def display(self):
         """
-            Display Stack Data
+Display Stack Data
         """
         return self.storage
 
 
 class LIFO(Stack):
     """
-        You Can Use This Insted Of Stack. All Methods Of Stack Are Available Here.
+You Can Use This Insted Of Stack. All Methods Of Stack Are Available Here.
     """
     pass
 
 
 class Queue:
     """
-        The Common Queue Data Structure That You Can Use Here.
+The Common Queue Data Structure That You Can Use Here.
     """
 
     def __init__(self, inf=1, capacity=0):
@@ -89,7 +89,7 @@ class Queue:
 
     def add(self, elem):
         """
-            Add Value To Queue.
+Add Value To Queue.
         """
         if self.inf:
             self.__storage.append(elem)
@@ -101,7 +101,7 @@ class Queue:
 
     def remove(self):
         """
-            Remove From Queue ( Returns The Removed Value )
+Remove From Queue ( Returns The Removed Value )
         """
         if self.__storage:
             return self.__storage.pop(0)
@@ -110,21 +110,21 @@ class Queue:
 
     def display(self):
         """
-            Display The Queue.
+Display The Queue.
         """
         return self.storage
 
 
 class FIFO(Queue):
     """
-        You Can Use This Insted Of Queue. All Methods Of Queue Are Available Here.
+You Can Use This Insted Of Queue. All Methods Of Queue Are Available Here.
     """
     pass
 
 
 class PyshaList(list):
     """
-        PyshaList That Have Some Advanteges To Normal List.
+PyshaList That Have Some Advanteges To Normal List.
     """
 
     def __str__(self):
@@ -143,14 +143,14 @@ class PyshaList(list):
 
     def lshift(self, times):
         """
-            Left Shift In Times That You Specify
+Left Shift In Times That You Specify
         """
         for _ in range(times):
             self = self[1:] + [self[0]]
 
     def rshift(self, times):
         """
-            Right Shift In Times That You Specify
+Right Shift In Times That You Specify
         """
         for _ in range(times):
             self = [self[-1]] + self[:-1]
@@ -566,47 +566,47 @@ Args :
 
     def __ilshift__(self, other):
         """
-            This Function Is "<<=" Operator. It Will Append Another String To The End Of This String.
+This Function Is "<<=" Operator. It Will Append Another String To The End Of This String.
         """
         self = self + other
         return self
 
     def __iadd__(self, other):
         """
-            This Function Is "+=" Operator. It Will Append Another String To The End Of This String.
+This Function Is "+=" Operator. It Will Append Another String To The End Of This String.
         """
         self = self + other
         return self
 
     def __irshift__(self, other):
         """
-            This Function Is ">>=" Operator. It Will Append Another String To Start Of This String.
+This Function Is ">>=" Operator. It Will Append Another String To Start Of This String.
         """
         self = other + self
         return self
 
     def __lshift__(self, other):
         """
-            This Function Is "<<" Operator. It Will Append Another String To The End Of This String. ( Not Set )
+This Function Is "<<" Operator. It Will Append Another String To The End Of This String. ( Not Set )
         """
         return self + other
 
     def __rshift__(self, other):
         """
-            This Function Is ">>" Operator. It Will Append Another String To Start Of This String. ( Not Set )
+This Function Is ">>" Operator. It Will Append Another String To Start Of This String. ( Not Set )
         """
         return other + self
 
     def __isub__(self, other):
         """
-            This Function Is "-=" Operator. It Will Remove A String From This String.
+This Function Is "-=" Operator. It Will Remove A String From This String.
         """
         self = self.replace(other, "")
         return self
 
     def __sub__(self, other):
         """
-            This Function Is "-" Operator. It Will Remove A String From This String. ( Not Set )
+This Function Is "-" Operator. It Will Remove A String From This String. ( Not Set )
         """
         return self.replace(other, "")
 

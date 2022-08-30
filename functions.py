@@ -260,7 +260,7 @@ Args :
 
 def loop(cmd: str, mode='p', c=True) -> NoneOrStr:
     """
-    All Descriptions From This Function Came In `classes.py` - command Class.
+All Descriptions From This Function Came In `classes.py` - command Class.
     """
     if mode == "p":  # Print Mode
         alls = cmd.split(">")[0][1:]
@@ -366,7 +366,7 @@ def loop(cmd: str, mode='p', c=True) -> NoneOrStr:
 
 def condition(check: str, p=True, **kwargs) -> NoneOrStrOrInt:
     """
-    Descrioptions Are Available In 'classes.py' And In command Class.
+Descrioptions Are Available In 'classes.py' And In command Class.
     """
     if not re.match("""(\"?)[ -~]+(\"?)(>|<|==|>=|<=)(\"?)[ -~]+(\"?)\?(\"?)[ -~]+(\"?):(\"?)[ -~]+(\"?)""", ''.join(check.split(' '))):
         raise ConditionError("An Error In Parsing Condition :(")
@@ -642,7 +642,7 @@ Returns True If Its Found In target Text Else, Returns False.
 
 def between_index(string, string_to_check, start_sign='"', end_sign='"', exact=False, case_sensetive=True, start=0):
     """
-        Acts Like Between Function But It Will Return Index Insted Of Boolean Value.
+Acts Like Between Function But It Will Return Index Insted Of Boolean Value.
     """
     is_in = False
     ts = ""
@@ -819,7 +819,7 @@ In Every 10 Seconds Function func(args,kwargs) Will Be Called 5 Times.
 
 def make_array(dimentions):
     """
-        Make An Array In Dimentions That You Gave.
+Make An Array In Dimentions That You Gave.
     """
     ans = [None for _ in range(dimentions[-1])]
     for i in dimentions[:-1][::-1]:
@@ -829,7 +829,7 @@ def make_array(dimentions):
 
 def set_array(array, dimentions, value):
     """
-        Set An Array Value In Complicated Dimentions.
+Set An Array Value In Complicated Dimentions.
     """
     for i in dimentions:
         array = array[i]

@@ -126,6 +126,7 @@ Important :
         return run
     return sec
 
+
 class interface:
     """
 You Can Make Interfaces ( Inspired From PHP ! ) .
@@ -210,7 +211,7 @@ class Users:
 
     def has_attr(self, attr):
         """
-            Checks If This Class Has Specific Attribute Or Not. ( Checks For Every Attribute Like Methods,Variables,... )
+Checks If This Class Has Specific Attribute Or Not. ( Checks For Every Attribute Like Methods,Variables,... )
         """
         if attr in self.__get_class_attrs():
             return True
@@ -218,7 +219,7 @@ class Users:
 
     def is_allowed_structure(self):
         """
-            Checks If Has Allowed Structure Or Not.
+Checks If Has Allowed Structure Or Not.
         """
         is_ok = self.__is_ok()
         if is_ok != True:
@@ -241,4 +242,3 @@ class Users:
                         f"This Class Does Not Extends From {self._class.__name__} Interface. {is_allowed}")
                 return self._class(*args, **kwds)
             return wrapper
-

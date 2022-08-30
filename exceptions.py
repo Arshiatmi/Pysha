@@ -28,6 +28,6 @@ class AlgorithmError(Exception):
 
 def exception_create(name):
     """
-        Create Your Customized Exception With Name That You Specify !
+Create Your Customized Exception With Name That You Specify !
     """
     return type(name, (Exception,), {})

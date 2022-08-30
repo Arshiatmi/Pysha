@@ -3,7 +3,7 @@ from enum import *
 
 class Algorithms(Enum):
     """
-        The Algorythms That You Can Make Encryption Chain From.
+The Algorythms That You Can Make Encryption Chain From.
     """
     XOR = 0
     Base64 = 1
