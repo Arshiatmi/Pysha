@@ -1,7 +1,7 @@
 # Pysha
 
-![license](https://img.shields.io/github/license/Arshiatmi/Box-Programming.svg)
-![last-commit](https://img.shields.io/github/last-commit/Arshiatmi/Box-Programming.svg)
+![license](https://img.shields.io/github/license/Arshiatmi/Pysha.svg)
+![last-commit](https://img.shields.io/github/last-commit/Arshiatmi/Pysha.svg)
 
 Pysha Micro Framework. For Doing Something Beautiful In Python :)
 
